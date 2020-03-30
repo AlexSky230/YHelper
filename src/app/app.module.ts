@@ -3,14 +3,40 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NbThemeModule, NbLayoutModule, NbButtonModule, NbIconModule, NbSidebarModule} from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { LeftNavigationComponent } from './components/left-navigation/left-navigation.component';
+import { FridgeComponent } from './components/fridge/fridge.component';
+import { SearchComponent } from './components/search/search.component';
+import { ShoppingComponent } from './components/shopping/shopping.component';
+import { TodoComponent } from './components/todo/todo.component';
+import { WeatherComponent } from './components/weather/weather.component';
+import { FridgeHeaderComponent } from './components/fridge/fridge-header/fridge-header.component';
+import { FridgeListComponent } from './components/fridge/fridge-list/fridge-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LeftNavigationComponent,
+    FridgeComponent,
+    SearchComponent,
+    ShoppingComponent,
+    TodoComponent,
+    WeatherComponent,
+    FridgeHeaderComponent,
+    FridgeListComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NbThemeModule.forRoot({name: 'dark'}),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbButtonModule,
+    NbIconModule,
+    NbSidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
