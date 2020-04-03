@@ -11,8 +11,18 @@ export enum routerMainPath {
 }
 
 export enum routerWeatherPath {
+  empty = '',
   week = 'week',
   radar = 'radar',
   today = 'today',
 }
+
+export const MainNav = {
+  todo: { title: 'Todo', icon: 'checkmark-circle-outline', link: routerMainPath.todo },
+  weather: { title: 'Weather', icon: 'thermometer-plus', link: routerMainPath.weather },
+  shoppingList: { title: 'Shopping List', icon: 'shopping-cart', link: routerMainPath.shopping },
+  fridgeInventory: { title: 'Fridge Inventory', icon: 'shopping-bag', link: routerMainPath.fridge },
+  search: { title: 'Search', icon: 'search-outline', link: routerMainPath.search },
+};
+
 

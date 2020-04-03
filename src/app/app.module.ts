@@ -19,6 +19,8 @@ import { WeekComponent } from './components/weather/week/week.component';
 import { ForecastHeaderComponent } from './components/weather/forecast-header/forecast-header.component';
 import { WeatherTabsComponent } from './components/weather/weather-tabs/weather-tabs.component';
 import { RadarComponent } from './components/weather/radar/radar.component';
+import { TodoHeaderComponent } from './components/todo/todo-header/todo-header.component';
+import { TodoListComponent } from './components/todo/todo-list/todo-list.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { RadarComponent } from './components/weather/radar/radar.component';
     WeekComponent,
     ForecastHeaderComponent,
     WeatherTabsComponent,
-    RadarComponent
+    RadarComponent,
+    TodoHeaderComponent,
+    TodoListComponent
   ],
   imports: [
     BrowserModule,

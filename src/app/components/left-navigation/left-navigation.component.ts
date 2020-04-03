@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NbMenuItem} from '@nebular/theme';
+import {MainNav} from '../../constants/constants';
 
 @Component({
   selector: 'app-left-navigation',
@@ -12,29 +13,29 @@ export class LeftNavigationComponent implements OnInit {
 
   navItems: NbMenuItem[] = [
     {
-      title: 'Todo',
-      icon: 'checkmark-square-outline',
-      link: 'todo'
+      title: MainNav.todo.title,
+      icon: MainNav.todo.icon,
+      link: MainNav.todo.link
     },
     {
-      title: 'Weather',
-      icon: 'umbrella-outline',
-      link: 'weather'
+      title: MainNav.weather.title,
+      icon: MainNav.weather.icon,
+      link: MainNav.weather.link
     },
     {
-      title: 'Shopping List',
-      icon: 'list-outline',
-      link: 'shopping'
+      title: MainNav.shoppingList.title,
+      icon: MainNav.shoppingList.icon,
+      link: MainNav.shoppingList.link
     },
     {
-      title: 'Fridge Inventory',
-      icon: 'clipboard-outline',
-      link: 'fridge'
+      title: MainNav.fridgeInventory.title,
+      icon: MainNav.fridgeInventory.icon,
+      link: MainNav.fridgeInventory.link
     },
     {
-      title: 'Search',
-      icon: 'search-outline',
-      link: 'search'
+      title: MainNav.search.title,
+      icon: MainNav.search.icon,
+      link: MainNav.search.link
     },
   ];
 

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {TodoComponent} from './components/todo/todo.component';
 import {SearchComponent} from './components/search/search.component';
 import {FridgeComponent} from './components/fridge/fridge.component';
@@ -9,7 +9,6 @@ import {TodayComponent} from './components/weather/today/today.component';
 import {WeekComponent} from './components/weather/week/week.component';
 import {RadarComponent} from './components/weather/radar/radar.component';
 import {routerMainPath, routerWeatherPath} from './constants/constants';
-
 
 
 const routes: Routes = [
@@ -34,7 +33,7 @@ const routes: Routes = [
         component: RadarComponent
       },
       {
-        path: '',
+        path: routerWeatherPath.empty,
         component: TodayComponent
       },
     ]
@@ -67,4 +66,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
