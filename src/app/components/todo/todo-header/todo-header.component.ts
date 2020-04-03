@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {buttonIcons} from '../../../constants/constants';
+import {Todo} from '../../../helpers/classes/todo';
+import {IdService} from '../../../helpers/id.service';
 
 @Component({
   selector: 'app-todo-header',
@@ -7,9 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoHeaderComponent implements OnInit {
 
-  constructor() { }
+  @Input() todos;
+  @Output() addTodoOutput = new EventEmitter();
+
+  public newTodo: Todo;
+
+  private buttonIcons = buttonIcons;
+
+  constructor(
+    private idService: IdService
+  ) { }
 
   ngOnInit(): void {
+    this.newTodo = new Todo();
+  }
+
+  private addTodo(newTodo: Todo): void {
+    const todo = newTodo;
+
+    if (todo.title !== '') {
+      todo.id = this.idService.getId();
+      this.todos.unshift(todo);
+      this.addTodoOutput.emit();
+    }
+    this.newTodo = new Todo();
   }
 
 }

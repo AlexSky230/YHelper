@@ -4,7 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {NbThemeModule, NbLayoutModule, NbButtonModule, NbIconModule, NbSidebarModule, NbMenuModule, NbCardModule} from '@nebular/theme';
+import {
+  NbThemeModule,
+  NbLayoutModule,
+  NbButtonModule,
+  NbIconModule,
+  NbSidebarModule,
+  NbMenuModule,
+  NbCardModule,
+  NbInputModule, NbFormFieldModule
+} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LeftNavigationComponent } from './components/left-navigation/left-navigation.component';
 import { FridgeComponent } from './components/fridge/fridge.component';
@@ -21,6 +30,7 @@ import { WeatherTabsComponent } from './components/weather/weather-tabs/weather-
 import { RadarComponent } from './components/weather/radar/radar.component';
 import { TodoHeaderComponent } from './components/todo/todo-header/todo-header.component';
 import { TodoListComponent } from './components/todo/todo-list/todo-list.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -53,6 +63,9 @@ import { TodoListComponent } from './components/todo/todo-list/todo-list.compone
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbCardModule,
+    NbInputModule,
+    ReactiveFormsModule,
+    NbFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

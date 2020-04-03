@@ -1,3 +1,7 @@
+export enum buttonIcons {
+  add = 'plus',
+}
+
 export enum routerMainPath {
   empty = '',
   full = 'full',

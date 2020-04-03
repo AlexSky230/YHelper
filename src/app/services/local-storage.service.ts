@@ -6,7 +6,7 @@ import {StorageMap} from '@ngx-pwa/local-storage';
   providedIn: 'root'
 })
 
-export class BrowserLocalStorageService {
+export class LocalStorageService {
 
   constructor(private storage: StorageMap) {
   }

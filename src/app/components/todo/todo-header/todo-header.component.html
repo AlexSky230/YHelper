@@ -1,1 +1,14 @@
-<p>todo-header works!</p>
+<nb-layout-header>
+  <div class="header-container">
+    <nb-form-field>
+      <button nbButton hero shape="round" status="primary"
+              (click)="addTodo(newTodo)"
+              aria-label="Add Todo to List">
+        <nb-icon [icon]="buttonIcons.add"></nb-icon>
+      </button>
+
+      <input type="text" nbInput fullWidth fieldSize="medium" placeholder="Input"
+           [formControl]="todoInput">
+    </nb-form-field>
+  </div>
+</nb-layout-header>
