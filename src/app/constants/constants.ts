@@ -10,13 +10,6 @@ export enum routerMainPath {
   wildcard = '**'
 }
 
-export enum weatherPath {
-  empty = '',
-  week = 'week',
-  radar = 'radar',
-  today = 'today',
-}
-
 export enum routerWeatherPath {
   empty = '',
   week = 'week',
