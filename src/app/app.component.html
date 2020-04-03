@@ -1,14 +1,11 @@
 <nb-layout>
 
-  <nb-layout-header fixed>TabHelper Beta 0.1
-  </nb-layout-header>
-
-<!--  <nb-sidebar></nb-sidebar>-->
+  <nb-sidebar class="sidebar-nav" state="compacted">
+    <app-left-navigation></app-left-navigation>
+  </nb-sidebar>
 
   <nb-layout-column>
-
     <button nbButton outline status="info">Info</button>
-
     <router-outlet></router-outlet>
   </nb-layout-column>
 
