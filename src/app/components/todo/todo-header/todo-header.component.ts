@@ -15,7 +15,7 @@ export class TodoHeaderComponent implements OnInit {
 
   public newTodo: Todo;
 
-  private buttonIcons = buttonIcons;
+  public buttonIcons = buttonIcons;
 
   constructor(
     private idService: IdService
@@ -25,7 +25,7 @@ export class TodoHeaderComponent implements OnInit {
     this.newTodo = new Todo();
   }
 
-  private addTodo(newTodo: Todo): void {
+  public addTodo(newTodo: Todo): void {
     const todo = newTodo;
 
     if (todo.title !== '') {

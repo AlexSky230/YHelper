@@ -30,7 +30,7 @@ import { WeatherTabsComponent } from './components/weather/weather-tabs/weather-
 import { RadarComponent } from './components/weather/radar/radar.component';
 import { TodoHeaderComponent } from './components/todo/todo-header/todo-header.component';
 import { TodoListComponent } from './components/todo/todo-list/todo-list.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -66,6 +66,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     NbInputModule,
     ReactiveFormsModule,
     NbFormFieldModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

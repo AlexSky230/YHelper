@@ -23,12 +23,12 @@ export class TodoComponent implements OnInit {
     this.getAllTodos();
   }
 
-  private buildTodoList(data): void {
+  public buildTodoList(data): void {
     this.todos = data ? data : [];
     this.calculateIncompleteTodos();
   }
 
-  private calculateIncompleteTodos(): void {
+  public calculateIncompleteTodos(): void {
     this.incomplete = this.todos.reduce((a, todo) => {
       // return a + Number(!todo.complete); //another, maybe better way to do it
       return (todo.complete) ? a : (a + 1);

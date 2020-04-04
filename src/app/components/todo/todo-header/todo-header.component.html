@@ -1,14 +1,27 @@
-<nb-layout-header>
-  <div class="header-container">
-    <nb-form-field>
-      <button nbButton hero shape="round" status="primary"
-              (click)="addTodo(newTodo)"
-              aria-label="Add Todo to List">
-        <nb-icon [icon]="buttonIcons.add"></nb-icon>
-      </button>
+<nb-card>
+  <nb-card-body>
+    <div class="header-container">
+      <nb-form-field>
+        <button
+          [disabled]="todoTitle.value.length === 0"
+          (click)="addTodo(newTodo)"
+          nbButton ghost shape="round" status="primary"
+          aria-label="Add Todo to List"
+          class="add-button">
+          <nb-icon [icon]="buttonIcons.add"></nb-icon>
+        </button>
 
-      <input type="text" nbInput fullWidth fieldSize="medium" placeholder="Input"
-           [formControl]="todoInput">
-    </nb-form-field>
-  </div>
-</nb-layout-header>
+        <input
+          #todoTitle
+          [(ngModel)]="newTodo.title"
+          (keyup.enter)="addTodo(newTodo)"
+          nbInput fullWidth fieldSize="small"
+          placeholder="Add task..."
+          maxlength="22"
+          class="input-field">
+        <div nbSuffix class="length-counter">{{ todoTitle.value.length }}/{{ todoTitle.maxLength }}</div>
+      </nb-form-field>
+    </div>
+  </nb-card-body>
+</nb-card>
+
