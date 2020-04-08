@@ -1,11 +1,12 @@
-<nb-card>
-  <nb-card-body>
+<nb-layout-header fixed id="todoListCard">
+  <app-logo></app-logo>
+
     <div class="header-container">
       <nb-form-field>
         <button
           [disabled]="todoTitle.value.length === 0"
           (click)="addTodo(newTodo)"
-          nbButton ghost shape="round" status="primary"
+          nbButton shape="round" status="primary"
           aria-label="Add Todo to List"
           class="add-button">
           <nb-icon [icon]="buttonIcons.add"></nb-icon>
@@ -22,6 +23,5 @@
         <div nbSuffix class="length-counter">{{ todoTitle.value.length }}/{{ todoTitle.maxLength }}</div>
       </nb-form-field>
     </div>
-  </nb-card-body>
-</nb-card>
+</nb-layout-header>
 

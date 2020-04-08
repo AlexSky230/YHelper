@@ -12,7 +12,7 @@ import {
   NbSidebarModule,
   NbMenuModule,
   NbCardModule,
-  NbInputModule, NbFormFieldModule
+  NbInputModule, NbFormFieldModule, NbListModule, NbCheckboxModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LeftNavigationComponent } from './components/left-navigation/left-navigation.component';
@@ -31,6 +31,7 @@ import { RadarComponent } from './components/weather/radar/radar.component';
 import { TodoHeaderComponent } from './components/todo/todo-header/todo-header.component';
 import { TodoListComponent } from './components/todo/todo-list/todo-list.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AppLogoComponent } from './components/app-logo/app-logo.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     WeatherTabsComponent,
     RadarComponent,
     TodoHeaderComponent,
-    TodoListComponent
+    TodoListComponent,
+    AppLogoComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
     NbFormFieldModule,
     FormsModule,
+    NbListModule,
+    NbCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

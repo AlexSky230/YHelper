@@ -1,17 +1,13 @@
 .input-field {
-  position: relative;
-  left: 3em;
-  width: calc(100% - 2.5em) !important;
+  margin-left: 0.5em;
+  width: calc(100% - 3.7em) !important;
 }
 
 .add-button {
-  position: fixed;
-  left: 6.2em;
-  top: 2.1em;
+  button:focus { outline-style: none !important; }
 }
 
 .length-counter {
-  position: relative;
-  left: 0.4em;
+  margin-right: 0.5em;
 }
 

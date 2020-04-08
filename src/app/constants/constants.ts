@@ -1,5 +1,6 @@
 export enum buttonIcons {
   add = 'plus',
+  delete = 'trash-2-outline'
 }
 
 export enum routerMainPath {

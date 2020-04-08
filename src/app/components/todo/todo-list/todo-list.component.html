@@ -1,5 +1,31 @@
-<nb-card>
-  <nb-card-body>
-    <p>todo-list works!</p>
-  </nb-card-body>
+
+  <nb-card class="list-header">
+    <nb-card-body>
+    {{todos.length > 0 ? incomplete +'  left to go...' : 'To Do:'}}
+    </nb-card-body>
+  </nb-card>
+
+<nb-card accent="primary" class="todoList">
+
+  <nb-list *ngIf="todos.length > 0" class="todo-list">
+    <nb-list-item *ngFor="let todo of todos;"
+                  class="list-item">
+
+      <nb-checkbox [checked]="todo.complete"
+                   (change)="toggleTodoComplete(todo)"
+                   status="primary"
+                   [class.completed]="todo.complete"
+                   class="todo-item">
+        {{todo.title}}</nb-checkbox>
+
+      <nb-layout-column>
+      <nb-icon (click)="removeTodo(todo)"
+               class="aligned-with-text"
+               status="primary"
+               [icon]="buttonIcons.delete"
+               nbSuffix></nb-icon>
+      </nb-layout-column>
+    </nb-list-item>
+
+  </nb-list>
 </nb-card>

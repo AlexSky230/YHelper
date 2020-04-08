@@ -28,9 +28,9 @@ export class TodoComponent implements OnInit {
     this.calculateIncompleteTodos();
   }
 
+
   public calculateIncompleteTodos(): void {
     this.incomplete = this.todos.reduce((a, todo) => {
-      // return a + Number(!todo.complete); //another, maybe better way to do it
       return (todo.complete) ? a : (a + 1);
     }, 0);
     this.localStorageService.addDataToStorage('todos', this.todos);
@@ -47,16 +47,8 @@ export class TodoComponent implements OnInit {
       });
   }
 
-  private removeTodo(todo: Todo): void {
+  private removeTodo(todo) {
     this.todos = this.todos.filter(item => item.id !== todo.id);
     this.calculateIncompleteTodos();
-    this.localStorageService.addDataToStorage('todos', this.todos);
   }
-
-  private toggleTodoComplete(todo: Todo): void {
-    todo.complete = !todo.complete;
-    this.calculateIncompleteTodos();
-    this.localStorageService.addDataToStorage('todos', this.todos);
-  }
-
 }
