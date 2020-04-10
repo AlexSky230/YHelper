@@ -12,7 +12,7 @@ import {
   NbSidebarModule,
   NbMenuModule,
   NbCardModule,
-  NbInputModule, NbFormFieldModule, NbListModule, NbCheckboxModule
+  NbInputModule, NbFormFieldModule, NbListModule, NbCheckboxModule, NbActionsModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LeftNavigationComponent } from './components/left-navigation/left-navigation.component';
@@ -71,6 +71,7 @@ import { AppLogoComponent } from './components/app-logo/app-logo.component';
     FormsModule,
     NbListModule,
     NbCheckboxModule,
+    NbActionsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

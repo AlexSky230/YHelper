@@ -24,9 +24,9 @@ export enum routerWeatherPath {
 
 export const MainNav = {
   todo: { title: 'Todo', icon: 'checkmark-circle-outline', link: routerMainPath.todo },
-  weather: { title: 'Weather', icon: 'thermometer-plus', link: routerMainPath.weather },
-  shoppingList: { title: 'Shopping List', icon: 'shopping-cart', link: routerMainPath.shopping },
-  fridgeInventory: { title: 'Fridge Inventory', icon: 'shopping-bag', link: routerMainPath.fridge },
+  weather: { title: 'Weather', icon: 'umbrella-outline', link: routerMainPath.weather },
+  shoppingList: { title: 'Shopping List', icon: 'shopping-cart-outline', link: routerMainPath.shopping },
+  fridgeInventory: { title: 'Fridge Inventory', icon: 'archive-outline', link: routerMainPath.fridge },
   search: { title: 'Search', icon: 'search-outline', link: routerMainPath.search },
 };
 

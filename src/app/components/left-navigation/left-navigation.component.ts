@@ -13,27 +13,27 @@ export class LeftNavigationComponent implements OnInit {
 
   navItems: NbMenuItem[] = [
     {
-      title: MainNav.todo.title,
+      title: '',
       icon: MainNav.todo.icon,
       link: MainNav.todo.link
     },
     {
-      title: MainNav.weather.title,
+      title: '',
       icon: MainNav.weather.icon,
       link: MainNav.weather.link
     },
     {
-      title: MainNav.shoppingList.title,
+      title: '',
       icon: MainNav.shoppingList.icon,
       link: MainNav.shoppingList.link
     },
     {
-      title: MainNav.fridgeInventory.title,
+      title: '',
       icon: MainNav.fridgeInventory.icon,
       link: MainNav.fridgeInventory.link
     },
     {
-      title: MainNav.search.title,
+      title: '',
       icon: MainNav.search.icon,
       link: MainNav.search.link
     },

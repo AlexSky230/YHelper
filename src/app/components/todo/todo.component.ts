@@ -36,7 +36,7 @@ export class TodoComponent implements OnInit {
     this.localStorageService.addDataToStorage('todos', this.todos);
   }
 
-  private getAllTodos(): void {
+  public getAllTodos(): void {
     this.localStorageService
       .getDataFromStorageById('todos')
       .subscribe((data) => {
@@ -47,7 +47,7 @@ export class TodoComponent implements OnInit {
       });
   }
 
-  private removeTodo(todo) {
+  public removeTodo(todo) {
     this.todos = this.todos.filter(item => item.id !== todo.id);
     this.calculateIncompleteTodos();
   }

@@ -10,11 +10,10 @@ import {IdService} from '../../../helpers/id.service';
 })
 export class TodoHeaderComponent implements OnInit {
 
-  @Input() todos;
+  @Input() todos: Todo[];
   @Output() addTodoOutput = new EventEmitter();
 
   public newTodo: Todo;
-
   public buttonIcons = buttonIcons;
 
   constructor(

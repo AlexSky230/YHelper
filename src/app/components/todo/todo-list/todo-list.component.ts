@@ -21,11 +21,11 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  private removeTodo(todo: Todo): void {
+  public removeTodo(todo: Todo): void {
     this.removeItem.emit(todo);
   }
 
-  private toggleTodoComplete(todo: Todo): void {
+  public toggleTodoComplete(todo: Todo): void {
     todo.complete = !todo.complete;
     this.toggleItem.emit();
   }

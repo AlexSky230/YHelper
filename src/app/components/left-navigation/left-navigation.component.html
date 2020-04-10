@@ -1,2 +1,11 @@
-<nb-menu [items]="navItems"></nb-menu>
+<div *ngFor="let button of navItems"
+     class="item">
+  <button [routerLink]="[button.link]"
+          routerLinkActive="active"
+          nbButton ghost status="primary">
+    <nb-icon [icon]="button.icon"
+             [options]="{ animation: { type: 'pulse' } }"></nb-icon>
+  </button>
+</div>
+
 
