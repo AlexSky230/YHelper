@@ -1,11 +1,17 @@
-.item {
+.nav-button-panel {
+  margin-top: 6em;
+}
+
+.nav-button {
   position: relative;
   left: -0.75em;
   padding-top: 2em;
 }
 
-.active nb-icon {
-  color: #dbe7fd;
-  text-shadow: -6px 0px 15px rgba(255, 255, 240, 0.83), 6px 0px 15px rgba(255, 255, 240, 0.83);
+.active {
+  outline: none;
+  color: #bb145a;
+  background-color: #505050;
+  text-shadow: -6px 0px 15px rgba(255, 195, 200, 0.9), 6px 0px 15px rgba(255, 206, 207, 0.9);
 }
 

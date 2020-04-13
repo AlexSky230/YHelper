@@ -103,13 +103,17 @@ export class WeatherComponent implements OnInit {
       .addDataToStorage(this.activeLocation + 'ForecastTime', currentTime);
   }
 
-  public locationUpdate(location: string, latitude: number, longitude: number): void {
+  public locationUpdate(location: string): void {
     this.activeLocation = location;
-    this.latitude = latitude;
-    this.longitude = longitude;
+    this.latitude = this.weatherDataService.getLocationCoordinates(location).latitude;
+    this.longitude = this.weatherDataService.getLocationCoordinates(location).longitude;
     this.getForecast().subscribe((forecast: object) => {
       this.forecast = forecast;
       this.sharedForecastService.setSharedForecast(forecast);
     });
+  }
+
+  get locationNames(): string[] {
+    return this.weatherDataService.getLocationNames();
   }
 }

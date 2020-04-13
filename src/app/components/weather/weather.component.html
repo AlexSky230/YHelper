@@ -1,1 +1,15 @@
-<p>weather works!</p>
+<section class="col-12">
+  <app-forecast-header
+    [activeLocation]="activeLocation"
+    [latitude]="latitude"
+    [longitude]="longitude"
+    [locationNames]="locationNames"
+    (citySelected)="locationUpdate($event)">
+  </app-forecast-header>
+
+  <app-weather-tabs class="col-12 tabs"></app-weather-tabs>
+
+  <div class="forecast-field col-12">
+    <router-outlet></router-outlet>
+  </div>
+</section>

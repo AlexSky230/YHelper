@@ -1,9 +1,15 @@
-.logo {
-  position: relative;
-  color: cornflowerblue;
-  left: -1em;
-  width: 50px;
-  height: 50px;
-  border: solid cornflowerblue 1px;
+.logo-container {
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 3em;
+  height: 5em;
+  background-color: #420926;
+}
 
+.logo {
+  padding: 15% 0;
+  color: lightgrey;
+  font-size: x-small;
 }

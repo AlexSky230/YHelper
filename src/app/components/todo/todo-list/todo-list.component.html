@@ -1,24 +1,25 @@
-<nb-card class="todoList" accent="primary">
-  <nb-card-header>
-    {{todos.length > 0 ? incomplete +'  left to go...' : 'To Do:'}}
-  </nb-card-header>
+<p>todo list</p>
+<!--<nb-card class="todoList" accent="primary">-->
+<!--  <nb-card-header>-->
+<!--    {{todos.length > 0 ? incomplete +'  left to go...' : 'To Do:'}}-->
+<!--  </nb-card-header>-->
 
-  <nb-list *ngIf="todos.length > 0" class="todo-list">
-    <nb-list-item *ngFor="let todo of todos;"
-                  class="list-item">
+<!--  <nb-list *ngIf="todos.length > 0" class="todo-list">-->
+<!--    <nb-list-item *ngFor="let todo of todos;"-->
+<!--                  class="list-item">-->
 
-      <nb-checkbox [checked]="todo.complete"
-                   (change)="toggleTodoComplete(todo)"
-                   status="primary"
-                   [class.completed]="todo.complete"
-                   class="todo-item">{{ todo.title }}</nb-checkbox>
+<!--      <nb-checkbox [checked]="todo.complete"-->
+<!--                   (change)="toggleTodoComplete(todo)"-->
+<!--                   status="primary"-->
+<!--                   [class.completed]="todo.complete"-->
+<!--                   class="todo-item">{{ todo.title }}</nb-checkbox>-->
 
-      <nb-layout-column>
-      <nb-icon (click)="removeTodo(todo)"
-               class="aligned-with-text"
-               status="primary"
-               [icon]="buttonIcons.delete"></nb-icon>
-      </nb-layout-column>
-    </nb-list-item>
-  </nb-list>
-</nb-card>
+<!--      <nb-layout-column>-->
+<!--      <nb-icon (click)="removeTodo(todo)"-->
+<!--               class="aligned-with-text"-->
+<!--               status="primary"-->
+<!--               [icon]="buttonIcons.delete"></nb-icon>-->
+<!--      </nb-layout-column>-->
+<!--    </nb-list-item>-->
+<!--  </nb-list>-->
+<!--</nb-card>-->

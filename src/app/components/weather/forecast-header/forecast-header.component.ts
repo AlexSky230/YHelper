@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-forecast-header',
   templateUrl: './forecast-header.component.html',
   styleUrls: ['./forecast-header.component.scss']
 })
-export class ForecastHeaderComponent implements OnInit {
+export class ForecastHeaderComponent {
 
-  constructor() { }
+  @Input() activeLocation: string;
+  @Input() latitude: number;
+  @Input() longitude: number;
+  @Input() locationNames: string[];
+  @Output() citySelected = new EventEmitter();
 
-  ngOnInit(): void {
+  private cityClicked(location: string): void {
+    this.citySelected.emit(location);
   }
+
 
 }

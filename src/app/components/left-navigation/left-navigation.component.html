@@ -1,11 +1,15 @@
-<div *ngFor="let button of navItems"
-     class="item">
-  <button [routerLink]="[button.link]"
-          routerLinkActive="active"
-          nbButton ghost status="primary">
-    <nb-icon [icon]="button.icon"
-             [options]="{ animation: { type: 'pulse' } }"></nb-icon>
-  </button>
-</div>
+<section class="nav-button-panel">
+  <app-logo></app-logo>
+
+  <div *ngFor="let button of navItems"
+       class="nav-button">
+    <button [routerLink]="[button.link]"
+            routerLinkActive="active"
+            [color]="appColor.accent"
+            mat-button>
+      <mat-icon>{{ button.icon }}</mat-icon>
+    </button>
+  </div>
+</section>
 
 

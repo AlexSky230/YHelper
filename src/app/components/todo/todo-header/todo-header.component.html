@@ -1,27 +1,63 @@
-<nb-layout-header fixed id="todoListCard">
-  <app-logo></app-logo>
+<section class="main">
+  <mat-card>
+    <form class="button-panel">
 
-    <div class="header-container">
-      <nb-form-field>
-        <button
-          [disabled]="todoTitle.value.length === 0"
-          (click)="addTodo(newTodo)"
-          nbButton shape="round" hero status="primary"
-          aria-label="Add Todo to List"
-          class="add-button">
-          <nb-icon [icon]="buttonIcons.add"></nb-icon>
-        </button>
+      <button
+        [disabled]="todoTitle.value.length === 0"
+        (click)="addTodo(newTodo)"
+        mat-mini-fab
+        color="primary"
+        class="add-button">
+        <mat-icon>add</mat-icon>
+      </button>
 
+      <mat-form-field>
+        <mat-label>
+          {{todos.length > 0 ? incomplete +'  left to go...' : 'To Do:'}}
+        </mat-label>
         <input
           #todoTitle
           [(ngModel)]="newTodo.title"
           (keyup.enter)="addTodo(newTodo)"
-          nbInput fullWidth fieldSize="small"
           placeholder="Add task..."
           maxlength="22"
-          class="input-field">
-        <div nbSuffix class="length-counter">{{ todoTitle.value.length }}/{{ todoTitle.maxLength }}</div>
-      </nb-form-field>
-    </div>
-</nb-layout-header>
+          matInput
+          class="text-field">
+        <mat-hint
+          *ngIf="todoTitle.value.length > 0"
+          align="end">
+          {{todoTitle.value.length}} / 22
+        </mat-hint>
+
+      </mat-form-field>
+
+    </form>
+  </mat-card>
+</section>
+<!--<nb-layout-header fixed id="todoListCard">-->
+<!--  <app-logo></app-logo>-->
+
+<!--    <div class="header-container">-->
+<!--      <nb-form-field>-->
+<!--        <button-->
+<!--          [disabled]="todoTitle.value.length === 0"-->
+<!--          (click)="addTodo(newTodo)"-->
+<!--          nbButton shape="round" hero status="primary"-->
+<!--          aria-label="Add Todo to List"-->
+<!--          class="add-button">-->
+<!--          <nb-icon [icon]="buttonIcons.add"></nb-icon>-->
+<!--        </button>-->
+
+<!--        <input-->
+<!--          #todoTitle-->
+<!--          [(ngModel)]="newTodo.title"-->
+<!--          (keyup.enter)="addTodo(newTodo)"-->
+<!--          nbInput fullWidth fieldSize="small"-->
+<!--          placeholder="Add task..."-->
+<!--          maxlength="22"-->
+<!--          class="input-field">-->
+<!--        <div nbSuffix class="length-counter">{{ todoTitle.value.length }}/{{ todoTitle.maxLength }}</div>-->
+<!--      </nb-form-field>-->
+<!--    </div>-->
+<!--</nb-layout-header>-->
 

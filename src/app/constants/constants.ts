@@ -1,3 +1,9 @@
+export enum appColor {
+  primary = 'primary',
+  accent = 'accent',
+  warn = 'warn',
+}
+
 export enum buttonIcons {
   add = 'plus',
   delete = 'trash-2-outline'
@@ -23,11 +29,11 @@ export enum routerWeatherPath {
 }
 
 export const MainNav = {
-  todo: { title: 'Todo', icon: 'checkmark-circle-outline', link: routerMainPath.todo },
-  weather: { title: 'Weather', icon: 'umbrella-outline', link: routerMainPath.weather },
-  shoppingList: { title: 'Shopping List', icon: 'shopping-cart-outline', link: routerMainPath.shopping },
-  fridgeInventory: { title: 'Fridge Inventory', icon: 'archive-outline', link: routerMainPath.fridge },
-  search: { title: 'Search', icon: 'search-outline', link: routerMainPath.search },
+  todo: { title: 'Todo', icon: 'format_list_numbered', link: routerMainPath.todo },
+  weather: { title: 'Weather', icon: 'filter_drama', link: routerMainPath.weather },
+  shoppingList: { title: 'Shopping List', icon: 'shopping_cart', link: routerMainPath.shopping },
+  fridgeInventory: { title: 'Fridge Inventory', icon: 'storage', link: routerMainPath.fridge },
+  search: { title: 'Search', icon: 'search', link: routerMainPath.search },
 };
 
 

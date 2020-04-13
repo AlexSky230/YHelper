@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NbMenuItem} from '@nebular/theme';
-import {MainNav} from '../../constants/constants';
+import {appColor, MainNav} from '../../constants/constants';
 
 @Component({
   selector: 'app-left-navigation',
@@ -9,9 +8,11 @@ import {MainNav} from '../../constants/constants';
 })
 export class LeftNavigationComponent implements OnInit {
 
+  appColor = appColor;
+
   constructor() { }
 
-  navItems: NbMenuItem[] = [
+  navItems = [
     {
       title: '',
       icon: MainNav.todo.icon,

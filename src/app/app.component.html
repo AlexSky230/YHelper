@@ -1,11 +1,12 @@
-<nb-layout>
-
-  <nb-sidebar state="compacted">
+<div class="mat-typography app-frame mat-app-background">
+<mat-sidenav-container class="area">
+  <mat-sidenav mode="side" opened class="side-nav">
     <app-left-navigation></app-left-navigation>
-  </nb-sidebar>
+  </mat-sidenav>
 
-  <nb-layout-column>
+  <mat-sidenav-content class="main">
     <router-outlet></router-outlet>
-  </nb-layout-column>
+  </mat-sidenav-content>
 
-</nb-layout>
+</mat-sidenav-container>
+</div>
