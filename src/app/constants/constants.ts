@@ -5,8 +5,9 @@ export enum appColor {
 }
 
 export enum buttonIcons {
-  add = 'plus',
-  delete = 'trash-2-outline'
+  add = 'add',
+  delete = 'trash-2-outline',
+  clear = 'close',
 }
 
 export enum routerMainPath {

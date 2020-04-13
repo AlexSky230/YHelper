@@ -1,17 +1,19 @@
 .nav-button-panel {
-  margin-top: 6em;
+  margin-top: 10em;
+  width: 3em;
+  text-align: center;
 }
 
 .nav-button {
   position: relative;
-  left: -0.75em;
+  left: -0.7em;
   padding-top: 2em;
 }
 
 .active {
   outline: none;
   color: #bb145a;
-  background-color: #505050;
-  text-shadow: -6px 0px 15px rgba(255, 195, 200, 0.9), 6px 0px 15px rgba(255, 206, 207, 0.9);
+  //background-color: #878787;
+  //text-shadow: 0 0 15px rgba(255, 226, 231, 0.95);
 }
 

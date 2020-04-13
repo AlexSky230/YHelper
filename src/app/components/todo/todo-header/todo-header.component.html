@@ -8,26 +8,30 @@
         mat-mini-fab
         color="primary"
         class="add-button">
-        <mat-icon>add</mat-icon>
+        <mat-icon> {{ buttonIcons.add }}</mat-icon>
       </button>
 
       <mat-form-field>
         <mat-label>
           {{todos.length > 0 ? incomplete +'  left to go...' : 'To Do:'}}
         </mat-label>
-        <input
-          #todoTitle
-          [(ngModel)]="newTodo.title"
-          (keyup.enter)="addTodo(newTodo)"
-          placeholder="Add task..."
-          maxlength="22"
-          matInput
-          class="text-field">
-        <mat-hint
-          *ngIf="todoTitle.value.length > 0"
-          align="end">
-          {{todoTitle.value.length}} / 22
-        </mat-hint>
+        <input #todoTitle
+               name="todoTitle"
+               [(ngModel)]="newTodo.title"
+               (keyup.enter)="addTodo(newTodo)"
+               placeholder="Add task..."
+               maxlength="22"
+               matInput
+               class="text-field">
+          <mat-hint *ngIf="todoTitle.value.length > 0"
+                    align="end">
+                    {{todoTitle.value.length}} / 22</mat-hint>
+          <button *ngIf="todoTitle.value.length > 0"
+                  (click)="todoTitle.value = ''"
+                  color="warn"
+                  mat-button matSuffix mat-icon-button aria-label="Clear">
+            <mat-icon>{{ buttonIcons.clear }}</mat-icon>
+          </button>
 
       </mat-form-field>
 

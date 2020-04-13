@@ -30,8 +30,7 @@ export class TodoHeaderComponent implements OnInit {
 
     if (todo.title !== '') {
       todo.id = this.idService.getId();
-      this.todos.unshift(todo);
-      this.addTodoOutput.emit();
+      this.addTodoOutput.emit(todo);
     }
     this.newTodo = new Todo();
   }

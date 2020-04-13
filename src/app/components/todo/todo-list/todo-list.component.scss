@@ -1,18 +1,26 @@
-
-.todoList {
-  margin-top: 5em;
+.main {
+  margin-top: 0.5em;
 }
 
-.aligned-with-text {
-  position: relative;
-  bottom: 0.6em;
-  left: 1em;
-  float: right;
-  font-size: 1em;
-  cursor: default;
+.list {
+  padding: 1em 0 0 0;
+  background-color: #3b3b3b;
+  border-radius: 4px;
+  box-shadow:
+    0 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.todo-item {
+  padding: 0;
+}
+
+.delete mat-icon {
+  font-size: 1.2em;
 }
 
 .completed {
   text-decoration: line-through;
-  color: #dcffff;
+  color: #8c8c8c;
 }

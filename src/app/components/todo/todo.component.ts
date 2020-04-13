@@ -23,11 +23,15 @@ export class TodoComponent implements OnInit {
     this.getAllTodos();
   }
 
+  public addTodo(todo: Todo) {
+    this.todos.unshift(todo);
+    this.calculateIncompleteTodos();
+  }
+
   public buildTodoList(data): void {
     this.todos = data ? data : [];
     this.calculateIncompleteTodos();
   }
-
 
   public calculateIncompleteTodos(): void {
     this.incomplete = this.todos.reduce((a, todo) => {
