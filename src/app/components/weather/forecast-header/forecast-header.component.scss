@@ -1,22 +1,25 @@
-.header-container {
-  //border: solid blue 1px;
-  //width: calc(100% + 4.3em);
+.header-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #303030;
+  z-index: 0;
+  width: 100%;
+  height: 7.4em;
+  //border-bottom: solid #bb145a 2px;
 }
 
-.input-field {
-
-}
-
-.coordinates-container {
-  //position: fixed;
-  //top: 3.2em;
-  text-align: left;
-}
-.coordinates {
-  font-size: 0.8em;
-  color: cornflowerblue;
-}
-
-.coordinates.right {
-  margin-left: 4em;
-}
+//.coordinates-container {
+//  //position: fixed;
+//  //top: 3.2em;
+//  text-align: left;
+//}
+//
+//.coordinates {
+//  font-size: 0.8em;
+//  color: cornflowerblue;
+//}
+//
+//.coordinates.right {
+//  margin-left: 4em;
+//}

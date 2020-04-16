@@ -1,0 +1,11 @@
+.main {
+  margin: 0.5em;
+}
+
+.header {
+  z-index: 20;
+  position: fixed;
+  left: 3.7em;
+  top: 0.5em;
+  width: calc(100% - 4.2em);
+}

@@ -30,6 +30,7 @@ import {SharedForecastService} from './helpers/shared-forecast.service';
 import {LocalStorageService} from './services/local-storage.service';
 import {WeatherService} from './services/weather-http.service';
 import {HttpClientModule} from '@angular/common/http';
+
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
@@ -38,6 +39,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -59,22 +62,24 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     TodoListComponent,
     AppLogoComponent
   ],
-    imports: [
-        AppRoutingModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatCardModule,
-        MatInputModule,
-        MatListModule,
-        MatCheckboxModule,
-        MatToolbarModule,
-    ],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatSelectModule,
+  ],
   providers: [
     IdService,
     LocalStorageService,

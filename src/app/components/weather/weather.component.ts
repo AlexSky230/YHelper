@@ -1,10 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {WeatherDataService} from '../../helpers/weather-data.service';
-import {WeatherService} from '../../services/weather-http.service';
-import {LocalStorageService} from '../../services/local-storage.service';
-import {Observable, timer} from 'rxjs';
 import {map, switchMap, tap} from 'rxjs/operators';
+import {Observable, timer} from 'rxjs';
+
+import {LocalStorageService} from '../../services/local-storage.service';
+import {WeatherService} from '../../services/weather-http.service';
+
+import {ForecastLocation} from '../../helpers/classes/forecastLocation';
 import {SharedForecastService} from '../../helpers/shared-forecast.service';
+import {WeatherDataService} from '../../helpers/weather-data.service';
+
+import {LOCATIONS} from '../../constants/constants';
 
 @Component({
   selector: 'app-weather',
@@ -13,16 +18,22 @@ import {SharedForecastService} from '../../helpers/shared-forecast.service';
 })
 export class WeatherComponent implements OnInit {
 
-  public activeLocation = 'Gold Coast';
-  public forecast: object;
-  public latitude = -28.0167;
-  public longitude = 153.4000;
+  public activeLocation: ForecastLocation;
+  public forecast: any;
+  public latitude: number;
+  public longitude: number;
+  public locationTitle: string;
 
   constructor(
     private sharedForecastService: SharedForecastService,
     private weatherDataService: WeatherDataService,
     private weatherService: WeatherService,
-    private browserLocalStorageService: LocalStorageService) {
+    private browserLocalStorageService: LocalStorageService)
+  {
+    this.activeLocation = LOCATIONS.currentLocation;
+    this.latitude = LOCATIONS.currentLocation.latitude;
+    this.longitude = LOCATIONS.currentLocation.longitude;
+    this.locationTitle = LOCATIONS.currentLocation.title;
   }
 
   public ngOnInit() {
@@ -33,7 +44,7 @@ export class WeatherComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.latitude = Math.floor(position.coords.latitude * 10000) / 10000;
         this.longitude = Math.floor(position.coords.longitude * 10000) / 10000;
-        this.activeLocation = 'Current Location';
+        this.locationTitle = LOCATIONS.currentLocation.title;
       });
     }
     /**
@@ -104,7 +115,7 @@ export class WeatherComponent implements OnInit {
   }
 
   public locationUpdate(location: string): void {
-    this.activeLocation = location;
+    this.locationTitle = location;
     this.latitude = this.weatherDataService.getLocationCoordinates(location).latitude;
     this.longitude = this.weatherDataService.getLocationCoordinates(location).longitude;
     this.getForecast().subscribe((forecast: object) => {
@@ -113,7 +124,7 @@ export class WeatherComponent implements OnInit {
     });
   }
 
-  get locationNames(): string[] {
+  get locationTitles(): string[] {
     return this.weatherDataService.getLocationNames();
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {appColor, MainNav} from '../../constants/constants';
+import {appColor, MAIN_NAV} from '../../constants/constants';
 
 @Component({
   selector: 'app-left-navigation',
@@ -15,28 +15,28 @@ export class LeftNavigationComponent implements OnInit {
   navItems = [
     {
       title: '',
-      icon: MainNav.todo.icon,
-      link: MainNav.todo.link
+      icon: MAIN_NAV.todo.icon,
+      link: MAIN_NAV.todo.link
     },
     {
       title: '',
-      icon: MainNav.weather.icon,
-      link: MainNav.weather.link
+      icon: MAIN_NAV.weather.icon,
+      link: MAIN_NAV.weather.link
     },
     {
       title: '',
-      icon: MainNav.shoppingList.icon,
-      link: MainNav.shoppingList.link
+      icon: MAIN_NAV.shoppingList.icon,
+      link: MAIN_NAV.shoppingList.link
     },
     {
       title: '',
-      icon: MainNav.fridgeInventory.icon,
-      link: MainNav.fridgeInventory.link
+      icon: MAIN_NAV.fridgeInventory.icon,
+      link: MAIN_NAV.fridgeInventory.link
     },
     {
       title: '',
-      icon: MainNav.search.icon,
-      link: MainNav.search.link
+      icon: MAIN_NAV.search.icon,
+      link: MAIN_NAV.search.link
     },
   ];
 

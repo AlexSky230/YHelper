@@ -1,37 +1,49 @@
-<p>weather works</p>
-<!--<nb-layout-header fixed>-->
-<!--  <app-logo></app-logo>-->
+<section class="main">
 
-<!--  <div class="header">-->
+  <div class="header-cover"></div>
 
-<!--    <div class="header-container">-->
+  <mat-card>
+    <mat-form-field>
+      <mat-label>Forecast for:</mat-label>
+      <mat-select [value]="0">
+        <mat-option
+          *ngFor="let location of locationTitles index as i"
+          [value]="i"
+          (click)="cityClicked(location)">
+          {{ location }}
+        </mat-option>
+      </mat-select>
+      <mat-hint>{{ latitude }}, {{ longitude }}</mat-hint>
+    </mat-form-field>
 
-<!--      <nb-select [placeholder]="activeLocation"-->
-<!--                 size="small"-->
-<!--                 fullWidth-->
-<!--      class="input-field">-->
-<!--        <nb-option >1</nb-option>-->
-<!--        <nb-option >2</nb-option>-->
-<!--        <nb-option >3</nb-option>-->
-<!--        <nb-option >4</nb-option>-->
-<!--      </nb-select>-->
+<!--    <button-->
+<!--      [matMenuTriggerFor]="belowMenu"-->
+<!--      mat-mini-fab-->
+<!--      color="primary"-->
+<!--      class="location-button">-->
+<!--      <mat-icon>expand_more</mat-icon></button>-->
 
-<!--      <div class="coordinates-container">-->
+<!--    <mat-menu #belowMenu="matMenu" xPosition="before">-->
+<!--      <button-->
+<!--        mat-menu-item-->
+<!--        *ngFor="let location of locationNames"-->
+<!--        (click)="cityClicked(location)"-->
+<!--        class="drop-down-item">-->
+<!--        {{ location }}</button></mat-menu>-->
 
+<!--    <div class="location-container">-->
+<!--      <span class="location-name">-->
+<!--        <strong>{{ activeLocation }}</strong>-->
+<!--        <br>-->
 <!--        <span class="coordinates">-->
-<!--        Lat/Long: {{ latitude }} /-->
+<!--          {{ latitude }}, {{ longitude }}-->
 <!--        </span>-->
-
-<!--        <span class="coordinates">-->
-<!--        {{ longitude }}-->
-<!--        </span>-->
-
-<!--      </div>-->
-
+<!--      </span>-->
 <!--    </div>-->
-<!--  </div>-->
 
-<!--</nb-layout-header>-->
+  </mat-card>
+
+</section>
 
 <!--      <button-->
 <!--        mat-mini-fab-->

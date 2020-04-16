@@ -1,15 +1,17 @@
-<section class="col-12">
-  <app-forecast-header
+<section class="main">
+
+  <app-forecast-header class="header"
     [activeLocation]="activeLocation"
     [latitude]="latitude"
     [longitude]="longitude"
-    [locationNames]="locationNames"
+    [locationTitles]="locationTitles"
     (citySelected)="locationUpdate($event)">
   </app-forecast-header>
 
-  <app-weather-tabs class="col-12 tabs"></app-weather-tabs>
+  <app-weather-tabs class="tabs"></app-weather-tabs>
 
-  <div class="forecast-field col-12">
+  <div class="content">
     <router-outlet></router-outlet>
   </div>
+
 </section>

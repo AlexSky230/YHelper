@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ForecastLocation} from '../../../helpers/classes/forecastLocation';
 
 @Component({
   selector: 'app-forecast-header',
@@ -7,15 +8,13 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class ForecastHeaderComponent {
 
-  @Input() activeLocation: string;
+  @Input() activeLocation: ForecastLocation;
   @Input() latitude: number;
   @Input() longitude: number;
-  @Input() locationNames: string[];
+  @Input() locationTitles: string[];
   @Output() citySelected = new EventEmitter();
 
-  private cityClicked(location: string): void {
+  public cityClicked(location: string): void {
     this.citySelected.emit(location);
   }
-
-
 }
