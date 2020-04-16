@@ -37,6 +37,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -58,21 +59,22 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     TodoListComponent,
     AppLogoComponent
   ],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatCardModule,
-    MatInputModule,
-    MatListModule,
-    MatCheckboxModule,
-  ],
+    imports: [
+        AppRoutingModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatCardModule,
+        MatInputModule,
+        MatListModule,
+        MatCheckboxModule,
+        MatToolbarModule,
+    ],
   providers: [
     IdService,
     LocalStorageService,

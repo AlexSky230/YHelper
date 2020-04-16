@@ -1,5 +1,6 @@
 .main {
-  margin-top: 0.5em;
+  //margin-top: 0.5em;
+  margin-top: 7.4em;
 }
 
 .list {
@@ -14,7 +15,10 @@
 
 .todo-item {
   padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 
 .delete mat-icon {
   font-size: 1.2em;
