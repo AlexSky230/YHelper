@@ -20,32 +20,25 @@ export class WeatherComponent implements OnInit {
 
   public activeLocation: ForecastLocation;
   public forecast: any;
-  public latitude: number;
-  public longitude: number;
-  public locationTitle: string;
+  public currentLocationLatitude: number;
+  public currentLocationLongitude: number;
 
   constructor(
     private sharedForecastService: SharedForecastService,
     private weatherDataService: WeatherDataService,
     private weatherService: WeatherService,
-    private browserLocalStorageService: LocalStorageService)
-  {
-    this.activeLocation = LOCATIONS.currentLocation;
-    this.latitude = LOCATIONS.currentLocation.latitude;
-    this.longitude = LOCATIONS.currentLocation.longitude;
-    this.locationTitle = LOCATIONS.currentLocation.title;
-  }
+    private browserLocalStorageService: LocalStorageService
+  ) { }
+  /**
+   * get coordinates from browser, set activeLocation to Current Location
+   * if restricted, set GoldCoast as activeLocation
+   */
 
   public ngOnInit() {
-    /**
-     * get coordinates from browser
-     */
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.latitude = Math.floor(position.coords.latitude * 10000) / 10000;
-        this.longitude = Math.floor(position.coords.longitude * 10000) / 10000;
-        this.locationTitle = LOCATIONS.currentLocation.title;
-      });
+      this.setLocationToCurrent();
+    } else {
+      this.setLocationToDefault();
     }
     /**
      * execute straight away and then with intervals given. returns Observable,
@@ -53,12 +46,41 @@ export class WeatherComponent implements OnInit {
      */
     timer(0, (1000 * 60 * 60 * 1))
       .subscribe(() => {
+        if (this.activeLocation === LOCATIONS.currentLocation) {
+         this.setCoordinates();
+        }
         this.getForecast()
           .subscribe((forecast: object) => {
             this.forecast = forecast;
             this.sharedForecastService.setSharedForecast(forecast);
           });
       });
+  }
+
+  get locationTitles(): string[] {
+    return this.weatherDataService.getLocationNames();
+  }
+
+  public setCoordinates(): void {
+    return navigator.geolocation ? this.getCoordinates() : this.setLocationToDefault();
+  }
+
+  public getCoordinates() {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.currentLocationLatitude = Math.floor(position.coords.latitude * 10000) / 10000;
+      this.currentLocationLongitude = Math.floor(position.coords.longitude * 10000) / 10000;
+    });
+  }
+
+  public locationUpdate(location: ForecastLocation): void {
+    this.activeLocation = location;
+    if (this.activeLocation === LOCATIONS.currentLocation) {
+      navigator.geolocation ? this.getCoordinates() : this.setLocationToDefault();
+    }
+    this.getForecast().subscribe((forecast: object) => {
+      this.forecast = forecast;
+      this.sharedForecastService.setSharedForecast(forecast);
+    });
   }
 
   /**
@@ -70,7 +92,7 @@ export class WeatherComponent implements OnInit {
         if (isFresh) {
           // get from local storage
           return this.browserLocalStorageService
-            .getDataFromStorageById(this.activeLocation + 'Forecast');
+            .getDataFromStorageById(this.activeLocation.key + 'Forecast');
         }
         // get from API
         return this.forecastFromAPI().pipe(
@@ -87,7 +109,7 @@ export class WeatherComponent implements OnInit {
    */
   private forecastIsFresh(): Observable<boolean> {
     return this.browserLocalStorageService
-      .getDataFromStorageById(this.activeLocation + 'ForecastTime')
+      .getDataFromStorageById(this.activeLocation.key + 'ForecastTime')
       .pipe(
         map((time: number): boolean => {
           let result = false;
@@ -101,30 +123,32 @@ export class WeatherComponent implements OnInit {
   }
 
   private forecastFromAPI(): Observable<object> {
-    if (this.latitude !== undefined && this.longitude !== undefined) {
-      return this.weatherService.currentForecast(this.latitude, this.longitude);
+    if (this.activeLocation === LOCATIONS.currentLocation &&
+      this.currentLocationLatitude && this.currentLocationLongitude) {
+
+      return this.weatherService
+        .getForecast(this.currentLocationLatitude, this.currentLocationLongitude);
+    } else {
+
+      return this.weatherService
+        .getForecast(this.activeLocation.latitude, this.activeLocation.longitude);
     }
   }
 
   private forecastSave(forecastData: object): void {
     const currentTime = Date.now();
     this.browserLocalStorageService
-      .addDataToStorage( this.activeLocation + 'Forecast', forecastData);
+      .addDataToStorage( this.activeLocation.key + 'Forecast', forecastData);
     this.browserLocalStorageService
-      .addDataToStorage(this.activeLocation + 'ForecastTime', currentTime);
+      .addDataToStorage(this.activeLocation.key + 'ForecastTime', currentTime);
   }
 
-  public locationUpdate(location: string): void {
-    this.locationTitle = location;
-    this.latitude = this.weatherDataService.getLocationCoordinates(location).latitude;
-    this.longitude = this.weatherDataService.getLocationCoordinates(location).longitude;
-    this.getForecast().subscribe((forecast: object) => {
-      this.forecast = forecast;
-      this.sharedForecastService.setSharedForecast(forecast);
-    });
+  private setLocationToCurrent() {
+    this.activeLocation = LOCATIONS.currentLocation;
+    this.getCoordinates();
   }
 
-  get locationTitles(): string[] {
-    return this.weatherDataService.getLocationNames();
+  private setLocationToDefault() {
+    this.activeLocation = LOCATIONS.goldCoast;
   }
 }

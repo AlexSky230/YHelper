@@ -9,6 +9,10 @@
   //border-bottom: solid #bb145a 2px;
 }
 
+::ng-deep .mat-select-panel {
+  max-height: none !important;
+}
+
 //.coordinates-container {
 //  //position: fixed;
 //  //top: 3.2em;

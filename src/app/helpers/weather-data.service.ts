@@ -29,9 +29,6 @@ export class WeatherDataService {
     ['hail', 'wi wi-hail'],
   ]);
 
-  constructor() {
-  }
-
   public getLocationNames() {
     return Array.from(this.locations.keys());
   }

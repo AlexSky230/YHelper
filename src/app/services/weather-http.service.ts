@@ -14,7 +14,7 @@ export class WeatherService {
   constructor(private http: HttpClient) {
   }
 
-  public currentForecast(latitude: number, longitude: number): Observable<any> {
+  public getForecast(latitude: number, longitude: number): Observable<any> {
     let params = new HttpParams();
     params = params.set('latitude', latitude.toString());
     params = params.set('longitude', longitude.toString());

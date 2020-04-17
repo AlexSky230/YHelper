@@ -30,21 +30,21 @@ export enum routerWeatherPath {
 }
 
 export const LOCATIONS = {
-  currentLocation: {title: 'Current Location', latitude: -28.0167, longitude: 153.4000},
-  goldCoast: {title: 'Gold Coast', latitude: -28.0167, longitude: 153.4000},
-  brisbane: {title: 'Brisbane', latitude: -27.4698, longitude: 153.0251},
-  sydney: {title: 'Sydney', latitude: -33.8708, longitude: 151.2073},
-  melbourne: {title: 'Melbourne', latitude: -37.8136, longitude: 144.9631},
-  perth: {title: 'Perth', latitude: -31.9505, longitude: 115.8605},
-  canberra: {title: 'Canberra',  latitude: -35.2809, longitude: 149.1300},
+  currentLocation: {key: 'currentLocation', title: 'Current Location', latitude: undefined, longitude: undefined},
+  goldCoast: {key: 'goldCoast', title: 'Gold Coast', latitude: -28.0167, longitude: 153.4000},
+  brisbane: {key: 'brisbane', title: 'Brisbane', latitude: -27.4698, longitude: 153.0251},
+  sydney: {key: 'sydney', title: 'Sydney', latitude: -33.8708, longitude: 151.2073},
+  melbourne: {key: 'melbourne', title: 'Melbourne', latitude: -37.8136, longitude: 144.9631},
+  perth: {key: 'perth', title: 'Perth', latitude: -31.9505, longitude: 115.8605},
+  canberra: {key: 'canberra', title: 'Canberra', latitude: -35.2809, longitude: 149.1300},
 };
 
 export const MAIN_NAV = {
-  todo: { title: 'Todo', icon: 'format_list_numbered', link: routerMainPath.todo },
-  weather: { title: 'Weather', icon: 'filter_drama', link: routerMainPath.weather },
-  shoppingList: { title: 'Shopping List', icon: 'shopping_cart', link: routerMainPath.shopping },
-  fridgeInventory: { title: 'Fridge Inventory', icon: 'storage', link: routerMainPath.fridge },
-  search: { title: 'Search', icon: 'search', link: routerMainPath.search },
+  todo: {key: 'todo', title: 'Todo', icon: 'format_list_numbered', link: routerMainPath.todo},
+  weather: {key: 'weather', title: 'Weather', icon: 'filter_drama', link: routerMainPath.weather},
+  shoppingList: {key: 'shoppingList', title: 'Shopping List', icon: 'shopping_cart', link: routerMainPath.shopping},
+  fridgeInventory: {key: 'fridgeInventory', title: 'Fridge Inventory', icon: 'storage', link: routerMainPath.fridge},
+  search: {key: 'search', title: 'Search', icon: 'search', link: routerMainPath.search},
 };
 
 

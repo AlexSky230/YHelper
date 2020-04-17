@@ -5,76 +5,18 @@
   <mat-card>
     <mat-form-field>
       <mat-label>Forecast for:</mat-label>
-      <mat-select [value]="0">
+      <mat-select [value]="0" class="my-select">
         <mat-option
-          *ngFor="let location of locationTitles index as i"
+          *ngFor="let location of locations index as i"
           [value]="i"
           (click)="cityClicked(location)">
-          {{ location }}
+          {{ location.title }}
         </mat-option>
       </mat-select>
       <mat-hint>{{ latitude }}, {{ longitude }}</mat-hint>
     </mat-form-field>
-
-<!--    <button-->
-<!--      [matMenuTriggerFor]="belowMenu"-->
-<!--      mat-mini-fab-->
-<!--      color="primary"-->
-<!--      class="location-button">-->
-<!--      <mat-icon>expand_more</mat-icon></button>-->
-
-<!--    <mat-menu #belowMenu="matMenu" xPosition="before">-->
-<!--      <button-->
-<!--        mat-menu-item-->
-<!--        *ngFor="let location of locationNames"-->
-<!--        (click)="cityClicked(location)"-->
-<!--        class="drop-down-item">-->
-<!--        {{ location }}</button></mat-menu>-->
-
-<!--    <div class="location-container">-->
-<!--      <span class="location-name">-->
-<!--        <strong>{{ activeLocation }}</strong>-->
-<!--        <br>-->
-<!--        <span class="coordinates">-->
-<!--          {{ latitude }}, {{ longitude }}-->
-<!--        </span>-->
-<!--      </span>-->
-<!--    </div>-->
-
   </mat-card>
 
 </section>
 
-<!--      <button-->
-<!--        mat-mini-fab-->
-<!--        color="primary"-->
-<!--        [matMenuTriggerFor]="belowMenu"-->
-<!--        class="location-button">-->
-<!--        <i class="material-icons">-->
-<!--          expand_more-->
-<!--        </i>-->
-<!--      </button>-->
-
-<!--      <div class="location-container">-->
-<!--        <span-->
-<!--          class="location-name">-->
-<!--          <strong>{{ activeLocation }}</strong>-->
-<!--          <br>-->
-<!--          <span class="coordinates">-->
-<!--            {{ latitude }}, {{ longitude }}-->
-<!--          </span>-->
-<!--        </span>-->
-<!--      </div>-->
-
-<!--      <mat-menu-->
-<!--        #belowMenu="matMenu"-->
-<!--        xPosition="before">-->
-<!--        <button-->
-<!--          mat-menu-item-->
-<!--          *ngFor="let location of locationNames()"-->
-<!--          (click)="cityClicked(location)"-->
-<!--          class="drop-down-item">-->
-<!--          {{ location }}-->
-<!--        </button>-->
-<!--      </mat-menu>-->
 

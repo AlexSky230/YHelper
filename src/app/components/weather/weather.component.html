@@ -1,11 +1,10 @@
 <section class="main">
 
   <app-forecast-header class="header"
-    [activeLocation]="activeLocation"
-    [latitude]="latitude"
-    [longitude]="longitude"
-    [locationTitles]="locationTitles"
-    (citySelected)="locationUpdate($event)">
+                       (locationSelected)="locationUpdate($event)"
+                       [activeLocation]="activeLocation"
+                       [currentLocationLatitude]="currentLocationLatitude"
+                       [currentLocationLongitude]="currentLocationLongitude">
   </app-forecast-header>
 
   <app-weather-tabs class="tabs"></app-weather-tabs>

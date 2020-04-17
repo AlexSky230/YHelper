@@ -1,6 +1,6 @@
 export class ForecastLocation {
-    title: string;
-    latitude: number;
-    longitude: number;
-
+  key: string;
+  title: string;
+  latitude: number;
+  longitude: number;
 }
