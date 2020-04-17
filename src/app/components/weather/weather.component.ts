@@ -57,10 +57,6 @@ export class WeatherComponent implements OnInit {
       });
   }
 
-  get locationTitles(): string[] {
-    return this.weatherDataService.getLocationNames();
-  }
-
   public setCoordinates(): void {
     return navigator.geolocation ? this.getCoordinates() : this.setLocationToDefault();
   }

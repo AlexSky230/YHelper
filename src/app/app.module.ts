@@ -41,6 +41,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatToolbarModule,
     MatMenuModule,
     MatSelectModule,
+    MatTabsModule,
   ],
   providers: [
     IdService,

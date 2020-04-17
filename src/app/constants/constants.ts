@@ -47,4 +47,10 @@ export const MAIN_NAV = {
   search: {key: 'search', title: 'Search', icon: 'search', link: routerMainPath.search},
 };
 
+export const WEATHER_TABS = {
+  today: {title: 'Today', link: routerWeatherPath.today},
+  week: {title: '7 Days', link: routerWeatherPath.week},
+  radar: {title: 'Radar', link: routerWeatherPath.radar},
+};
+
 

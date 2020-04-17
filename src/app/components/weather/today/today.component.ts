@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SharedForecastService} from '../../../helpers/shared-forecast.service';
+import {WeatherDataService} from '../../../helpers/weather-data.service';
 
 @Component({
   selector: 'app-today',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodayComponent implements OnInit {
 
-  constructor() { }
+  private forecast: any;
+
+  constructor(
+    private weatherDataService: WeatherDataService,
+    private sharedForecastService: SharedForecastService
+  ) {}
 
   ngOnInit(): void {
+    this.sharedForecastService.sharedForecast
+      .subscribe(sharedForecast => this.forecast = sharedForecast);
+  }
+
+  getWeatherIcon(icon) {
+    return this.weatherDataService.getIcon(icon);
   }
 
 }
