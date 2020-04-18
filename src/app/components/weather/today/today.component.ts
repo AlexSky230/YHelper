@@ -9,7 +9,7 @@ import {weatherIcons} from '../../../constants/constants';
 })
 export class TodayComponent implements OnInit {
 
-  private forecast: any;
+  public forecast: any;
   /**
    * match Icons from Weather Forecast API with Wi-Icons
    */

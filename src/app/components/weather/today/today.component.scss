@@ -2,6 +2,18 @@
   position: relative;
   top: 10.5em;
 }
+.header {
+  border-bottom: solid #b41059 2px;
+}
+
+.card-body {
+  margin: 1em;
+}
+
+.primary-color {
+  color: #b41059
+}
+
 
 //.test {
 //  margin-top: 8em;
@@ -23,11 +35,8 @@
 //  color: #6735b6;
 //}
 
-//#ic {
-//  text-align: center;
-//  position: relative;
-//  top: 0.1em;
-//  //color: #6735b6;
-//  font-size: 2.5em;
-//  height: 1.3em;
-//}
+#ic {
+  margin-right: 0.5em;
+  color: #b41059;
+  font-size: 3.8em;
+}

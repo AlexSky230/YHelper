@@ -3,52 +3,51 @@
   <mat-card *ngIf="forecast" class="content">
 
       <mat-card-header class="header">
-
-        <mat-icon mat-card-avatar>
-<!--          {{ getWiIcon(forecast.daily.data[0].icon) }}-->
-         close
-        </mat-icon>
+        <i
+          mat-card-avatar
+          [class]="getWiIcon(forecast.daily.data[0].icon)"
+          id="ic">
+        </i>
         <mat-card-subtitle>
-          {{ forecast.currently.time * 1000 | date: 'd MMM'  }}
+          {{ forecast.currently.time * 1000 | date: 'd MMM' }},
+          {{ forecast.currently.time * 1000 | date: 'E' }}
         </mat-card-subtitle>
         <mat-card-title>
           {{ forecast.currently.temperature.toFixed(0) + '°' }}
-          <span>real feel </span>
-          <span>{{ forecast.currently.apparentTemperature.toFixed(0) + '°' }}</span>
+          <span class="small">Real feel :</span>
+          <strong>
+            <span class="primary-color big-font">
+              {{ forecast.currently.apparentTemperature.toFixed(0) + '°' }}
+            </span>
+          </strong>
         </mat-card-title>
-
-<!--        <mat-icon>-->
-<!--           {{ getWiIcon(forecast.daily.data[0].icon) }}-->
-<!--        </mat-icon>-->
-
       </mat-card-header>
 
-      <mat-card-content
-        class="weather-text">
-      <span class="small">
-          {{ forecast.daily.data[0].summary }}
-      </span><br>
-        <span class="small">
-          {{ 'Hottest temperature: ' + forecast.daily.data[0].temperatureMax.toFixed(1) + '°'}}
-      </span><br>
-        <span class="small">
-        {{ 'Coldest temperature: ' + forecast.daily.data[0].temperatureMin.toFixed(1) + '°'}}
-      </span><br>
-        <span class="small">
-        {{ 'Humidity: ' + (forecast.daily.data[0].humidity * 100) + '%'}}
-      </span><br>
-        <span class="small">
-        {{ 'Chance of rain: ' + (forecast.daily.data[0].precipProbability * 100) + '%'}}
-      </span ><br>
-        <span class="small">
-        {{ 'Rain intensity: ' + forecast.daily.data[0].precipIntensity }}
-      </span><br>
-        <span class="small">
+      <mat-card-content class="card-body">
+        <span>{{ forecast.daily.data[0].summary }}</span>
+        <br><br>
+        <span>{{ 'Hottest during day: '}}</span>
+        <strong>
+          <span class="primary-color">{{ forecast.daily.data[0].temperatureMax.toFixed(1) + '°'}}</span>
+        </strong>
+        <br>
+        <span>{{ 'Coldest during night: ' }}</span>
+        <strong>
+          <span class="primary-color">{{ forecast.daily.data[1].temperatureMin.toFixed(1) + '°'}}</span>
+        </strong>
+        <br><br>
+        <span>{{ 'Humidity: ' + (forecast.daily.data[0].humidity * 100) + '%'}}</span>
+        <br>
+        <span>{{ 'Chance of rain: ' + (forecast.daily.data[0].precipProbability * 100) + '%'}}</span>
+        <br>
+        <span>{{ 'Rain intensity: ' + forecast.daily.data[0].precipIntensity }}</span>
+        <br>
+        <span>
         {{ 'Wind speed: ' + forecast.daily.data[0].windSpeed + 'm/s'}}
-      </span><br>
-        <span class="small">
-        {{ 'UV index: ' + forecast.daily.data[0].uvIndex}}
-      </span><br>
+        </span>
+        <br>
+        <span>{{ 'UV index: ' + forecast.daily.data[0].uvIndex}}</span>
+        <br>
       </mat-card-content>
   </mat-card>
 
