@@ -36,14 +36,14 @@
           <span class="primary-color">{{ forecast.daily.data[1].temperatureMin.toFixed(1) + '°'}}</span>
         </strong>
         <br><br>
-        <span>{{ 'Humidity: ' + (forecast.daily.data[0].humidity * 100) + '%'}}</span>
+        <span>{{ 'Humidity: ' + (forecast.daily.data[0].humidity * 100).toFixed(0) + '%'}}</span>
         <br>
-        <span>{{ 'Chance of rain: ' + (forecast.daily.data[0].precipProbability * 100) + '%'}}</span>
+        <span>{{ 'Chance of rain: ' + (forecast.daily.data[0].precipProbability * 100).toFixed(2) + '%'}}</span>
         <br>
-        <span>{{ 'Rain intensity: ' + forecast.daily.data[0].precipIntensity }}</span>
+        <span>{{ 'Rain intensity: ' + forecast.daily.data[0].precipIntensity.toFixed(3) }}</span>
         <br>
         <span>
-        {{ 'Wind speed: ' + forecast.daily.data[0].windSpeed + 'm/s'}}
+        {{ 'Wind speed: ' + forecast.daily.data[0].windSpeed + ' m/s'}}
         </span>
         <br>
         <span>{{ 'UV index: ' + forecast.daily.data[0].uvIndex}}</span>
