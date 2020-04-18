@@ -29,6 +29,17 @@ export enum routerWeatherPath {
   today = 'today',
 }
 
+export enum weatherIcons {
+  'clear-day' = 'wi wi-day-sunny',
+  'clear-night' = 'wi wi-night-clear',
+  'partly-cloudy-day' = 'wi wi-day-cloudy',
+  'partly-cloudy-night' = 'wi wi-night-alt-cloudy',
+  'cloudy' = 'wi wi-cloudy',
+  'rain' = 'wi wi-rain',
+  'wind' = 'wi wi-strong-wind',
+  'hail' = 'wi wi-hail',
+}
+
 export const LOCATIONS = {
   currentLocation: {key: 'currentLocation', title: 'Current Location', latitude: undefined, longitude: undefined},
   goldCoast: {key: 'goldCoast', title: 'Gold Coast', latitude: -28.0167, longitude: 153.4000},
@@ -52,5 +63,7 @@ export const WEATHER_TABS = {
   week: {title: '7 Days', link: routerWeatherPath.week},
   radar: {title: 'Radar', link: routerWeatherPath.radar},
 };
+
+
 
 

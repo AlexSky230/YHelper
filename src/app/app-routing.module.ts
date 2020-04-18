@@ -21,6 +21,10 @@ const routes: Routes = [
     component: WeatherComponent,
     children: [
       {
+        path: routerWeatherPath.empty,
+        component: TodayComponent
+      },
+      {
         path: routerWeatherPath.today,
         component: TodayComponent
       },
@@ -33,8 +37,8 @@ const routes: Routes = [
         component: RadarComponent
       },
       {
-        path: routerWeatherPath.empty,
-        component: TodayComponent
+        path: routerMainPath.wildcard,
+        component: TodoComponent
       },
     ]
   },

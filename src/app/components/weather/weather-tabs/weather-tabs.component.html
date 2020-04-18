@@ -1,28 +1,14 @@
 <section class="main">
 
-    <nav mat-tab-nav-bar class="nav-panel">
-              <a mat-tab-link
-                 *ngFor="let tab of tabs"
-                 [routerLink]="[tab.link]"
-                 routerLinkActive #rla="routerLinkActive"
-                 [active]="rla.isActive"
-                 class="nav-tab">
-                {{ tab.title }}
-              </a>
-
-
-<!--      <ul class="nav nav-fill">-->
-<!--        <li *ngFor="let tab of tabs"-->
-<!--            class="nav-item">-->
-<!--          <a-->
-<!--            class="nav-link"-->
-<!--            routerLinkActive="active"-->
-<!--            [routerLink]="[tab.link]">-->
-<!--            {{ tab.title }}-->
-<!--          </a>-->
-<!--        </li>-->
-<!--      </ul>-->
-    </nav>
-
+  <nav mat-tab-nav-bar class="nav-panel">
+    <a mat-tab-link
+       *ngFor="let tab of tabs, index as i"
+       [routerLink]="[tab.link]"
+       routerLinkActive #rla="routerLinkActive"
+       [active]="rla.isActive"
+       class="nav-tab">
+      {{ tab.title }}
+    </a>
+  </nav>
 
 </section>

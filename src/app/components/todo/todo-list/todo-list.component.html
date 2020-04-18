@@ -1,51 +1,26 @@
 <section class="main">
-<!--  <mat-card class="list-card">-->
+
     <mat-list *ngIf="todos.length > 0" class="list">
-      <mat-list-item *ngFor="let todo of todos;"
-                     class="list-item">
-        <mat-checkbox [checked]="todo.complete"
-                         (change)="toggleTodoComplete(todo)"
-                         color="accent"
-                         [class.completed]="todo.complete"
-                         class="todo-item col-11">
-          {{ todo.title }}</mat-checkbox>
-        <button (click)="removeTodo(todo)"
-                mat-icon-button
-                color="warn"
-                class="delete col-1">
+
+      <mat-list-item *ngFor="let todo of todos;" class="list-item">
+        <mat-checkbox
+          [checked]="todo.complete"
+          (change)="toggleTodoComplete(todo)"
+          color="accent"
+          [class.completed]="todo.complete"
+          class="todo-item col-11">
+          {{ todo.title }}
+        </mat-checkbox>
+
+        <button
+          (click)="removeTodo(todo)"
+          mat-icon-button
+          color="warn"
+          class="delete col-1">
           <mat-icon class="delete-icon">{{ buttonIcons.clear }}</mat-icon>
         </button>
-
       </mat-list-item>
 
     </mat-list>
-<!--  </mat-card>-->
+
 </section>
-
-
-
-
-<!--<nb-card class="todoList" accent="primary">-->
-<!--  <nb-card-header>-->
-<!--    {{todos.length > 0 ? incomplete +'  left to go...' : 'To Do:'}}-->
-<!--  </nb-card-header>-->
-
-<!--  <nb-list *ngIf="todos.length > 0" class="todo-list">-->
-<!--    <nb-list-item *ngFor="let todo of todos;"-->
-<!--                  class="list-item">-->
-
-<!--      <nb-checkbox [checked]="todo.complete"-->
-<!--                   (change)="toggleTodoComplete(todo)"-->
-<!--                   status="primary"-->
-<!--                   [class.completed]="todo.complete"-->
-<!--                   class="todo-item">{{ todo.title }}</nb-checkbox>-->
-
-<!--      <nb-layout-column>-->
-<!--      <nb-icon (click)="removeTodo(todo)"-->
-<!--               class="aligned-with-text"-->
-<!--               status="primary"-->
-<!--               [icon]="buttonIcons.delete"></nb-icon>-->
-<!--      </nb-layout-column>-->
-<!--    </nb-list-item>-->
-<!--  </nb-list>-->
-<!--</nb-card>-->

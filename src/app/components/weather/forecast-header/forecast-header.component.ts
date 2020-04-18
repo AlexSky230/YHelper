@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ForecastLocation} from '../../../helpers/classes/forecastLocation';
 import {LOCATIONS} from '../../../constants/constants';
 
@@ -16,7 +16,10 @@ export class ForecastHeaderComponent implements OnInit {
 
   public locations: ForecastLocation[];
 
-  // need to figure out how it works
+  /**
+   * first create array of keys,
+   * then change each element in this array with Valueobject of LOCATIONS
+   */
   ngOnInit(): void {
     this.locations = Object
       .keys(LOCATIONS)

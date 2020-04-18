@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SharedForecastService} from '../../../helpers/shared-forecast.service';
-import {WeatherDataService} from '../../../helpers/weather-data.service';
+import {weatherIcons} from '../../../constants/constants';
 
 @Component({
   selector: 'app-today',
@@ -10,19 +10,19 @@ import {WeatherDataService} from '../../../helpers/weather-data.service';
 export class TodayComponent implements OnInit {
 
   private forecast: any;
+  /**
+   * match Icons from Weather Forecast API with Wi-Icons
+   */
 
-  constructor(
-    private weatherDataService: WeatherDataService,
-    private sharedForecastService: SharedForecastService
-  ) {}
+  constructor(private sharedForecastService: SharedForecastService) { }
 
   ngOnInit(): void {
     this.sharedForecastService.sharedForecast
       .subscribe(sharedForecast => this.forecast = sharedForecast);
   }
 
-  getWeatherIcon(icon) {
-    return this.weatherDataService.getIcon(icon);
+  public getWiIcon(icon: string) {
+    return weatherIcons[icon] ? weatherIcons[icon] : weatherIcons['partly-cloudy-day'];
   }
 
 }
