@@ -21,10 +21,6 @@ const routes: Routes = [
     component: WeatherComponent,
     children: [
       {
-        path: routerWeatherPath.empty,
-        component: TodayComponent
-      },
-      {
         path: routerWeatherPath.today,
         component: TodayComponent
       },
@@ -37,8 +33,14 @@ const routes: Routes = [
         component: RadarComponent
       },
       {
+        path: routerWeatherPath.empty,
+        redirectTo: routerWeatherPath.today,
+        pathMatch: routerMainPath.full
+      },
+      {
         path: routerMainPath.wildcard,
-        component: TodoComponent
+        redirectTo: routerWeatherPath.today,
+        pathMatch: routerMainPath.full
       },
     ]
   },
