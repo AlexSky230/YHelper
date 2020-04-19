@@ -26,27 +26,27 @@
       <mat-card-content class="card-body">
         <span>{{ forecast.daily.data[0].summary }}</span>
         <br><br>
-        <span>{{ 'Hottest during day: '}}</span>
+        <span>{{ weatherCard.hottest }}</span>
         <strong>
-          <span class="primary-color">{{ forecast.daily.data[0].temperatureMax.toFixed(1) + '°'}}</span>
+          <span class="primary-color">{{ forecast.daily.data[0].temperatureMax.toFixed(1) + weatherCard.degree}}</span>
         </strong>
         <br>
-        <span>{{ 'Coldest during night: ' }}</span>
+        <span>{{ weatherCard.coldest }}</span>
         <strong>
-          <span class="primary-color">{{ forecast.daily.data[1].temperatureMin.toFixed(1) + '°'}}</span>
+          <span class="primary-color">{{ forecast.daily.data[1].temperatureMin.toFixed(1) + weatherCard.degree}}</span>
         </strong>
         <br><br>
-        <span>{{ 'Humidity: ' + (forecast.daily.data[0].humidity * 100).toFixed(0) + '%'}}</span>
+        <span>{{ weatherCard.humidity + (forecast.daily.data[0].humidity * 100).toFixed(0) + weatherCard.percent}}</span>
         <br>
-        <span>{{ 'Chance of rain: ' + (forecast.daily.data[0].precipProbability * 100).toFixed(2) + '%'}}</span>
+        <span>{{ weatherCard.chanceOfRain + (forecast.daily.data[0].precipProbability * 100).toFixed(2) + weatherCard.percent}}</span>
         <br>
-        <span>{{ 'Rain intensity: ' + forecast.daily.data[0].precipIntensity.toFixed(3) }}</span>
+        <span>{{ weatherCard.rainIntensity + forecast.daily.data[0].precipIntensity.toFixed(3) }}</span>
         <br>
         <span>
-        {{ 'Wind speed: ' + forecast.daily.data[0].windSpeed + ' m/s'}}
+        {{ weatherCard.windSpeed + forecast.daily.data[0].windSpeed + weatherCard.metersPerSec}}
         </span>
         <br>
-        <span>{{ 'UV index: ' + forecast.daily.data[0].uvIndex}}</span>
+        <span>{{ weatherCard.uv + forecast.daily.data[0].uvIndex}}</span>
         <br>
       </mat-card-content>
   </mat-card>

@@ -40,6 +40,19 @@ export enum weatherIcons {
   'hail' = 'wi wi-hail',
 }
 
+export enum weatherCard {
+  chanceOfRain = 'Chance of rain: ',
+  coldest = 'Coldest during night: ',
+  degree = '°',
+  humidity = 'Humidity: ',
+  hottest = 'Hottest during day: ',
+  metersPerSec = ' m/s',
+  percent = '%',
+  rainIntensity = 'Rain intensity: ',
+  uv = 'UV index: ',
+  windSpeed = 'Wind speed: ',
+}
+
 export const LOCATIONS = {
   currentLocation: {key: 'currentLocation', title: 'Current Location', latitude: undefined, longitude: undefined},
   goldCoast: {key: 'goldCoast', title: 'Gold Coast', latitude: -28.0167, longitude: 153.4000},

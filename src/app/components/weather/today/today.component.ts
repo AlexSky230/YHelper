@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SharedForecastService} from '../../../helpers/shared-forecast.service';
-import {weatherIcons} from '../../../constants/constants';
+import {weatherIcons, weatherCard} from '../../../constants/constants';
 
 @Component({
   selector: 'app-today',
@@ -10,6 +10,7 @@ import {weatherIcons} from '../../../constants/constants';
 export class TodayComponent implements OnInit {
 
   public forecast: any;
+  public weatherCard = weatherCard;
   /**
    * match Icons from Weather Forecast API with Wi-Icons
    */
