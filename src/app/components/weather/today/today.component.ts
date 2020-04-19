@@ -1,29 +1,36 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {SharedForecastService} from '../../../helpers/shared-forecast.service';
 import {weatherIcons, weatherCard} from '../../../constants/constants';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-today',
   templateUrl: './today.component.html',
   styleUrls: ['./today.component.scss']
 })
-export class TodayComponent implements OnInit {
+export class TodayComponent implements OnInit, OnDestroy {
 
   public forecast: any;
   public weatherCard = weatherCard;
-  /**
-   * match Icons from Weather Forecast API with Wi-Icons
-   */
+
+  private subscription: Subscription;
 
   constructor(private sharedForecastService: SharedForecastService) { }
 
   ngOnInit(): void {
-    this.sharedForecastService.sharedForecast
+    this.subscription = this.sharedForecastService.sharedForecast
       .subscribe(sharedForecast => this.forecast = sharedForecast);
   }
 
+  /**
+   * match Icons from Weather Forecast API with Wi-Icons
+   */
   public getWiIcon(icon: string) {
     return weatherIcons[icon] ? weatherIcons[icon] : weatherIcons['partly-cloudy-day'];
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

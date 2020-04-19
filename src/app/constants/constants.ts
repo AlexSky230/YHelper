@@ -29,17 +29,6 @@ export enum routerWeatherPath {
   today = 'today',
 }
 
-export enum weatherIcons {
-  'clear-day' = 'wi wi-day-sunny',
-  'clear-night' = 'wi wi-night-clear',
-  'partly-cloudy-day' = 'wi wi-day-cloudy',
-  'partly-cloudy-night' = 'wi wi-night-alt-cloudy',
-  'cloudy' = 'wi wi-cloudy',
-  'rain' = 'wi wi-rain',
-  'wind' = 'wi wi-strong-wind',
-  'hail' = 'wi wi-hail',
-}
-
 export enum weatherCard {
   chanceOfRain = 'Chance of rain: ',
   coldest = 'Coldest during night: ',
@@ -51,6 +40,17 @@ export enum weatherCard {
   rainIntensity = 'Rain intensity: ',
   uv = 'UV index: ',
   windSpeed = 'Wind speed: ',
+}
+
+export enum weatherIcons {
+  'clear-day' = 'wi wi-day-sunny',
+  'clear-night' = 'wi wi-night-clear',
+  'partly-cloudy-day' = 'wi wi-day-cloudy',
+  'partly-cloudy-night' = 'wi wi-night-alt-cloudy',
+  'cloudy' = 'wi wi-cloudy',
+  'rain' = 'wi wi-rain',
+  'wind' = 'wi wi-strong-wind',
+  'hail' = 'wi wi-hail',
 }
 
 export const LOCATIONS = {

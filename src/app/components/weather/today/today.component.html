@@ -2,53 +2,54 @@
 
   <mat-card *ngIf="forecast" class="content">
 
-      <mat-card-header class="header">
-        <i
-          mat-card-avatar
-          [class]="getWiIcon(forecast.daily.data[0].icon)"
-          id="ic">
-        </i>
-        <mat-card-subtitle>
-          {{ forecast.currently.time * 1000 | date: 'd MMM' }},
-          {{ forecast.currently.time * 1000 | date: 'E' }}
-        </mat-card-subtitle>
-        <mat-card-title>
-          {{ forecast.currently.temperature.toFixed(0) + '°' }}
-          <span class="small">Real feel :</span>
-          <strong>
+    <mat-card-header class="header">
+      <i
+        mat-card-avatar
+        [class]="getWiIcon(forecast.daily.data[0].icon)"
+        id="ic">
+      </i>
+      <mat-card-subtitle>
+        {{ forecast.currently.time * 1000 | date: 'EEEE' }},
+        {{ forecast.currently.time * 1000 | date: 'd MMM' }}
+      </mat-card-subtitle>
+      <mat-card-title>
+        {{ forecast.currently.temperature.toFixed(0) + '°' }}
+        <span class="small">Real feel :</span>
+        <strong>
             <span class="primary-color big-font">
               {{ forecast.currently.apparentTemperature.toFixed(0) + '°' }}
             </span>
-          </strong>
-        </mat-card-title>
-      </mat-card-header>
+        </strong>
+      </mat-card-title>
+    </mat-card-header>
 
-      <mat-card-content class="card-body">
-        <span>{{ forecast.daily.data[0].summary }}</span>
-        <br><br>
-        <span>{{ weatherCard.hottest }}</span>
-        <strong>
-          <span class="primary-color">{{ forecast.daily.data[0].temperatureMax.toFixed(1) + weatherCard.degree}}</span>
-        </strong>
-        <br>
-        <span>{{ weatherCard.coldest }}</span>
-        <strong>
-          <span class="primary-color">{{ forecast.daily.data[1].temperatureMin.toFixed(1) + weatherCard.degree}}</span>
-        </strong>
-        <br><br>
-        <span>{{ weatherCard.humidity + (forecast.daily.data[0].humidity * 100).toFixed(0) + weatherCard.percent}}</span>
-        <br>
-        <span>{{ weatherCard.chanceOfRain + (forecast.daily.data[0].precipProbability * 100).toFixed(2) + weatherCard.percent}}</span>
-        <br>
-        <span>{{ weatherCard.rainIntensity + forecast.daily.data[0].precipIntensity.toFixed(3) }}</span>
-        <br>
-        <span>
-        {{ weatherCard.windSpeed + forecast.daily.data[0].windSpeed + weatherCard.metersPerSec}}
-        </span>
-        <br>
-        <span>{{ weatherCard.uv + forecast.daily.data[0].uvIndex}}</span>
-        <br>
-      </mat-card-content>
+    <mat-card-content class="card-body">
+      <span>{{ forecast.daily.data[0].summary }}</span>
+      <br><br>
+      <span>{{ weatherCard.hottest }}</span>
+      <strong><span class="primary-color">{{ forecast.daily.data[0].temperatureMax
+          .toFixed(1) + weatherCard.degree}}</span></strong>
+      <br>
+      <span>{{ weatherCard.coldest }}</span>
+      <strong><span class="primary-color">{{ forecast.daily.data[1].temperatureMin
+            .toFixed(1) + weatherCard.degree}}</span></strong>
+      <br><br>
+      <span>{{ weatherCard.humidity + (forecast.daily.data[0].humidity * 100)
+        .toFixed(0) + weatherCard.percent}}</span>
+      <br>
+      <span>{{ weatherCard.chanceOfRain + (forecast.daily.data[0].precipProbability * 100)
+        .toFixed(2) + weatherCard.percent}}</span>
+      <br>
+      <span>{{ weatherCard.rainIntensity + forecast.daily.data[0].precipIntensity
+        .toFixed(3) }}</span>
+      <br>
+      <span>
+        {{ weatherCard.windSpeed + forecast.daily.data[0].windSpeed + weatherCard.metersPerSec}}</span>
+      <br>
+      <span>{{ weatherCard.uv + forecast.daily.data[0].uvIndex}}</span>
+      <br>
+    </mat-card-content>
+
   </mat-card>
 
 </section>
