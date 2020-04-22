@@ -54,13 +54,55 @@ export enum weatherIcons {
 }
 
 export const LOCATIONS = {
-  currentLocation: {key: 'currentLocation', title: 'Current Location', latitude: undefined, longitude: undefined},
-  goldCoast: {key: 'goldCoast', title: 'Gold Coast', latitude: -28.0167, longitude: 153.4000},
-  brisbane: {key: 'brisbane', title: 'Brisbane', latitude: -27.4698, longitude: 153.0251},
-  sydney: {key: 'sydney', title: 'Sydney', latitude: -33.8708, longitude: 151.2073},
-  melbourne: {key: 'melbourne', title: 'Melbourne', latitude: -37.8136, longitude: 144.9631},
-  perth: {key: 'perth', title: 'Perth', latitude: -31.9505, longitude: 115.8605},
-  canberra: {key: 'canberra', title: 'Canberra', latitude: -35.2809, longitude: 149.1300},
+  currentLocation: {
+    key: 'currentLocation',
+    title: 'Current Location',
+    latitude: undefined,
+    longitude: undefined,
+    radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml'
+  },
+  goldCoast: {
+    key: 'goldCoast',
+    title: 'Gold Coast',
+    latitude: -28.0167,
+    longitude: 153.4000,
+    radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml'
+  },
+  brisbane: {
+    key: 'brisbane',
+    title: 'Brisbane',
+    latitude: -27.4698,
+    longitude: 153.0251,
+    radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml'
+  },
+  sydney: {
+    key: 'sydney',
+    title: 'Sydney',
+    latitude: -33.8708,
+    longitude: 151.2073,
+    radarLink: 'http://www.bom.gov.au/products/IDR713.loop.shtml',
+  },
+  melbourne: {
+    key: 'melbourne',
+    title: 'Melbourne',
+    latitude: -37.8136,
+    longitude: 144.9631,
+    radarLink: 'http://www.bom.gov.au/products/IDR023.loop.shtml',
+  },
+  perth: {
+    key: 'perth',
+    title: 'Perth',
+    latitude: -31.9505,
+    longitude: 115.8605,
+    radarLink: 'http://www.bom.gov.au/products/IDR703.loop.shtml#skip',
+  },
+  canberra: {
+    key: 'canberra',
+    title: 'Canberra',
+    latitude: -35.2809,
+    longitude: 149.1300,
+    radarLink: 'http://www.bom.gov.au/products/IDR403.loop.shtml',
+  },
 };
 
 export const MAIN_NAV = {

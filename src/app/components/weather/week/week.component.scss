@@ -1,6 +1,11 @@
 .main {
+  z-index: -1;
   position: relative;
-  top: 10.5em;
+  top: 10.3em;
+}
+
+.day-forecast-content {
+  padding: 0 1em 0 1em;
 }
 
 .forecast-text-container {

@@ -7,7 +7,6 @@ import {WeatherService} from '../../services/weather-http.service';
 
 import {ForecastLocation} from '../../helpers/classes/forecastLocation';
 import {SharedForecastService} from '../../helpers/shared-forecast.service';
-import {WeatherDataService} from '../../helpers/weather-data.service';
 
 import {LOCATIONS} from '../../constants/constants';
 
@@ -25,7 +24,6 @@ export class WeatherComponent implements OnInit {
 
   constructor(
     private sharedForecastService: SharedForecastService,
-    private weatherDataService: WeatherDataService,
     private weatherService: WeatherService,
     private browserLocalStorageService: LocalStorageService
   ) { }
@@ -70,6 +68,7 @@ export class WeatherComponent implements OnInit {
 
   public locationUpdate(location: ForecastLocation): void {
     this.activeLocation = location;
+    this.sharedForecastService.setActiveLocation(location);
     if (this.activeLocation === LOCATIONS.currentLocation) {
       navigator.geolocation ? this.getCoordinates() : this.setLocationToDefault();
     }
@@ -141,10 +140,12 @@ export class WeatherComponent implements OnInit {
 
   private setLocationToCurrent() {
     this.activeLocation = LOCATIONS.currentLocation;
+    this.sharedForecastService.setActiveLocation(LOCATIONS.currentLocation);
     this.getCoordinates();
   }
 
   private setLocationToDefault() {
     this.activeLocation = LOCATIONS.goldCoast;
+    this.sharedForecastService.setActiveLocation(LOCATIONS.goldCoast);
   }
 }

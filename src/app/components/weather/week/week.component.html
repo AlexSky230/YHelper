@@ -4,7 +4,7 @@
 
   <mat-card>
     <mat-card-content
-      *ngFor="let day of forecast.daily.data  | slice:0:7 let last = last"
+      *ngFor="let day of forecast.daily.data  | slice:0:7"
       class="day-forecast-content">
 
       <div class="icon-container">
@@ -17,96 +17,28 @@
         {{ day.time * 1000 | date: 'd MMM' }}
       </span>
 
-      <div class="arrow-icon-container">
-        <strong>
+        <div class="arrow-icon-container">
           <mat-icon class="arrow-icon primary-color">arrow_upward</mat-icon>
-        </strong>
-      </div>
-      <span>{{ day.temperatureMax.toFixed(0) + '°' }}</span>
-
-      <div class="arrow-icon-container">
+        </div>
         <strong>
-          <mat-icon class="arrow-icon primary-color">arrow_downwards</mat-icon>
+          <span class="primary-color">{{ day.temperatureMax.toFixed(0) + '°' }}</span>
         </strong>
+
+        <div class="arrow-icon-container">
+          <mat-icon class="arrow-icon primary-color">arrow_downwards</mat-icon>
+        </div>
+        <strong>
+          <span class="primary-color">{{ day.temperatureMin.toFixed(0) + '°' }}</span>
+        </strong>
+        <br>
+
+        <span class="small">{{ day.summary }}</span>
       </div>
-      <span>{{ day.temperatureMin.toFixed(0) + '°' }}</span>
-      <br>
 
-      <span class="small">
-        {{ day.summary }}
-      </span>
-      </div>
-
-      <mat-divider *ngIf="!last"></mat-divider>
-
+      <mat-divider [inset]="true"></mat-divider>
 
     </mat-card-content>
-
-    <!--    <mat-card-header *ngFor="let day of forecast.daily.data" class="header">-->
-<!--      <div class="weather-icon">-->
-<!--        <i id="icon" [class]="getWiIcon(day.icon)"></i>-->
-<!--      </div>-->
-<!--      <mat-card-subtitle class="date">-->
-<!--        {{ day.time * 1000 | date: 'd MMM' }},-->
-<!--        {{ day.time * 1000 | date: 'E' }}-->
-<!--      </mat-card-subtitle>-->
-<!--      <mat-card-subtitle-->
-<!--        class="weather-info">-->
-<!--        {{ day.summary }}-->
-<!--      </mat-card-subtitle>-->
-<!--      <mat-card-subtitle-->
-<!--        class="weather-info">-->
-<!--        <span class="min-max">-->
-<!--          <strong>-->
-<!--            {{ 'Max: ' + day.temperatureMax.toFixed(0) + '°' }}-->
-<!--          </strong>-->
-<!--        </span>-->
-<!--        <span>-->
-<!--          <strong>-->
-<!--            {{ 'Min: ' + day.temperatureMin.toFixed(0) + '°'}}-->
-<!--          </strong>-->
-<!--        </span>-->
-<!--      </mat-card-subtitle>-->
-<!--    </mat-card-header>-->
-
   </mat-card>
-<!--  <mat-card-->
-<!--    *ngFor="let day of forecast.daily.data "-->
-<!--    class="card">-->
 
-<!--    <mat-card-header-->
-<!--      class="header">-->
-<!--      <div-->
-<!--        mat-card-avatar-->
-<!--        class="weather-icon">-->
-<!--        <i-->
-<!--          id="icon"-->
-<!--          [class]="getWiIcon(day.icon)">-->
-<!--        </i>-->
-<!--      </div>-->
-<!--      <mat-card-title-->
-<!--        class="date">-->
-<!--        {{ day.time * 1000 | date: 'd MMM'  }}-->
-<!--      </mat-card-title>-->
-<!--      <mat-card-subtitle-->
-<!--        class="weather-info">-->
-<!--        {{ day.summary }}-->
-<!--      </mat-card-subtitle>-->
-<!--      <mat-card-subtitle-->
-<!--        class="weather-info">-->
-<!--        <span class="min-max">-->
-<!--          <strong>-->
-<!--            {{ 'Max: ' + day.temperatureMax.toFixed(0) + '°' }}-->
-<!--          </strong>-->
-<!--        </span>-->
-<!--        <span>-->
-<!--          <strong>-->
-<!--            {{ 'Min: ' + day.temperatureMin.toFixed(0) + '°'}}-->
-<!--          </strong>-->
-<!--        </span>-->
-<!--      </mat-card-subtitle>-->
-<!--    </mat-card-header>-->
-
-<!--  </mat-card>-->
 </section>
 

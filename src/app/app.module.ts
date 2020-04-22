@@ -42,26 +42,28 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
+import { SafeLinkPipe } from './helpers/pipes/safe-link.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LeftNavigationComponent,
+    AppLogoComponent,
+    ForecastHeaderComponent,
     FridgeComponent,
+    FridgeHeaderComponent,
+    FridgeListComponent,
+    LeftNavigationComponent,
+    RadarComponent,
+    SafeLinkPipe,
     SearchComponent,
     ShoppingComponent,
     TodoComponent,
-    WeatherComponent,
-    FridgeHeaderComponent,
-    FridgeListComponent,
     TodayComponent,
-    WeekComponent,
-    ForecastHeaderComponent,
-    WeatherTabsComponent,
-    RadarComponent,
     TodoHeaderComponent,
     TodoListComponent,
-    AppLogoComponent
+    WeatherComponent,
+    WeatherTabsComponent,
+    WeekComponent
   ],
   imports: [
     AppRoutingModule,
