@@ -5,7 +5,7 @@ import {Observable, timer} from 'rxjs';
 import {LocalStorageService} from '../../services/local-storage.service';
 import {WeatherService} from '../../services/weather-http.service';
 
-import {ForecastLocation} from '../../helpers/classes/forecastLocation';
+import {ForecastLocation} from '../../helpers/classes/forecast-location';
 import {SharedForecastService} from '../../helpers/shared-forecast.service';
 
 import {LOCATIONS} from '../../constants/constants';

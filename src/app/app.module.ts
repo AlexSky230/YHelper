@@ -43,6 +43,9 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import { SafeLinkPipe } from './helpers/pipes/safe-link.pipe';
+import { ShoppingHeaderComponent } from './components/shopping/shopping-header/shopping-header.component';
+import { ShoppingListActiveComponent } from './components/shopping/shopping-list-active/shopping-list-active.component';
+import { ShoppingListOldComponent } from './components/shopping/shopping-list-old/shopping-list-old.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,10 @@ import { SafeLinkPipe } from './helpers/pipes/safe-link.pipe';
     TodoListComponent,
     WeatherComponent,
     WeatherTabsComponent,
-    WeekComponent
+    WeekComponent,
+    ShoppingHeaderComponent,
+    ShoppingListActiveComponent,
+    ShoppingListOldComponent
   ],
   imports: [
     AppRoutingModule,

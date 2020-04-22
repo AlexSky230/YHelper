@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ForecastLocation} from '../../../helpers/classes/forecastLocation';
+import {ForecastLocation} from '../../../helpers/classes/forecast-location';
 import {SharedForecastService} from '../../../helpers/shared-forecast.service';
 
 @Component({

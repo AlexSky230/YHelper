@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ForecastLocation} from '../../../helpers/classes/forecastLocation';
+import {ForecastLocation} from '../../../helpers/classes/forecast-location';
 import {LOCATIONS} from '../../../constants/constants';
 
 @Component({
