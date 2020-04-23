@@ -3,14 +3,15 @@ import {LocalStorageService} from '../services/local-storage.service';
 import {IdService} from './id.service';
 import {FridgeService} from './fridge.service';
 import {ShoppingItem} from './classes/shopping-item';
-import {CategoriesColors} from './classes/categories-colors';
+import {CoreItem} from './classes/core-item';
+import {shoppingLabels, CORE_ITEMS} from '../constants/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingService {
 
-  public categoryColor: CategoriesColors;
+  public activeItem: CoreItem;
   public shoppingItems: ShoppingItem[] = [];
   public shoppingItemsOld: ShoppingItem[] = [];
 
@@ -26,20 +27,20 @@ export class ShoppingService {
    * save to local storage
    */
   public addShoppingItem(item: ShoppingItem): void {
-    if (item.title !== '') {
+    if (item && item.title !== '') {
       item.id = this.getId();
-      item.category = this.categoryColor !== undefined ? this.categoryColor.type : 'other';
-      item.color = this.categoryColor !== undefined ? this.categoryColor.color : 'grey';
-      item.order = this.categoryColor !== undefined ? this.categoryColor.order : 9;
-      item.ticked = false;
+      item.title = this.activeItem ? this.activeItem.title : CORE_ITEMS.default.title;
+      item.color = this.activeItem ? this.activeItem.color : CORE_ITEMS.default.color;
+      item.order = this.activeItem ? this.activeItem.order : CORE_ITEMS.default.order;
+      item.selected = false;
       this.shoppingItems.unshift(item);
-      this.saveToStorage('shoppingItems', this.shoppingItems);
+      this.saveToStorage(shoppingLabels.shoppingItems, this.shoppingItems);
     }
   }
 
   public toggleItemSelected(item: ShoppingItem): void {
-    item.ticked = !item.ticked;
-    this.saveToStorage('shoppingItemsOld', this.shoppingItemsOld);
+    item.selected = !item.selected;
+    this.saveToStorage(shoppingLabels.shoppingItemsOld, this.shoppingItemsOld);
   }
 
   /**
@@ -47,10 +48,10 @@ export class ShoppingService {
    */
   public moveSelectedToFridge(): void {
     const selected: ShoppingItem[] = this.shoppingItemsOld
-      .filter(it => it.ticked);
-    selected.forEach(it => it.ticked = false);
+      .filter(it => it.selected);
+    selected.forEach(it => it.selected = false);
     this.fridgeService.addFromShoppingList(selected);
-    this.saveToStorage('shoppingItemsOld', this.shoppingItemsOld);
+    this.saveToStorage(shoppingLabels.shoppingItemsOld, this.shoppingItemsOld);
   }
 
   /**
@@ -59,8 +60,8 @@ export class ShoppingService {
   public moveToOld(item: ShoppingItem): void {
     this.shoppingItems = this.shoppingItems.filter(it => it.id !== item.id);
     this.shoppingItemsOld.unshift(item);
-    this.saveToStorage('shoppingItems', this.shoppingItems);
-    this.saveToStorage('shoppingItemsOld', this.shoppingItemsOld);
+    this.saveToStorage(shoppingLabels.shoppingItems, this.shoppingItems);
+    this.saveToStorage(shoppingLabels.shoppingItemsOld, this.shoppingItemsOld);
   }
 
   /**
@@ -71,14 +72,14 @@ export class ShoppingService {
       .filter(el => el.id !== item.id);
     item.bought = false;
     this.shoppingItems.unshift(item);
-    this.saveToStorage('shoppingItems', this.shoppingItems);
-    this.saveToStorage('shoppingItemsOld', this.shoppingItemsOld);
+    this.saveToStorage(shoppingLabels.shoppingItems, this.shoppingItems);
+    this.saveToStorage(shoppingLabels.shoppingItemsOld, this.shoppingItemsOld);
   }
 
   public deleteOldShoppingItem(item: ShoppingItem): void {
     this.shoppingItemsOld = this.shoppingItemsOld
       .filter(it => it.id !== item.id);
-    this.saveToStorage('shoppingItemsOld', this.shoppingItemsOld);
+    this.saveToStorage(shoppingLabels.shoppingItemsOld, this.shoppingItemsOld);
   }
 
   /**
@@ -99,16 +100,16 @@ export class ShoppingService {
     return this.shoppingItems;
   }
 
-  public getCategoryColor(): CategoriesColors {
-    return this.categoryColor;
+  public getCategoryColor(): CoreItem {
+    return this.activeItem;
   }
 
   public getOldShoppingItems(): ShoppingItem[] {
     return this.shoppingItemsOld;
   }
 
-  public setColorOrder(item: CategoriesColors) {
-    this.categoryColor = item;
+  public setColorOrder(item: CoreItem) {
+    this.activeItem = item;
   }
 
   /**
@@ -123,9 +124,9 @@ export class ShoppingService {
    * create shoppingItem array depending on data received from Local Storage
    */
   private buildShoppingList(items: ShoppingItem[], key: string): void {
-    if (key === 'shoppingItems') {
+    if (key === shoppingLabels.shoppingItems) {
       this.shoppingItems = items;
-    } else if (key === 'shoppingItemsOld') {
+    } else if (key === shoppingLabels.shoppingItemsOld) {
       this.shoppingItemsOld = items;
     }
   }

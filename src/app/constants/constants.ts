@@ -1,4 +1,5 @@
-import {CategoriesColors} from '../helpers/classes/categories-colors';
+import {CoreItem} from '../helpers/classes/core-item';
+import {ForecastLocation} from '../helpers/classes/forecast-location';
 
 export enum appColor {
   primary = 'primary',
@@ -37,7 +38,9 @@ export enum shoppingLabels {
   addItem = 'Add Item...',
   category = 'Category: ',
   leftToGo = '  left to go...',
-  toDo = 'To Do'
+  shoppingItems = 'shoppingItems',
+  shoppingItemsOld = 'shoppingItemsOld',
+  toDo = 'To Do',
 }
 
 export enum todoLabels {
@@ -71,16 +74,16 @@ export enum weatherIcons {
   'hail' = 'wi wi-hail',
 }
 
-export const CATEGORIES_COLORS = {
-  vegetables: {key: '', type: 'Vegetables and Fruits', color: 'green', order: 1, selected: false},
-  meat: {key: '', type: 'Meat and Fish', color: 'red', order: 2, selected: false},
-  dairy: {key: '', type: 'Dairy Products', color: 'white', order: 3, selected: false},
-  drinks: {key: '', type: 'Drinks', color: 'blue', order: 4, selected: false},
-  otherOrange: {key: '', type: 'Other', color: 'orange', order: 5, selected: false},
-  otherYellow: {key: '', type: 'Other', color: 'yellow', order: 6, selected: false},
-  otherBlue: {key: '', type: 'Other', color: 'darkblue', order: 7, selected: false},
-  otherPurple: {key: '', type: 'Other', color: 'purple', order: 8, selected: false},
-  otherGrey: {key: '', type: 'Other', color: 'grey', order: 9, selected: false},
+export const CORE_ITEMS = {
+  vegetables: {key: 'vegetables', title: 'Vegetables and Fruits', color: '#57b053', order: 1},
+  meat: {key: 'meat', title: 'Meat and Fish', color: '#eb4334', order: 2},
+  dairy: {key: 'dairy', title: 'Dairy Products', color: '#d2dee6', order: 3},
+  drinks: {key: 'drinks', title: 'Drinks', color: '#3aa7f3', order: 4},
+  otherOrange: {key: 'otherOrange', title: 'Other', color: '#f89907', order: 5},
+  otherYellow: {key: 'otherYellow', title: 'Other', color: '#fced42', order: 6},
+  otherBlue: {key: 'otherBlue', title: 'Other', color: '#454eb4', order: 7},
+  otherPurple: {key: 'otherPurple', title: 'Other', color: '#6735b6', order: 8},
+  default: {key: 'otherGrey', title: 'Other', color: '#9e9e9e', order: 9},
 };
 
 export const LOCATIONS = {
@@ -144,9 +147,9 @@ export const MAIN_NAV = {
 };
 
 export const WEATHER_TABS = {
-  today: {title: 'Today', link: routerWeatherPath.today},
-  week: {title: '7 Days', link: routerWeatherPath.week},
-  radar: {title: 'Radar', link: routerWeatherPath.radar},
+  today: {key: 'today', title: 'Today', link: routerWeatherPath.today},
+  week: {key: 'week', title: '7 Days', link: routerWeatherPath.week},
+  radar: {key: 'radar', title: 'Radar', link: routerWeatherPath.radar},
 };
 
 

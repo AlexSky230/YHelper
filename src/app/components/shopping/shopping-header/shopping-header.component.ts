@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+
 import {ShoppingItem} from '../../../helpers/classes/shopping-item';
 import {ShoppingService} from '../../../helpers/shopping.service';
 import {CategoriesColorsService} from '../../../helpers/categories-colors.service';
-import {CategoriesColors} from '../../../helpers/classes/categories-colors';
-import {buttonIcons} from '../../../constants/constants';
+import {CoreItem} from '../../../helpers/classes/core-item';
+
+import {buttonIcons, CORE_ITEMS, shoppingLabels} from '../../../constants/constants';
 
 @Component({
   selector: 'app-shopping-header',
@@ -12,15 +14,28 @@ import {buttonIcons} from '../../../constants/constants';
 })
 export class ShoppingHeaderComponent implements OnInit {
 
-  buttonIcons = buttonIcons;
-  newShoppingItem = new ShoppingItem();
+  public buttonIcons = buttonIcons;
+  public shoppingLabels = shoppingLabels;
+
+  public activeCoreItem: CoreItem;
+  public newShoppingItem: ShoppingItem;
+  public coreItems: CoreItem[];
 
   constructor(
     private shoppingService: ShoppingService,
     private categoriesColorsService: CategoriesColorsService
-  ) { }
+  ) {
+    this.newShoppingItem = new ShoppingItem();
+  }
 
+  /**
+   * create array of items from constants, make last coreItem "otherGrey" active
+   */
   ngOnInit(): void {
+    this.coreItems = Object
+      .keys(CORE_ITEMS)
+      .map(key => CORE_ITEMS[key]);
+    this.activeCoreItem = this.coreItems[this.coreItems.length - 1];
   }
 
   public addShoppingItem(): void {
@@ -33,31 +48,28 @@ export class ShoppingHeaderComponent implements OnInit {
    * reset .selected=false for all items except clicked item in categoriesColorsService
    * add new shoppingItem to reduce clicks for user
    */
-  public onColorClicked(color: CategoriesColors): void {
-    this.shoppingService.setColorOrder(color);
+  public onCoreItemClicked(ci: CoreItem): void {
+    this.activeCoreItem = ci;
+    this.shoppingService.setColorOrder(ci);
     this.categoriesColorsService.colorsToDefault();
-    color.selected = true;
+    ci.selected = true;
     this.addShoppingItem();
   }
 
   /**
    * button-click: move items from old Shopping list to fridge list component
    */
-  public pushToFridge() {
+  public pushToFridge(): void {
     this.shoppingService.moveSelectedToFridge();
   }
 
-  public get categoriesColors(): CategoriesColors[] {
-    return this.categoriesColorsService.getAllCategories();
-  }
-
-  public get categoryColor(): CategoriesColors {
+  public get categoryColor(): CoreItem {
     return this.shoppingService.getCategoryColor();
   }
 
   public get oldShoppingItemsTicked(): ShoppingItem[] {
     return this.shoppingService.getOldShoppingItems()
-      .filter((item) => item.ticked);
+      .filter((item) => item.selected);
   }
 
 }

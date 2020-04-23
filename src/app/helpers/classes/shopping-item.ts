@@ -1,10 +1,7 @@
-export class ShoppingItem {
-  id: number;
-  title = '';
-  category = '';
-  quantity: number;
+import {CoreItem} from './core-item';
+
+export class ShoppingItem extends CoreItem{
   bought: boolean;
-  color = '';
-  order: number;
-  ticked: boolean;
+  id: number;
+  quantity: number;
 }

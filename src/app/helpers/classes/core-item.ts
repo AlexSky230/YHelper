@@ -1,6 +1,7 @@
-export class CategoriesColors {
-  type: string;
+export class CoreItem {
   color: string;
+  key: string;
   order: number;
   selected: boolean;
+  title: string;
 }

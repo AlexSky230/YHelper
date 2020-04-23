@@ -14,12 +14,12 @@
 
       <mat-form-field floatLabel="always" class="add-input">
         <mat-label>
-          {{ 'Add Item: ' }}
+          {{ shoppingLabels.addItem }}
         </mat-label>
         <input #message
                maxlength="20"
                matInput type="text"
-               [placeholder]="newShoppingItem.category"
+               [placeholder]="newShoppingItem.title"
                [(ngModel)]="newShoppingItem.title"
                (keyup.enter)="addShoppingItem()">
         <mat-hint align="end">{{ message.value.length }}/{{ message.maxLength }}</mat-hint>
@@ -43,10 +43,10 @@
     </button>
 
     <div class="colors-container">
-      <div *ngFor="let item of categoriesColors"
-           [style.background]="item.color"
-           (click)="onColorClicked(item)"
-           [class.selected]="item.selected"
+      <div *ngFor="let ci of coreItems"
+           [style.background]="ci.color"
+           (click)="onCoreItemClicked(ci)"
+           [class.selected]="ci === activeCoreItem"
            class="square">
       </div>
     </div>

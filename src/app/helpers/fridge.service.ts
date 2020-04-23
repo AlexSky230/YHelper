@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CategoriesColors} from './classes/categories-colors';
+import {CoreItem} from './classes/core-item';
 import {ShoppingItem} from './classes/shopping-item';
 import {LocalStorageService} from '../services/local-storage.service';
 import {IdService} from './id.service';
@@ -9,7 +9,7 @@ import {IdService} from './id.service';
 })
 export class FridgeService {
 
-  public categoryColor: CategoriesColors;
+  public categoryColor: CoreItem;
   public fridgeItems: ShoppingItem[] = [];
 
   constructor(
@@ -38,7 +38,7 @@ export class FridgeService {
     if (item.title !== '') {
       item.id = this.getId();
       item.quantity = 1;
-      item.category = this.categoryColor ? this.categoryColor.type : 'other';
+      item.title = this.categoryColor ? this.categoryColor.title : 'other';
       item.color = this.categoryColor ? this.categoryColor.color : 'grey';
       item.order = this.categoryColor ? this.categoryColor.order : 9;
       this.fridgeItems.unshift(item);
@@ -48,7 +48,7 @@ export class FridgeService {
 
   public deleteFridgeItemBySelected(): void {
     this.fridgeItems = this.fridgeItems
-      .filter(fridgeItem => fridgeItem.ticked !== true);
+      .filter(fridgeItem => fridgeItem.selected !== true);
     this.saveToStorage('fridgeItems');
   }
 
@@ -87,15 +87,15 @@ export class FridgeService {
 
   public getFridgeItemsByCategory(category: string): ShoppingItem[] {
     return this.fridgeItems
-      .filter(fridgeItem => fridgeItem.category === category);
+      .filter(fridgeItem => fridgeItem.title === category);
   }
 
-  public setCategoryColor(color: CategoriesColors) {
+  public setCategoryColor(color: CoreItem) {
     this.categoryColor = color;
   }
 
   public toggleFridgeItemTicked(item: ShoppingItem): void {
-    item.ticked = !item.ticked;
+    item.selected = !item.selected;
   }
 
   public quantityPlus(fridgeItem: ShoppingItem): void {
