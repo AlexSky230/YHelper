@@ -1,1 +1,56 @@
-<p>shopping-header works!</p>
+<section class="main">
+  <mat-card class="header">
+
+    <form class="button-panel">
+
+      <button [disabled]="message.value.length === 0"
+              mat-mini-fab
+              color="primary"
+              aria-label="Add"
+              (click)="addShoppingItem()"
+              class="add-button">
+        <mat-icon>{{ buttonIcons.addToCart }}</mat-icon>
+      </button>
+
+      <mat-form-field floatLabel="always" class="add-input">
+        <mat-label>
+          {{ 'Add Item: ' }}
+        </mat-label>
+        <input #message
+               maxlength="20"
+               matInput type="text"
+               [placeholder]="newShoppingItem.category"
+               [(ngModel)]="newShoppingItem.title"
+               (keyup.enter)="addShoppingItem()">
+        <mat-hint align="end">{{ message.value.length }}/{{ message.maxLength }}</mat-hint>
+        <button *ngIf="message.value"
+                (click)="message.value = ''"
+                color="warn"
+                mat-button matSuffix mat-icon-button aria-label="Clear">
+          <mat-icon>{{ buttonIcons.clear }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+    </form>
+  </mat-card>
+
+  <div class="color-bar">
+    <button mat-icon-button
+            [disabled]="oldShoppingItemsTicked.length === 0"
+            color="primary"
+            class="push-to-fridge-button">
+      <mat-icon (click)="pushToFridge()">{{ buttonIcons.toFridge }}</mat-icon>
+    </button>
+
+    <div class="colors-container">
+      <div *ngFor="let item of categoriesColors"
+           [style.background]="item.color"
+           (click)="onColorClicked(item)"
+           [class.selected]="item.selected"
+           class="square">
+      </div>
+    </div>
+  </div>
+
+</section>
+

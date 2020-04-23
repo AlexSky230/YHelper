@@ -1,3 +1,5 @@
+import {CategoriesColors} from '../helpers/classes/categories-colors';
+
 export enum appColor {
   primary = 'primary',
   accent = 'accent',
@@ -6,8 +8,10 @@ export enum appColor {
 
 export enum buttonIcons {
   add = 'add',
+  addToCart = 'add_shopping_cart',
   delete = 'trash-2-outline',
   clear = 'close',
+  toFridge = 'move_to_inbox'
 }
 
 export enum routerMainPath {
@@ -27,6 +31,20 @@ export enum routerWeatherPath {
   week = 'week',
   radar = 'radar',
   today = 'today',
+}
+
+export enum shoppingLabels {
+  addItem = 'Add Item...',
+  category = 'Category: ',
+  leftToGo = '  left to go...',
+  toDo = 'To Do'
+}
+
+export enum todoLabels {
+  addTask = 'Add task...',
+  allDone = 'All done!',
+  leftToGo = '  left to go...',
+  toDo = 'To Do'
 }
 
 export enum weatherCard {
@@ -53,12 +71,24 @@ export enum weatherIcons {
   'hail' = 'wi wi-hail',
 }
 
+export const CATEGORIES_COLORS = {
+  vegetables: {key: '', type: 'Vegetables and Fruits', color: 'green', order: 1, selected: false},
+  meat: {key: '', type: 'Meat and Fish', color: 'red', order: 2, selected: false},
+  dairy: {key: '', type: 'Dairy Products', color: 'white', order: 3, selected: false},
+  drinks: {key: '', type: 'Drinks', color: 'blue', order: 4, selected: false},
+  otherOrange: {key: '', type: 'Other', color: 'orange', order: 5, selected: false},
+  otherYellow: {key: '', type: 'Other', color: 'yellow', order: 6, selected: false},
+  otherBlue: {key: '', type: 'Other', color: 'darkblue', order: 7, selected: false},
+  otherPurple: {key: '', type: 'Other', color: 'purple', order: 8, selected: false},
+  otherGrey: {key: '', type: 'Other', color: 'grey', order: 9, selected: false},
+};
+
 export const LOCATIONS = {
   currentLocation: {
     key: 'currentLocation',
     title: 'Current Location',
-    latitude: undefined,
-    longitude: undefined,
+    latitude: null,
+    longitude: null,
     radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml'
   },
   goldCoast: {

@@ -29,6 +29,9 @@ export class TodayComponent implements OnInit, OnDestroy {
     return weatherIcons[icon] ? weatherIcons[icon] : weatherIcons['partly-cloudy-day'];
   }
 
+  // TODO add logic to show seabreeze link only when windy and
+  //  open link depending of the location according to location
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {LocalStorageService} from '../services/local-storage.service';
 import {IdService} from './id.service';
 import {FridgeService} from './fridge.service';
@@ -18,7 +18,8 @@ export class ShoppingService {
     private localStorage: LocalStorageService,
     private idService: IdService,
     private fridgeService: FridgeService,
-  ) { }
+  ) {
+  }
 
   /**
    * set .id .category .color .order .ticked, add item to ShoppingItem[]
@@ -98,6 +99,10 @@ export class ShoppingService {
     return this.shoppingItems;
   }
 
+  public getCategoryColor(): CategoriesColors {
+    return this.categoryColor;
+  }
+
   public getOldShoppingItems(): ShoppingItem[] {
     return this.shoppingItemsOld;
   }
@@ -132,5 +137,4 @@ export class ShoppingService {
   private saveToStorage(key: string, array: ShoppingItem[]): void {
     this.localStorage.addDataToStorage(key, array);
   }
-
 }

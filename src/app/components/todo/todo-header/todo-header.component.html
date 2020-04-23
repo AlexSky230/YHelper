@@ -5,38 +5,31 @@
   <mat-card>
 
       <form class="button-panel">
-        <button
-          [disabled]="todoTitle.value.length === 0"
-          (click)="addTodo(newTodo)"
-          mat-mini-fab
-          color="primary"
-          class="add-button">
+        <button [disabled]="todoTitle.value.length === 0"
+                (click)="addTodo(newTodo)"
+                mat-mini-fab
+                color="primary"
+                class="add-button">
           <mat-icon>{{ buttonIcons.add }}</mat-icon>
         </button>
 
         <mat-form-field>
           <mat-label>
             {{todos.length > 0 ?
-            (incomplete > 0 ? incomplete +'  left to go...' : 'All done!') : 'To Do:'}}
+            (incomplete > 0 ? incomplete + todoLabels.leftToGo : todoLabels.allDone) : todoLabels.toDo}}
           </mat-label>
-          <input
-            #todoTitle
-            name="todoTitle"
-            [(ngModel)]="newTodo.title"
-            (keyup.enter)="addTodo(newTodo)"
-            placeholder="Add task..."
-            maxlength="22"
-            matInput
-            class="text-field">
-            <mat-hint
-              *ngIf="todoTitle.value.length > 0"
-              align="end">
-              {{todoTitle.value.length}} / 22</mat-hint>
-            <button
-              *ngIf="todoTitle.value.length > 0"
-              (click)="todoTitle.value = ''"
-              color="warn"
-              mat-button matSuffix mat-icon-button aria-label="Clear">
+          <input #todoTitle
+                 name="todoTitle"
+                 [(ngModel)]="newTodo.title"
+                 (keyup.enter)="addTodo(newTodo)"
+                 [placeholder]="todoLabels.addTask"
+                 maxlength="22" matInput class="text-field">
+            <mat-hint *ngIf="todoTitle.value.length > 0" align="end">
+              {{todoTitle.value.length}}/{{todoTitle.maxLength}}</mat-hint>
+            <button *ngIf="todoTitle.value.length > 0"
+                    (click)="todoTitle.value = ''"
+                    color="warn"
+                    mat-button matSuffix mat-icon-button aria-label="Clear">
               <mat-icon>{{ buttonIcons.clear }}</mat-icon></button>
         </mat-form-field>
       </form>
