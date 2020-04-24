@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {ShoppingItem} from '../../../helpers/classes/shopping-item';
 import {ShoppingService} from '../../../helpers/shopping.service';
 import {CategoriesColorsService} from '../../../helpers/categories-colors.service';
-import {CoreItem} from '../../../helpers/classes/core-item';
+import {ColorItem} from '../../../helpers/classes/color-item';
 
 import {buttonIcons, CORE_ITEMS, shoppingLabels} from '../../../constants/constants';
 
@@ -17,9 +17,9 @@ export class ShoppingHeaderComponent implements OnInit {
   public buttonIcons = buttonIcons;
   public shoppingLabels = shoppingLabels;
 
-  public activeCoreItem: CoreItem;
+  public activeCoreItem: ColorItem;
   public newShoppingItem: ShoppingItem;
-  public coreItems: CoreItem[];
+  public coreItems: ColorItem[];
 
   constructor(
     private shoppingService: ShoppingService,
@@ -39,37 +39,29 @@ export class ShoppingHeaderComponent implements OnInit {
   }
 
   public addShoppingItem(): void {
+    this.newShoppingItem.color = this.activeCoreItem.color;
+    this.newShoppingItem.order = this.activeCoreItem.order;
+    this.newShoppingItem.key = this.activeCoreItem.key;
     this.shoppingService.addShoppingItem(this.newShoppingItem);
     this.newShoppingItem = new ShoppingItem();
   }
 
-  /**
-   * set selectedColor object in shopping service
-   * reset .selected=false for all items except clicked item in categoriesColorsService
-   * add new shoppingItem to reduce clicks for user
-   */
-  public onCoreItemClicked(ci: CoreItem): void {
+  public onCoreItemClicked(ci: ColorItem): void {
     this.activeCoreItem = ci;
-    this.shoppingService.setColorOrder(ci);
-    this.categoriesColorsService.colorsToDefault();
-    ci.selected = true;
-    this.addShoppingItem();
   }
 
   /**
-   * button-click: move items from old Shopping list to fridge list component
+   * button-click: move selected items from old Shopping list to fridge list component
    */
   public pushToFridge(): void {
     this.shoppingService.moveSelectedToFridge();
   }
 
-  public get categoryColor(): CoreItem {
-    return this.shoppingService.getCategoryColor();
-  }
-
-  public get oldShoppingItemsTicked(): ShoppingItem[] {
-    return this.shoppingService.getOldShoppingItems()
-      .filter((item) => item.selected);
+  /**
+   * return true if there are ticked items in the OldList Array
+   */
+  public get isSelectedInOld(): boolean {
+    return this.shoppingService.isSelectedInOld;
   }
 
 }

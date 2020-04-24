@@ -1,4 +1,13 @@
-
+.header-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #303030;
+  z-index: 0;
+  width: 100%;
+  height: 9.9em;
+  //border-bottom: solid #bb145a 2px;
+}
 .colors-container {
   margin-left: 0.2em;
   position: relative;
@@ -31,6 +40,10 @@
 
 .add-button {
   margin-right: 0.8em;
+  outline: none;
+}
+
+.push-to-fridge-button {
   outline: none;
 }
 

@@ -1,4 +1,4 @@
-export class CoreItem {
+export class ColorItem {
   color: string;
   key: string;
   order: number;

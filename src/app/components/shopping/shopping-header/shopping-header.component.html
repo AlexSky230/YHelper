@@ -1,4 +1,6 @@
 <section class="main">
+  <div class="header-cover"></div>
+
   <mat-card class="header">
 
     <form class="button-panel">
@@ -12,17 +14,16 @@
         <mat-icon>{{ buttonIcons.addToCart }}</mat-icon>
       </button>
 
-      <mat-form-field floatLabel="always" class="add-input">
-        <mat-label>
-          {{ shoppingLabels.addItem }}
-        </mat-label>
+      <mat-form-field class="add-input">
         <input #message
+               name="message"
                maxlength="20"
                matInput type="text"
-               [placeholder]="newShoppingItem.title"
+               [placeholder]="shoppingLabels.addItem"
                [(ngModel)]="newShoppingItem.title"
                (keyup.enter)="addShoppingItem()">
         <mat-hint align="end">{{ message.value.length }}/{{ message.maxLength }}</mat-hint>
+        <mat-hint align="start">{{ activeCoreItem.title }}</mat-hint>
         <button *ngIf="message.value"
                 (click)="message.value = ''"
                 color="warn"
@@ -36,7 +37,7 @@
 
   <div class="color-bar">
     <button mat-icon-button
-            [disabled]="oldShoppingItemsTicked.length === 0"
+            [disabled]="!isSelectedInOld"
             color="primary"
             class="push-to-fridge-button">
       <mat-icon (click)="pushToFridge()">{{ buttonIcons.toFridge }}</mat-icon>

@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
-import {CoreItem} from './classes/core-item';
+import {ColorItem} from './classes/color-item';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriesColorsService {
 
-  public categoriesColors: CoreItem[] = [
+  public categoriesColors: ColorItem[] = [
     {key: 'key', title: 'Vegetables and Fruits', color: '#57b053', order: 1, selected: false},
     {key: 'key', title: 'Meat and Fish', color: '#eb4334', order: 2, selected: false},
     {key: 'key', title: 'Dairy Products', color: '#d2dee6', order: 3, selected: false},
@@ -22,11 +22,11 @@ export class CategoriesColorsService {
     this.categoriesColors.forEach(item => item.selected = false);
   }
 
-  public getAllCategories(): CoreItem[] {
+  public getAllCategories(): ColorItem[] {
     return this.categoriesColors;
   }
 
-  public getCategoriesForFridge(): CoreItem[] {
+  public getCategoriesForFridge(): ColorItem[] {
     return this.categoriesColors
       .filter((a) =>
         a.order < 5 || a.order === 9);

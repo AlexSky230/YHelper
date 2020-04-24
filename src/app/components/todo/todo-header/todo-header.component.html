@@ -14,10 +14,6 @@
         </button>
 
         <mat-form-field>
-          <mat-label>
-            {{todos.length > 0 ?
-            (incomplete > 0 ? incomplete + todoLabels.leftToGo : todoLabels.allDone) : todoLabels.toDo}}
-          </mat-label>
           <input #todoTitle
                  name="todoTitle"
                  [(ngModel)]="newTodo.title"
@@ -25,7 +21,12 @@
                  [placeholder]="todoLabels.addTask"
                  maxlength="22" matInput class="text-field">
             <mat-hint *ngIf="todoTitle.value.length > 0" align="end">
-              {{todoTitle.value.length}}/{{todoTitle.maxLength}}</mat-hint>
+              {{todoTitle.value.length}}/{{todoTitle.maxLength}}
+            </mat-hint>
+            <mat-hint align="start">
+              {{todos.length > 0 ?
+              (incomplete > 0 ? incomplete + todoLabels.leftToGo : todoLabels.allDone) : todoLabels.toDo}}
+            </mat-hint>
             <button *ngIf="todoTitle.value.length > 0"
                     (click)="todoTitle.value = ''"
                     color="warn"

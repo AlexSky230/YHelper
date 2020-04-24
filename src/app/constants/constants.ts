@@ -1,4 +1,4 @@
-import {CoreItem} from '../helpers/classes/core-item';
+import {ColorItem} from '../helpers/classes/color-item';
 import {ForecastLocation} from '../helpers/classes/forecast-location';
 
 export enum appColor {
@@ -10,7 +10,7 @@ export enum appColor {
 export enum buttonIcons {
   add = 'add',
   addToCart = 'add_shopping_cart',
-  delete = 'trash-2-outline',
+  delete = 'delete_outline',
   clear = 'close',
   toFridge = 'move_to_inbox'
 }
@@ -75,15 +75,15 @@ export enum weatherIcons {
 }
 
 export const CORE_ITEMS = {
-  vegetables: {key: 'vegetables', title: 'Vegetables and Fruits', color: '#57b053', order: 1},
-  meat: {key: 'meat', title: 'Meat and Fish', color: '#eb4334', order: 2},
-  dairy: {key: 'dairy', title: 'Dairy Products', color: '#d2dee6', order: 3},
-  drinks: {key: 'drinks', title: 'Drinks', color: '#3aa7f3', order: 4},
-  otherOrange: {key: 'otherOrange', title: 'Other', color: '#f89907', order: 5},
-  otherYellow: {key: 'otherYellow', title: 'Other', color: '#fced42', order: 6},
-  otherBlue: {key: 'otherBlue', title: 'Other', color: '#454eb4', order: 7},
-  otherPurple: {key: 'otherPurple', title: 'Other', color: '#6735b6', order: 8},
-  default: {key: 'otherGrey', title: 'Other', color: '#9e9e9e', order: 9},
+  vegetables: {key: 'vegetables', title: 'Vegetables and Fruits: Green', color: '#57b053', order: 1},
+  meat: {key: 'meat', title: 'Meat and Fish: Red', color: '#eb4334', order: 2},
+  dairy: {key: 'dairy', title: 'Dairy Products: White', color: '#d2dee6', order: 3},
+  drinks: {key: 'drinks', title: 'Drinks: Blue', color: '#3aa7f3', order: 4},
+  otherOrange: {key: 'otherOrange', title: 'Other: Orange', color: '#f89907', order: 5},
+  otherYellow: {key: 'otherYellow', title: 'Other: Yellow', color: '#fced42', order: 6},
+  otherBlue: {key: 'otherBlue', title: 'Other: Dark blue', color: '#454eb4', order: 7},
+  otherPurple: {key: 'otherPurple', title: 'Other: Violet', color: '#6735b6', order: 8},
+  default: {key: 'otherGrey', title: 'Other: Grey', color: '#9e9e9e', order: 9},
 };
 
 export const LOCATIONS = {

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CoreItem} from './classes/core-item';
+import {ColorItem} from './classes/color-item';
 import {ShoppingItem} from './classes/shopping-item';
 import {LocalStorageService} from '../services/local-storage.service';
 import {IdService} from './id.service';
@@ -9,7 +9,7 @@ import {IdService} from './id.service';
 })
 export class FridgeService {
 
-  public categoryColor: CoreItem;
+  public categoryColor: ColorItem;
   public fridgeItems: ShoppingItem[] = [];
 
   constructor(
@@ -90,7 +90,7 @@ export class FridgeService {
       .filter(fridgeItem => fridgeItem.title === category);
   }
 
-  public setCategoryColor(color: CoreItem) {
+  public setCategoryColor(color: ColorItem) {
     this.categoryColor = color;
   }
 

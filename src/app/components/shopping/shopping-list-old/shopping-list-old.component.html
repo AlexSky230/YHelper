@@ -1,3 +1,36 @@
 <section class="main">
-  <p>shopping-list-old works!</p>
+
+  <mat-card *ngIf="shoppingItemsOld.length > 0" class="card">
+    <mat-action-list dense disableRipple>
+
+      <mat-list-item *ngFor="let item of shoppingItemsOld"
+                     class="item-list-container">
+
+        <mat-checkbox (change)="toggleItemSelected(item)"
+                      [checked]="item.selected"
+                      disableRipple
+                      color="accent"
+                      class="col-11 list-item">
+          <button (click)="restoreItem(item)"
+                  [class.bought]="item.bought"
+                  class="item-title">
+            {{ item.title }}
+          </button>
+        </mat-checkbox>
+
+        <button
+          (click)="removeOldItem(item)"
+          mat-icon-button
+          color="warn"
+          class="delete col-1">
+          <mat-icon>{{ buttonIcons.delete }}</mat-icon>
+        </button>
+
+        <mat-divider inset></mat-divider>
+      </mat-list-item>
+
+
+    </mat-action-list>
+  </mat-card>
+
 </section>
