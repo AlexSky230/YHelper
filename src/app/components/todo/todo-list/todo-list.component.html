@@ -1,14 +1,15 @@
-<section class="main">
-
-    <mat-list *ngIf="todos.length > 0">
+<section>
+    <mat-list *ngIf="todos.length > 0" class="list">
 
       <mat-list-item *ngFor="let todo of todos;" class="list-item">
+
         <mat-checkbox
+          disableRipple
           [checked]="todo.complete"
           (change)="toggleTodoComplete(todo)"
           color="accent"
           [class.completed]="todo.complete"
-          class="todo-item col-10">
+          class="list-item">
           <span class="text">{{ todo.title }}</span>
         </mat-checkbox>
 
@@ -16,7 +17,7 @@
           (click)="removeTodo(todo)"
           mat-icon-button
           color="warn"
-          class="delete col-2">
+          class="delete right">
           <mat-icon class="delete-icon">{{ buttonIcons.clear }}</mat-icon>
         </button>
 

@@ -1,16 +1,16 @@
-<section class="main">
-
-  <app-forecast-header class="header"
-                       (locationSelected)="locationUpdate($event)"
-                       [activeLocation]="activeLocation"
-                       [currentLocationLatitude]="currentLocationLatitude"
-                       [currentLocationLongitude]="currentLocationLongitude">
-  </app-forecast-header>
-
-  <app-weather-tabs class="tabs"></app-weather-tabs>
+<section>
 
   <div class="content">
     <router-outlet></router-outlet>
+  </div>
+
+  <div class="header-container">
+    <app-forecast-header class="header"
+                        (locationSelected)="locationUpdate($event)"
+                        [activeLocation]="activeLocation"
+                        [currentLocationLatitude]="currentLocationLatitude"
+                        [currentLocationLongitude]="currentLocationLongitude">
+    </app-forecast-header>
   </div>
 
 </section>

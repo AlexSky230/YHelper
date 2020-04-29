@@ -1,14 +1,8 @@
-.header-cover {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #303030;
-  z-index: 0;
-  width: 100%;
-  height: 7.4em;
-  //border-bottom: solid #bb145a 2px;
-}
-
 ::ng-deep .mat-select-panel {
   max-height: none !important;
+}
+
+.seebreeze {
+  margin-right: 1em;
+  text-decoration: none;
 }

@@ -1,8 +1,16 @@
-<section class="main">
+<section>
 
-  <div class="header-cover"></div>
+  <app-weather-tabs></app-weather-tabs>
 
   <mat-card>
+
+    <a mat-stroked-button
+       href="https://www.seabreeze.com.au/weather/wind-forecast/qld-gold-coast"
+       target="_blank"
+       class="seebreeze"
+       color="accent">
+      SB</a>
+
     <mat-form-field>
       <mat-label>Forecast for:</mat-label>
       <mat-select [value]="0" class="my-select">
@@ -13,7 +21,8 @@
           {{ location.title }}
         </mat-option>
       </mat-select>
-      <mat-hint>{{ latitude }}, {{ longitude }}</mat-hint>
+      <mat-hint>Lat: {{ latitude }}</mat-hint>
+      <mat-hint align="end">Long: {{ longitude }}</mat-hint>
     </mat-form-field>
   </mat-card>
 

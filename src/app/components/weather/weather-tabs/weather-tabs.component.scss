@@ -1,16 +1,8 @@
-.main {
-  position: fixed;
-  top: 6.9em;
-  width: calc(100% - 4.25em);
+.tabs {
+  margin-bottom: 0.2em;
 }
 
-.nav-panel {
-  padding-bottom: 0.5em;
-  background-color: #303030;
-  border-bottom: none;
-}
-
-.nav-panel a:hover {
+.nav-panel a {
   color: white;
   text-decoration: none;
 }

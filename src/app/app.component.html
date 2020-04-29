@@ -1,12 +1,18 @@
-<div class="mat-typography app-frame mat-app-background">
-<mat-sidenav-container class="area">
-  <mat-sidenav mode="side" opened class="side-nav">
-    <app-left-navigation></app-left-navigation>
-  </mat-sidenav>
+<div class="mat-typography app-frame mat-app-background main">
 
-  <mat-sidenav-content class="main">
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
+  <mat-toolbar class="small toolbar">
+    Tab Helper v0.3
+    <app-logo></app-logo>
+  </mat-toolbar>
 
-</mat-sidenav-container>
+  <mat-sidenav-container>
+    <mat-sidenav position="end" mode="side" opened class="side-nav">
+      <app-left-navigation></app-left-navigation>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
 </div>

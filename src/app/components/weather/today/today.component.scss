@@ -1,14 +1,11 @@
-.main {
-  position: relative;
-  top: 10.3em;
-}
-
-.header {
+.card-header {
   border-bottom: solid #b41059 2px;
+  padding: 1em 0 0 1em;
+  background-color: #303030;
+  border-radius: 5px;
 }
-
 .card-body {
-  margin: 1em;
+  padding-left: 3.5em;
 }
 
 .primary-color {
@@ -19,4 +16,5 @@
   margin-right: 0.5em;
   color: #b41059;
   font-size: 3.6em;
+  //background-color: #8c8c8c;
 }

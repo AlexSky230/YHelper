@@ -1,16 +1,19 @@
 <section class="main">
 
-  <app-todo-header class="header"
-    [todos]="todos"
-    [incomplete]="incomplete"
-    (addTodoOutput)="addTodo($event)">
-  </app-todo-header>
+  <div class="content">
+    <app-todo-list [todos]="todos"
+                   [incomplete]="incomplete"
+                   (removeItem)="removeTodo($event)"
+                   (toggleItem)="calculateIncompleteTodos()">
+    </app-todo-list>
+  </div>
 
-  <app-todo-list class="content"
-    [todos]="todos"
-    [incomplete]="incomplete"
-    (removeItem)="removeTodo($event)"
-    (toggleItem)="calculateIncompleteTodos()">
-  </app-todo-list>
+  <div class="header">
+    <app-todo-header
+      [todos]="todos"
+      [incomplete]="incomplete"
+      (addTodoOutput)="addTodo($event)">
+    </app-todo-header>
+  </div>
 
 </section>

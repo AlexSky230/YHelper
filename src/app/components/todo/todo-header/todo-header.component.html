@@ -1,25 +1,14 @@
-<section class="main">
-
-  <div class="header-cover"></div>
-
+<section>
   <mat-card>
 
-      <form class="button-panel">
-        <button [disabled]="todoTitle.value.length === 0"
-                (click)="addTodo(newTodo)"
-                mat-mini-fab
-                color="primary"
-                class="add-button">
-          <mat-icon>{{ buttonIcons.add }}</mat-icon>
-        </button>
-
-        <mat-form-field>
+      <form>
+        <mat-form-field class="form-field">
           <input #todoTitle
                  name="todoTitle"
                  [(ngModel)]="newTodo.title"
                  (keyup.enter)="addTodo(newTodo)"
                  [placeholder]="todoLabels.addTask"
-                 maxlength="22" matInput class="text-field">
+                 maxlength="25" matInput class="text-field">
             <mat-hint *ngIf="todoTitle.value.length > 0" align="end">
               {{todoTitle.value.length}}/{{todoTitle.maxLength}}
             </mat-hint>
@@ -27,12 +16,24 @@
               {{todos.length > 0 ?
               (incomplete > 0 ? incomplete + todoLabels.leftToGo : todoLabels.allDone) : todoLabels.toDo}}
             </mat-hint>
-            <button *ngIf="todoTitle.value.length > 0"
+            <button [disabled]="todoTitle.value.length === 0"
+                    [class.grey]="todoTitle.value.length === 0"
                     (click)="todoTitle.value = ''"
                     color="warn"
                     mat-button matSuffix mat-icon-button aria-label="Clear">
               <mat-icon>{{ buttonIcons.clear }}</mat-icon></button>
         </mat-form-field>
+
+        <div class="button-container">
+          <button [disabled]="todoTitle.value.length === 0"
+                  (click)="addTodo(newTodo)"
+                  mat-mini-fab
+                  color="primary"
+                  class="core-button">
+            <mat-icon>{{ buttonIcons.add }}</mat-icon>
+          </button>
+        </div>
+
       </form>
 
     </mat-card>
