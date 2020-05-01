@@ -1,57 +1,56 @@
-<section class="main">
-  <div class="header-cover"></div>
+<section>
 
-  <mat-card class="header">
-
-    <form class="button-panel">
-
-      <button [disabled]="message.value.length === 0"
-              mat-mini-fab
-              color="primary"
-              aria-label="Add"
-              (click)="addShoppingItem()"
-              class="add-button">
-        <mat-icon>{{ buttonIcons.addToCart }}</mat-icon>
+  <div class="color-bar">
+    <div class="color-bar-content">
+      <button mat-icon-button
+              [disabled]="!isSelectedInOld"
+              color="accent"
+              class="push-to-fridge-button">
+        <mat-icon (click)="pushToFridge()">{{ buttonIcons.toFridge }}</mat-icon>
       </button>
 
-      <mat-form-field class="add-input">
-        <input #message
+      <div class="colors-container">
+        <div *ngFor="let ci of coreItems"
+             [style.background]="ci.color"
+             (click)="onCoreItemClicked(ci)"
+             [class.selected]="ci === activeCoreItem"
+             class="square">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <mat-card>
+    <form>
+      <mat-form-field class="form-field">
+        <input #itemTitle
                name="message"
-               maxlength="20"
+               maxlength="100"
                matInput type="text"
                [placeholder]="shoppingLabels.addItem"
                [(ngModel)]="newShoppingItem.title"
                (keyup.enter)="addShoppingItem()">
-        <mat-hint align="end">{{ message.value.length }}/{{ message.maxLength }}</mat-hint>
+        <mat-hint align="end">{{ itemTitle.value.length }}/{{ itemTitle.maxLength }}</mat-hint>
         <mat-hint align="start">{{ activeCoreItem.title }}</mat-hint>
-        <button *ngIf="message.value"
-                (click)="message.value = ''"
+        <button [disabled]="itemTitle.value.length === 0"
+                [class.grey]="itemTitle.value.length === 0"
+                (click)="itemTitle.value = ''"
                 color="warn"
                 mat-button matSuffix mat-icon-button aria-label="Clear">
-          <mat-icon>{{ buttonIcons.clear }}</mat-icon>
-        </button>
+          <mat-icon>{{ buttonIcons.clear }}</mat-icon></button>
       </mat-form-field>
+
+      <button [disabled]="itemTitle.value.length === 0"
+              mat-mini-fab
+              color="primary"
+              aria-label="Add"
+              (click)="addShoppingItem()"
+              class="core-button">
+        <mat-icon>{{ buttonIcons.addToCart }}</mat-icon>
+      </button>
 
     </form>
   </mat-card>
-
-  <div class="color-bar">
-    <button mat-icon-button
-            [disabled]="!isSelectedInOld"
-            color="primary"
-            class="push-to-fridge-button">
-      <mat-icon (click)="pushToFridge()">{{ buttonIcons.toFridge }}</mat-icon>
-    </button>
-
-    <div class="colors-container">
-      <div *ngFor="let ci of coreItems"
-           [style.background]="ci.color"
-           (click)="onCoreItemClicked(ci)"
-           [class.selected]="ci === activeCoreItem"
-           class="square">
-      </div>
-    </div>
-  </div>
 
 </section>
 

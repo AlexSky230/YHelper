@@ -1,16 +1,19 @@
 <section class="main">
-  <mat-card>
-    <a mat-raised-button
-       color="primary"
+  <mat-card class="card-field content">
+    <div class="iframe-container">
+      <iframe *ngIf="radarLink" id="iframe"
+              [src]="radarLink | safeLink">
+      </iframe>
+    </div>
+
+    <a mat-stroked-button
+       color="accent"
        target="_blank"
        [href]="radarLink | safeLink"
        class="link">
       Open in Browser
     </a>
 
-    <iframe *ngIf="radarLink" id="iframe"
-      [src]="radarLink | safeLink">
-    </iframe>
   </mat-card>
 
 </section>

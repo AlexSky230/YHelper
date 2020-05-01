@@ -10,7 +10,7 @@ import {AppLogoComponent} from './components/app-logo/app-logo.component';
 import {FridgeComponent} from './components/fridge/fridge.component';
 import {FridgeHeaderComponent} from './components/fridge/fridge-header/fridge-header.component';
 import {FridgeListComponent} from './components/fridge/fridge-list/fridge-list.component';
-import {ForecastHeaderComponent} from './components/weather/forecast-header/forecast-header.component';
+import {WeatherHeaderComponent} from './components/weather/weather-header/weather-header.component';
 import {LeftNavigationComponent} from './components/left-navigation/left-navigation.component';
 import {RadarComponent} from './components/weather/radar/radar.component';
 import {SearchComponent} from './components/search/search.component';
@@ -51,7 +51,7 @@ import { ShoppingListOldComponent } from './components/shopping/shopping-list-ol
   declarations: [
     AppComponent,
     AppLogoComponent,
-    ForecastHeaderComponent,
+    WeatherHeaderComponent,
     FridgeComponent,
     FridgeHeaderComponent,
     FridgeListComponent,

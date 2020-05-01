@@ -1,17 +1,23 @@
-.header-cover {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #303030;
-  z-index: 0;
-  width: 100%;
-  height: 9.9em;
-  //border-bottom: solid #bb145a 2px;
+.color-bar {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  padding-right: 0.5em;
 }
-.colors-container {
-  margin-left: 0.2em;
+
+.color-bar-content {
+  display: inline-block;
   position: relative;
   top: 0.4em;
+}
+
+.push-to-fridge-button {
+  display: inline-block;
+  position: relative;
+  top: -0.35em;
+}
+
+.colors-container {
   display: inline-block;
 }
 
@@ -23,9 +29,9 @@
   width: 1em;
   margin-left: 0.5em;
   box-shadow:
-    0 2px 1px -1px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14),
-    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  0 2px 1px -1px rgba(0, 0, 0, 0.2),
+  0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+  0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
 
 .square.selected {
@@ -33,21 +39,13 @@
   height: 1.4em;
   width: 1.4em;
   box-shadow:
-    0px 3px 5px -1px rgba(0, 0, 0, 0.2),
-    0px 6px 10px 0px rgba(0, 0, 0, 0.14),
-    0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+  0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+  0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+  0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 }
 
 .core-button {
-  margin-right: 0.8em;
+  margin-left: 0.8em;
   outline: none;
 }
 
-.push-to-fridge-button {
-  outline: none;
-}
-
-.color-bar {
-  background-color: #303030;
-  padding-left: 1em;
-}

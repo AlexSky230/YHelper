@@ -27,11 +27,11 @@
         <span>{{ forecast.daily.data[0].summary }}</span>
         <br><br>
         <span>{{ weatherCard.hottest }}</span>
-        <strong><span class="primary-color">{{ forecast.daily.data[0].temperatureMax
+        <strong><span class="hot-color">{{ forecast.daily.data[0].temperatureMax
           .toFixed(1) + weatherCard.degree}}</span></strong>
         <br>
         <span>{{ weatherCard.coldest }}</span>
-        <strong><span class="primary-color">{{ forecast.daily.data[1].temperatureMin
+        <strong><span class="cold-color">{{ forecast.daily.data[1].temperatureMin
           .toFixed(1) + weatherCard.degree}}</span></strong>
         <br><br>
         <span>{{ weatherCard.humidity + (forecast.daily.data[0].humidity * 100)

@@ -1,31 +1,28 @@
 <section class="main">
 
   <mat-card>
-    <mat-action-list *ngIf="shoppingItems.length > 0" class="shoppingItems-list">
+    <ul *ngIf="shoppingItems.length > 0" class="core-list content">
 
-      <mat-list-item *ngFor="let item of shoppingItems; last as last;"
+      <li *ngFor="let item of shoppingItems"
                      [style.border-left]="'0.2em solid'"
                      [style.border-left-color]="item.color"
-                     class="item-list">
+                     class="core-list-item">
 
-        <button (click)="toggleShoppingItemBought(item)"
-                [class.bought]="item.bought" class="list-item col-11">
+        <mat-checkbox (click)="toggleShoppingItemBought(item)"
+                [class.bought]="item.bought"
+                mat-button
+                class="core-list-checkbox">
           {{ item.title }}
+        </mat-checkbox>
+
+        <button (click)="removeItem(item)"
+                mat-icon-button
+                color="warn" class="ul-delete-container">
+          <mat-icon class="ul-delete">{{ buttonIcons.delete }}</mat-icon>
         </button>
+      </li>
 
-        <button
-          (click)="removeItem(item)"
-          mat-icon-button
-          color="warn"
-          class="delete col-1">
-          <mat-icon class="delete-icon">{{ buttonIcons.delete }}</mat-icon>
-        </button>
-
-        <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
-
-      </mat-list-item>
-
-    </mat-action-list>
+    </ul>
   </mat-card>
 </section>
 

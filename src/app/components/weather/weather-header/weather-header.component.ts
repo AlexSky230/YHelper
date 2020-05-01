@@ -3,11 +3,11 @@ import {ForecastLocation} from '../../../helpers/classes/forecast-location';
 import {LOCATIONS} from '../../../constants/constants';
 
 @Component({
-  selector: 'app-forecast-header',
-  templateUrl: './forecast-header.component.html',
-  styleUrls: ['./forecast-header.component.scss']
+  selector: 'app-weather-header',
+  templateUrl: './weather-header.component.html',
+  styleUrls: ['./weather-header.component.scss']
 })
-export class ForecastHeaderComponent implements OnInit {
+export class WeatherHeaderComponent implements OnInit {
 
   @Input() activeLocation: ForecastLocation;
   @Input() currentLocationLatitude: number;

@@ -1,38 +1,48 @@
-<section *ngIf="forecast && forecast.daily && forecast.daily.data.length">
+<section *ngIf="forecast && forecast.daily && forecast.daily.data.length"
+         class="main">
 
-  <mat-card>
-    <mat-card-content *ngFor="let day of forecast.daily.data  | slice:0:7"
-                      class="day-forecast-content">
+  <mat-card class="card-field content">
+    <mat-card-content class="card-container">
 
-      <div class="icon-container">
-        <i id="icon" [class]="getWiIcon(day.icon)"></i>
-      </div>
+      <div>
 
-      <div class="forecast-text-container">
-      <span>
-        {{ day.time * 1000 | date: 'E' }},
-        {{ day.time * 1000 | date: 'd MMM' }}
-      </span>
+        <div *ngFor="let day of forecast.daily.data | slice:0:7, last as last"
+             class="day-forecast-item">
+          <div class="icon-container">
+            <i id="icon" [class]="getWiIcon(day.icon)"></i>
+          </div>
 
-        <div class="arrow-icon-container">
-          <mat-icon class="arrow-icon primary-color">arrow_upward</mat-icon>
+          <div class="forecast-text-container">
+            <span>
+              {{ day.time * 1000 | date: 'E' }},
+              {{ day.time * 1000 | date: 'd MMM' }}
+            </span>
+
+            <div class="temperature-container">
+              <div class="up-arrow-icon-container">
+                <mat-icon class="arrow-icon hot-color">arrow_upward</mat-icon>
+              </div>
+              <strong>
+                <span class="hot-color">{{ day.temperatureMax.toFixed(0) + '°' }}</span>
+              </strong>
+
+              <div class="down-arrow-icon-container">
+                <mat-icon class="arrow-icon cold-color">arrow_downwards</mat-icon>
+              </div>
+              <strong>
+                <span class="cold-color">{{ day.temperatureMin.toFixed(0) + '°' }}</span>
+              </strong>
+            </div>
+
+            <div>
+              <span class="small">{{ day.summary }}</span>
+            </div>
+          </div>
+
+          <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
         </div>
-        <strong>
-          <span class="primary-color">{{ day.temperatureMax.toFixed(0) + '°' }}</span>
-        </strong>
 
-        <div class="arrow-icon-container">
-          <mat-icon class="arrow-icon primary-color">arrow_downwards</mat-icon>
-        </div>
-        <strong>
-          <span class="primary-color">{{ day.temperatureMin.toFixed(0) + '°' }}</span>
-        </strong>
-        <br>
-
-        <span class="small">{{ day.summary }}</span>
       </div>
-
-      <mat-divider [inset]="true"></mat-divider>
 
     </mat-card-content>
   </mat-card>

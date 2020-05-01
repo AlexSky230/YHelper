@@ -32,5 +32,5 @@ export class WeekComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
+// TODO add proper scroll so the corners of the card do not cut
 }

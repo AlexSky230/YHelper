@@ -1,5 +1,5 @@
-<section>
-    <ul class="core-list">
+<section class="main">
+    <ul class="core-list content">
       <li *ngFor="let todo of todos;" class="core-list-item">
 
         <mat-checkbox [checked]="todo.complete"
@@ -15,9 +15,6 @@
                 color="warn" class="ul-delete-container">
           <mat-icon class="ul-delete">{{ buttonIcons.clear }}</mat-icon>
         </button>
-
-        <mat-divider></mat-divider>
-
       </li>
     </ul>
 </section>
