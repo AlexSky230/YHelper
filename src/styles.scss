@@ -2,6 +2,17 @@
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 
+/** wrap label */
+.mat-checkbox-layout {
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+/** keep checkbox on first line */
+.mat-checkbox-inner-container {
+  margin-top: 0.25em !important;
+}
+
 html, body, app-root, .app-frame {
   height: 100%;
   //min-width: 360px;
@@ -40,18 +51,28 @@ mat-sidenav-container {
   outline: none;
 }
 
-.list-item {
-  overflow: hidden;
-  position: relative;
-  top: 0.2em;
-  width: 100%;
+.core-list {
+  padding: 1em 1em 1em 1.5em;
+  list-style-type: none;
+  .core-list-item {
+    display: flex;
+    padding: 1em 0 0 0.2em;
+    border-bottom: solid #4b4b4b 1px;
+  }
 
-}
+  .core-list-checkbox {
+    flex-grow: 1;
+  }
 
-.delete mat-icon {
-  padding-left: 0.5em;
-  background-color: #303030;
-  font-size: 1.2em;
+  .ul-delete-container {
+    flex-grow: 0;
+    position: relative;
+    top: -0.5em;
+    margin-left: 0.5em;
+    .ul-delete {
+      font-size: 1.2em;
+    }
+  }
 }
 
 .completed {

@@ -8,7 +8,7 @@
                  [(ngModel)]="newTodo.title"
                  (keyup.enter)="addTodo(newTodo)"
                  [placeholder]="todoLabels.addTask"
-                 maxlength="25" matInput class="text-field">
+                 maxlength="100" matInput class="text-field">
             <mat-hint *ngIf="todoTitle.value.length > 0" align="end">
               {{todoTitle.value.length}}/{{todoTitle.maxLength}}
             </mat-hint>
