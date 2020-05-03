@@ -31,7 +31,7 @@ export class ShoppingService {
     if (item && item.title && item.color && item.order && item.key) {
       item.id = this.getId();
       item.selected = false;
-      item.bought = false;
+      item.isBought = false;
       this.shoppingItems.unshift(item);
       this.sortItems(item);
       this.saveToStorage(shoppingLabels.shoppingItems, this.shoppingItems);
@@ -96,7 +96,7 @@ export class ShoppingService {
    * move elements from NewList to OldList using .id, sort lists and save
    */
   public moveToOld(item: ShoppingItem): void {
-    item.bought = true;
+    item.isBought = true;
     item.selected = false;
     this.shoppingItems = this.shoppingItems.filter(it => it.id !== item.id);
     this.shoppingItemsOld.unshift(item);
@@ -107,7 +107,7 @@ export class ShoppingService {
    * move elements from OldList to NewList using .id and reset .bought=false, sort lists and save
    */
   public moveToNew(item: ShoppingItem): void {
-    item.bought = false;
+    item.isBought = false;
     this.shoppingItemsOld = this.shoppingItemsOld.filter(it => it.id !== item.id);
     this.shoppingItems.unshift(item);
     this.sortAndSave(item);
@@ -117,7 +117,7 @@ export class ShoppingService {
    * toggle .bought and move item to shoppingItemsOld[]
    */
   public toggleShoppingItemBought(item: ShoppingItem): void {
-    item.bought = !item.bought;
+    item.isBought = !item.isBought;
     this.moveToOld(item);
     this.sortItems(item);
   }

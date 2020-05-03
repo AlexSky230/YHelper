@@ -1,19 +1,18 @@
-<section class="main">
+<section>
 
-  <mat-card>
-    <ul *ngIf="shoppingItems.length > 0" class="core-list content">
+  <mat-card *ngIf="shoppingItems.length > 0">
+    <ul class="core-list">
 
       <li *ngFor="let item of shoppingItems"
                      [style.border-left]="'0.2em solid'"
                      [style.border-left-color]="item.color"
                      class="core-list-item">
 
-        <mat-checkbox (click)="toggleShoppingItemBought(item)"
-                [class.bought]="item.bought"
-                mat-button
-                class="core-list-checkbox">
-          {{ item.title }}
-        </mat-checkbox>
+        <a (click)="toggleShoppingItemBought(item)"
+                [class.bought]="item.isBought"
+                class="core-list-a">
+          <span class="ul-list-a-span">{{ item.title }}</span>
+        </a>
 
         <button (click)="removeItem(item)"
                 mat-icon-button

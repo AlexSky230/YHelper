@@ -2,8 +2,8 @@
     <ul class="core-list content">
       <li *ngFor="let todo of todos;" class="core-list-item">
 
-        <mat-checkbox [checked]="todo.complete"
-                      (change)="toggleTodoComplete(todo)"
+        <mat-checkbox (change)="toggleTodoComplete(todo)"
+                      [checked]="todo.complete"
                       color="accent"
                       [class.completed]="todo.complete"
                       class="core-list-checkbox">
@@ -13,7 +13,7 @@
         <button (click)="removeTodo(todo)"
                 mat-icon-button
                 color="warn" class="ul-delete-container">
-          <mat-icon class="ul-delete">{{ buttonIcons.clear }}</mat-icon>
+          <mat-icon class="ul-delete">{{ buttonIcons.clear}}</mat-icon>
         </button>
       </li>
     </ul>

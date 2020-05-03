@@ -61,7 +61,20 @@ mat-sidenav-container {
     border-bottom: solid #4b4b4b 1px;
   }
   .core-list-checkbox {
+    position: relative;
+    bottom: -0.1em;
     flex-grow: 1;
+  }
+  .core-list-a {
+    position: relative;
+    padding: 0 0 1em 1em;
+    white-space: normal;
+    word-break: break-word;
+    flex-grow: 1;
+    .ul-list-a-span {
+      position: relative;
+      bottom: -0.2em;
+    }
   }
   .ul-delete-container {
     flex-grow: 0;
