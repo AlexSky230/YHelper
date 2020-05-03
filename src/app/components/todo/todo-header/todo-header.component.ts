@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {buttonIcons, todoLabels} from '../../../constants/constants';
+import {buttonIcons, coreLabels} from '../../../constants/constants';
 import {Todo} from '../../../helpers/classes/todo';
 import {IdService} from '../../../helpers/id.service';
 
@@ -16,7 +16,7 @@ export class TodoHeaderComponent implements OnInit {
 
   public newTodo: Todo;
   public buttonIcons = buttonIcons;
-  public todoLabels = todoLabels;
+  public todoLabels = coreLabels;
 
   constructor(
     private idService: IdService

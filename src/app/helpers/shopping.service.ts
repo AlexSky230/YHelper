@@ -4,7 +4,7 @@ import {IdService} from './id.service';
 import {FridgeService} from './fridge.service';
 
 import {ShoppingItem} from './classes/shopping-item';
-import {shoppingLabels} from '../constants/constants';
+import {coreLabels} from '../constants/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -34,20 +34,20 @@ export class ShoppingService {
       item.isBought = false;
       this.shoppingItems.unshift(item);
       this.sortItems(item);
-      this.saveToStorage(shoppingLabels.shoppingItems, this.shoppingItems);
+      this.saveToStorage(coreLabels.shoppingItems, this.shoppingItems);
     }
   }
 
   public deleteShoppingItem(item: ShoppingItem): void {
     this.shoppingItems = this.shoppingItems
       .filter(it => it !== item);
-    this.saveToStorage(shoppingLabels.shoppingItems, this.shoppingItems);
+    this.saveToStorage(coreLabels.shoppingItems, this.shoppingItems);
   }
 
   public deleteOldShoppingItem(item: ShoppingItem): void {
     this.shoppingItemsOld = this.shoppingItemsOld
       .filter(it => it !== item);
-    this.saveToStorage(shoppingLabels.shoppingItemsOld, this.shoppingItemsOld);
+    this.saveToStorage(coreLabels.shoppingItemsOld, this.shoppingItemsOld);
   }
 
   public getNewShoppingItems(): ShoppingItem[] {
@@ -64,7 +64,7 @@ export class ShoppingService {
   public getStoredItems(key: string): void {
     this.localStorage
       .getDataFromStorageById(key)
-      .subscribe((data) => {
+      .subscribe((data: ShoppingItem[]) => {
         if (data === undefined) {
           data = [];
         }
@@ -73,7 +73,7 @@ export class ShoppingService {
   }
 
   /**
-   * return true if there are ticked items in the OldList Array
+   * sets isSelectedInOld to true if there are ticked items in the OldList Array
    */
   public isOldItemSelected(): void {
     this.isSelectedInOld = this.shoppingItemsOld
@@ -89,7 +89,7 @@ export class ShoppingService {
     this.fridgeService.addFromShoppingList(selectedOldItems);
     this.shoppingItemsOld.forEach(it => it.selected = false);
     this.isSelectedInOld = false;
-    this.saveToStorage(shoppingLabels.shoppingItemsOld, this.shoppingItemsOld);
+    this.saveToStorage(coreLabels.shoppingItemsOld, this.shoppingItemsOld);
   }
 
   /**
@@ -125,16 +125,16 @@ export class ShoppingService {
   public toggleItemSelected(item: ShoppingItem): void {
     item.selected = !item.selected;
     this.isOldItemSelected();
-    this.saveToStorage(shoppingLabels.shoppingItemsOld, this.shoppingItemsOld);
+    this.saveToStorage(coreLabels.shoppingItemsOld, this.shoppingItemsOld);
   }
 
   /**
    * create shoppingItem array depending on data received from Local Storage
    */
   private buildShoppingList(items: ShoppingItem[], key: string): void {
-    if (key === shoppingLabels.shoppingItems) {
+    if (key === coreLabels.shoppingItems) {
       this.shoppingItems = items;
-    } else if (key === shoppingLabels.shoppingItemsOld) {
+    } else if (key === coreLabels.shoppingItemsOld) {
       this.shoppingItemsOld = items;
     }
   }
@@ -143,24 +143,24 @@ export class ShoppingService {
     return this.idService.getId();
   }
 
-  private saveToStorage(key: string, array: ShoppingItem[]): void {
-    this.localStorage.addDataToStorage(key, array);
+  private saveToStorage(key: string, value: ShoppingItem[]): void {
+    this.localStorage.addDataToStorage(key, value);
   }
 
   /**
    * if item.bought sort old list, else sort active list
    */
-  private sortItems(item): void {
-    if (item && item.bought === false) {
+  private sortItems(item: ShoppingItem): void {
+    if (item && !item.isBought) {
       this.shoppingItems.sort((a, b) => a.order - b.order);
-    } else if (item && item.bought === true) {
+    } else if (item && item.isBought === true) {
       this.shoppingItemsOld.sort((a, b) => a.order - b.order);
     }
   }
 
   private sortAndSave(item: ShoppingItem): void {
     this.sortItems(item);
-    this.saveToStorage(shoppingLabels.shoppingItems, this.shoppingItems);
-    this.saveToStorage(shoppingLabels.shoppingItemsOld, this.shoppingItemsOld);
+    this.saveToStorage(coreLabels.shoppingItems, this.shoppingItems);
+    this.saveToStorage(coreLabels.shoppingItemsOld, this.shoppingItemsOld);
   }
 }

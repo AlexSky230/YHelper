@@ -10,10 +10,10 @@
       </button>
 
       <div class="colors-container">
-        <div *ngFor="let ci of coreItems"
+        <div *ngFor="let ci of headerShoppingItems"
              [style.background]="ci.color"
-             (click)="onCoreItemClicked(ci)"
-             [class.selected]="ci === activeCoreItem"
+             (click)="onHeaderItemClicked(ci)"
+             [class.selected]="ci === activeShoppingHeaderItem"
              class="square">
         </div>
       </div>
@@ -31,7 +31,7 @@
                [(ngModel)]="newShoppingItem.title"
                (keyup.enter)="addShoppingItem()">
         <mat-hint align="end">{{ itemTitle.value.length }}/{{ itemTitle.maxLength }}</mat-hint>
-        <mat-hint align="start">{{ activeCoreItem.title }}</mat-hint>
+        <mat-hint align="start">{{ activeShoppingHeaderItem.title }}</mat-hint>
         <button [disabled]="itemTitle.value.length === 0"
                 [class.grey]="itemTitle.value.length === 0"
                 (click)="itemTitle.value = ''"

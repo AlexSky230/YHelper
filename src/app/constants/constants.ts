@@ -34,19 +34,15 @@ export enum routerWeatherPath {
   today = 'today',
 }
 
-export enum shoppingLabels {
+export enum coreLabels {
   addItem = 'Add Item...',
+  addTask = 'Add task...',
+  allDone = 'All done!',
   category = 'Category: ',
+  fridgeItems = 'fridgeItems',
   leftToGo = '  left to go...',
   shoppingItems = 'shoppingItems',
   shoppingItemsOld = 'shoppingItemsOld',
-  toDo = 'To Do',
-}
-
-export enum todoLabels {
-  addTask = 'Add task...',
-  allDone = 'All done!',
-  leftToGo = '  left to go...',
   toDo = 'To Do'
 }
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FridgeService} from '../../helpers/fridge.service';
 
 @Component({
   selector: 'app-fridge',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FridgeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fridgeService: FridgeService) {
+  }
 
   ngOnInit(): void {
+    this.fridgeService.getStoredItems('fridgeItems');
   }
 
 }

@@ -6,7 +6,7 @@
 
       <div>
 
-        <div *ngFor="let day of forecast.daily.data | slice:0:7, last as last"
+        <div *ngFor="let day of forecast.daily.data | slice:0:7, index as i, last as last"
              class="day-forecast-item">
           <div class="icon-container">
             <i id="icon" [class]="getWiIcon(day.icon)"></i>
@@ -30,7 +30,7 @@
                 <mat-icon class="arrow-icon cold-color">arrow_downwards</mat-icon>
               </div>
               <strong>
-                <span class="cold-color">{{ day.temperatureMin.toFixed(0) + '°' }}</span>
+                <span class="cold-color">{{ forecast.daily.data[i + 1].temperatureMin.toFixed(0) + '°' }}</span>
               </strong>
             </div>
 

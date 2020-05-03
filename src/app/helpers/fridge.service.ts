@@ -1,22 +1,37 @@
 import {Injectable} from '@angular/core';
-import {ColorItem} from './classes/color-item';
-import {ShoppingItem} from './classes/shopping-item';
 import {LocalStorageService} from '../services/local-storage.service';
 import {IdService} from './id.service';
+
+import {ShoppingItem} from './classes/shopping-item';
+import {coreLabels} from '../constants/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FridgeService {
 
-  public categoryColor: ColorItem;
+  public isSelectedInList: boolean;
   public fridgeItems: ShoppingItem[] = [];
 
   constructor(
     private localStorage: LocalStorageService,
     private idService: IdService,
   ) {
-    this.getStoredItems('fridgeItems');
+  }
+
+  /**
+   * add item to fridgeItems[], set .id .quantity .category .color .order
+   * save to local storage
+   */
+  public addFridgeItem(item: ShoppingItem): void {
+    if (item && item.title && item.color && item.order && item.key) {
+      item.id = this.getId();
+      item.selected = false;
+      item.quantity = 1;
+      this.fridgeItems.unshift(item);
+      this.sortItems();
+      this.saveToStorage(coreLabels.fridgeItems, this.fridgeItems);
+    }
   }
 
   /**
@@ -27,29 +42,13 @@ export class FridgeService {
       item.quantity = 1;
       this.fridgeItems.unshift(item);
     }
-    this.saveToStorage('fridgeItems');
+    this.saveToStorage(coreLabels.fridgeItems, this.fridgeItems);
   }
 
-  /**
-   * add item to fridgeItems[], set .id .quantity .category .color .order
-   * save to local storage
-   */
-  public addFridgeItem(item: ShoppingItem): void {
-    if (item.title !== '') {
-      item.id = this.getId();
-      item.quantity = 1;
-      item.title = this.categoryColor ? this.categoryColor.title : 'other';
-      item.color = this.categoryColor ? this.categoryColor.color : 'grey';
-      item.order = this.categoryColor ? this.categoryColor.order : 9;
-      this.fridgeItems.unshift(item);
-      this.saveToStorage('fridgeItems');
-    }
-  }
-
-  public deleteFridgeItemBySelected(): void {
+  public deleteFridgeItemsBySelected(): void {
     this.fridgeItems = this.fridgeItems
       .filter(fridgeItem => fridgeItem.selected !== true);
-    this.saveToStorage('fridgeItems');
+    this.saveToStorage(coreLabels.fridgeItems, this.fridgeItems);
   }
 
   /**
@@ -70,12 +69,17 @@ export class FridgeService {
     this.fridgeItems = items;
   }
 
-  private saveToStorage(key: string): void {
-    this.localStorage.addDataToStorage(key, this.fridgeItems);
-  }
-
   public getAllFridgeItems(): ShoppingItem[] {
     return this.fridgeItems;
+  }
+
+  /**
+   * sets isSelectedInList to true if there are ticked items in the OldList Array
+   */
+  public isItemSelected(): void {
+    this.isSelectedInList = this.fridgeItems
+      .filter((item) => item.selected)
+      .length > 0;
   }
 
   /**
@@ -85,22 +89,24 @@ export class FridgeService {
     return this.idService.getId();
   }
 
+  private saveToStorage(key: string, value: ShoppingItem[]): void {
+    this.localStorage.addDataToStorage(key, value);
+  }
+
   public getFridgeItemsByCategory(category: string): ShoppingItem[] {
     return this.fridgeItems
       .filter(fridgeItem => fridgeItem.title === category);
   }
 
-  public setCategoryColor(color: ColorItem) {
-    this.categoryColor = color;
-  }
-
   public toggleFridgeItemTicked(item: ShoppingItem): void {
     item.selected = !item.selected;
+    this.isItemSelected();
+    this.saveToStorage(coreLabels.fridgeItems, this.fridgeItems);
   }
 
   public quantityPlus(fridgeItem: ShoppingItem): void {
     fridgeItem.quantity += 1;
-    this.saveToStorage('fridgeItems');
+    this.saveToStorage(coreLabels.fridgeItems, this.fridgeItems);
   }
 
   public quantityMinus(item: ShoppingItem): void {
@@ -108,6 +114,10 @@ export class FridgeService {
     if (item.quantity < 1) {
       this.fridgeItems = this.fridgeItems.filter(it => it.quantity > 0);
     }
-    this.saveToStorage('fridgeItems');
+    this.saveToStorage(coreLabels.fridgeItems, this.fridgeItems);
+  }
+
+  private sortItems(): void {
+    this.fridgeItems.sort((a, b) => a.order - b.order);
   }
 }

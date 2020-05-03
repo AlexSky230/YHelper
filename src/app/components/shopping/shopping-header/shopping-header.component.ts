@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import {ShoppingItem} from '../../../helpers/classes/shopping-item';
 import {ShoppingService} from '../../../helpers/shopping.service';
-import {CategoriesColorsService} from '../../../helpers/categories-colors.service';
 import {ColorItem} from '../../../helpers/classes/color-item';
 
-import {buttonIcons, CORE_ITEMS, shoppingLabels} from '../../../constants/constants';
+import {buttonIcons, CORE_ITEMS, coreLabels} from '../../../constants/constants';
 
 @Component({
   selector: 'app-shopping-header',
@@ -14,17 +13,14 @@ import {buttonIcons, CORE_ITEMS, shoppingLabels} from '../../../constants/consta
 })
 export class ShoppingHeaderComponent implements OnInit {
 
-  public buttonIcons = buttonIcons;
-  public shoppingLabels = shoppingLabels;
-
-  public activeCoreItem: ColorItem;
   public newShoppingItem: ShoppingItem;
-  public coreItems: ColorItem[];
+  public buttonIcons = buttonIcons;
 
-  constructor(
-    private shoppingService: ShoppingService,
-    private categoriesColorsService: CategoriesColorsService
-  ) {
+  public shoppingLabels = coreLabels;
+  public activeShoppingHeaderItem: ColorItem;
+  public headerShoppingItems: ColorItem[];
+
+  constructor(private shoppingService: ShoppingService) {
     this.newShoppingItem = new ShoppingItem();
   }
 
@@ -32,22 +28,22 @@ export class ShoppingHeaderComponent implements OnInit {
    * create array of items from constants, make last coreItem "otherGrey" active
    */
   ngOnInit(): void {
-    this.coreItems = Object
+    this.headerShoppingItems = Object
       .keys(CORE_ITEMS)
       .map(key => CORE_ITEMS[key]);
-    this.activeCoreItem = this.coreItems[this.coreItems.length - 1];
+    this.activeShoppingHeaderItem = this.headerShoppingItems[this.headerShoppingItems.length - 1];
   }
 
   public addShoppingItem(): void {
-    this.newShoppingItem.color = this.activeCoreItem.color;
-    this.newShoppingItem.order = this.activeCoreItem.order;
-    this.newShoppingItem.key = this.activeCoreItem.key;
+    this.newShoppingItem.color = this.activeShoppingHeaderItem.color;
+    this.newShoppingItem.order = this.activeShoppingHeaderItem.order;
+    this.newShoppingItem.key = this.activeShoppingHeaderItem.key;
     this.shoppingService.addShoppingItem(this.newShoppingItem);
     this.newShoppingItem = new ShoppingItem();
   }
 
-  public onCoreItemClicked(ci: ColorItem): void {
-    this.activeCoreItem = ci;
+  public onHeaderItemClicked(item: ColorItem): void {
+    this.activeShoppingHeaderItem = item;
   }
 
   /**
