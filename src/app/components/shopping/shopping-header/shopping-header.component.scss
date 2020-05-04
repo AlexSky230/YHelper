@@ -1,20 +1,24 @@
 .color-bar {
+  padding-top: 0.25em;
+  padding-bottom: 0.2em;
+  margin-top: 0.25em;
   display: flex;
   flex-flow: row;
-  justify-content: center;
-  padding-right: 0.5em;
+  justify-content: flex-end;
+  border-top: solid #b1bdc5 2px;
 }
 
 .color-bar-content {
   display: inline-block;
   position: relative;
-  top: 0.4em;
+  top: 0.7em;
 }
 
 .push-to-fridge-button {
   display: inline-block;
   position: relative;
-  top: -0.35em;
+  margin: 0 1.2em 0 0.8em;
+  outline: none;
 }
 
 .colors-container {

@@ -2,12 +2,6 @@
 
   <div class="color-bar">
     <div class="color-bar-content">
-      <button mat-icon-button
-              [disabled]="!isSelectedInOld"
-              color="accent"
-              class="push-to-fridge-button">
-        <mat-icon (click)="pushToFridge()">{{ buttonIcons.toFridge }}</mat-icon>
-      </button>
 
       <div class="colors-container">
         <div *ngFor="let ci of headerShoppingItems"
@@ -18,6 +12,12 @@
         </div>
       </div>
     </div>
+    <button mat-icon-button
+            [disabled]="!isSelectedInOld"
+            color="accent"
+            class="push-to-fridge-button">
+      <mat-icon (click)="pushToFridge()">{{ buttonIcons.toFridge }}</mat-icon>
+    </button>
   </div>
 
   <mat-card>
@@ -27,7 +27,7 @@
                name="message"
                maxlength="100"
                matInput type="text"
-               [placeholder]="shoppingLabels.addItem"
+               [placeholder]="coreLabels.addItem"
                [(ngModel)]="newShoppingItem.title"
                (keyup.enter)="addShoppingItem()">
         <mat-hint align="end">{{ itemTitle.value.length }}/{{ itemTitle.maxLength }}</mat-hint>

@@ -10,8 +10,10 @@ export enum appColor {
 export enum buttonIcons {
   add = 'add',
   addToCart = 'add_shopping_cart',
-  delete = 'delete_outline',
   clear = 'close',
+  delete = 'delete_outline',
+  expandMore = 'expand_more',
+  expandLess = 'expand_less',
   toFridge = 'move_to_inbox'
 }
 

@@ -14,11 +14,13 @@ import {buttonIcons, CORE_ITEMS, coreLabels} from '../../../constants/constants'
 })
 export class FridgeHeaderComponent implements OnInit{
 
+  public activeShelf: string;
   public newFridgeItem: ShoppingItem;
   public buttonIcons = buttonIcons;
   // public shoppingLabels = shoppingLabels;
   public activeFridgeHeaderItem: ColorItem;
   public headerFridgeItems: ColorItem[];
+  public coreLabels = coreLabels;
 
   constructor(private fridgeService: FridgeService) {
     this.newFridgeItem = new ShoppingItem();
@@ -32,6 +34,7 @@ export class FridgeHeaderComponent implements OnInit{
       .keys(CORE_ITEMS)
       .map(key => CORE_ITEMS[key])
       .filter((a) => a.order < 5 || a.order === 9);
+    console.log(this.headerFridgeItems);
     this.activeFridgeHeaderItem = this.headerFridgeItems[this.headerFridgeItems.length - 1];
   }
 

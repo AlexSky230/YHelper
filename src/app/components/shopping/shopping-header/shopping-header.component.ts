@@ -16,7 +16,7 @@ export class ShoppingHeaderComponent implements OnInit {
   public newShoppingItem: ShoppingItem;
   public buttonIcons = buttonIcons;
 
-  public shoppingLabels = coreLabels;
+  public coreLabels = coreLabels;
   public activeShoppingHeaderItem: ColorItem;
   public headerShoppingItems: ColorItem[];
 
