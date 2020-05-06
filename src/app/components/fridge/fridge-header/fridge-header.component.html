@@ -1,8 +1,10 @@
 <section>
 
   <div class="color-bar">
-    <div>
+
+    <div class="d-inline-block">
       <button mat-button
+              [matMenuTriggerFor]="menu"
               color="accent"
               class="shelf-button">
         <span>Shelf</span>
@@ -11,6 +13,24 @@
         </mat-icon>
       </button>
     </div>
+
+    <mat-menu #menu="matMenu">
+      <button (click)="onShelfItemClicked()"
+              mat-menu-item
+              style="border-left: solid #b41059 3px"
+              class="menu-item">
+        All
+      </button>
+      <button *ngFor="let si of headerFridgeItems"
+              (click)="onShelfItemClicked(si)"
+              style="border-left: solid 3px"
+              [style.border-color]="si.color"
+              mat-menu-item
+              class="menu-item">
+        {{ si.title }}
+      </button>
+    </mat-menu>
+
     <div class="color-bar-content">
       <div class="colors-container">
         <div *ngFor="let fi of headerFridgeItems"

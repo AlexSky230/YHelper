@@ -1,0 +1,40 @@
+.core-list {
+  padding: 0.5em 0 0.5em 0;
+}
+
+.core-list-item {
+  padding: 0;
+}
+
+.core-list-checkbox {
+  width: calc(100% - 6.8em);
+  position: relative;
+  top: 0.6em;
+  margin-left: 1em;
+}
+
+.button-panel {
+  text-align: right;
+  position: relative;
+  top: 0.5em;
+}
+
+.ul-delete-container {
+  margin-left: 0;
+}
+
+.quantity {
+  position: absolute;
+  top: 0.3em;
+  right: 2.6em;
+  color: #8c8c8c;
+}
+
+.shelf-title {
+  text-align: center;
+  padding: 0.5em 0 0.5em 0;
+}
+
+button {
+  outline: none;
+}

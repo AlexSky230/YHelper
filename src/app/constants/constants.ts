@@ -14,7 +14,8 @@ export enum buttonIcons {
   delete = 'delete_outline',
   expandMore = 'expand_more',
   expandLess = 'expand_less',
-  toFridge = 'move_to_inbox'
+  toFridge = 'move_to_inbox',
+  remove = 'remove',
 }
 
 export enum routerMainPath {
@@ -37,6 +38,8 @@ export enum routerWeatherPath {
 }
 
 export enum coreLabels {
+  all = 'all',
+  activeShelfItem = 'activeShelfItem',
   addItem = 'Add Item...',
   addTask = 'Add task...',
   allDone = 'All done!',
@@ -45,7 +48,7 @@ export enum coreLabels {
   leftToGo = '  left to go...',
   shoppingItems = 'shoppingItems',
   shoppingItemsOld = 'shoppingItemsOld',
-  toDo = 'To Do'
+  toDo = 'To Do',
 }
 
 export enum weatherCard {

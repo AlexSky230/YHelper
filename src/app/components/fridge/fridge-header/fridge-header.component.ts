@@ -46,8 +46,12 @@ export class FridgeHeaderComponent implements OnInit{
     this.newFridgeItem = new ShoppingItem();
   }
 
-  public onHeaderItemClicked(item: ColorItem) {
+  public onHeaderItemClicked(item: ColorItem): void {
     this.activeFridgeHeaderItem = item;
+  }
+
+  public onShelfItemClicked(item?: ColorItem): void {
+    this.fridgeService.setShelfItem(item);
   }
 
   // private CategorySelected(): boolean {

@@ -42,10 +42,15 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
-import { SafeLinkPipe } from './helpers/pipes/safe-link.pipe';
-import { ShoppingHeaderComponent } from './components/shopping/shopping-header/shopping-header.component';
-import { ShoppingListActiveComponent } from './components/shopping/shopping-list-active/shopping-list-active.component';
-import { ShoppingListOldComponent } from './components/shopping/shopping-list-old/shopping-list-old.component';
+import {SafeLinkPipe} from './helpers/pipes/safe-link.pipe';
+import {ShoppingHeaderComponent} from './components/shopping/shopping-header/shopping-header.component';
+import {ShoppingListActiveComponent} from './components/shopping/shopping-list-active/shopping-list-active.component';
+import {ShoppingListOldComponent} from './components/shopping/shopping-list-old/shopping-list-old.component';
+import {SearchHeaderComponent} from './components/search/search-header/search-header.component';
+import {ShortcutListComponent} from './components/search/shortcut-list/shortcut-list.component';
+import {ShortcutFormComponent} from './components/search/shortcut-form/shortcut-form.component';
+import {ShortcutTitlePipe} from './helpers/pipes/shortcut-title.pipe';
+import {ShortcutIconPipe} from './helpers/pipes/shortcut-icon.pipe';
 
 @NgModule({
   declarations: [
@@ -69,7 +74,10 @@ import { ShoppingListOldComponent } from './components/shopping/shopping-list-ol
     WeekComponent,
     ShoppingHeaderComponent,
     ShoppingListActiveComponent,
-    ShoppingListOldComponent
+    ShoppingListOldComponent,
+    SearchHeaderComponent,
+    ShortcutListComponent,
+    ShortcutFormComponent
   ],
   imports: [
     AppRoutingModule,
@@ -94,6 +102,8 @@ import { ShoppingListOldComponent } from './components/shopping/shopping-list-ol
     IdService,
     LocalStorageService,
     SharedForecastService,
+    ShortcutTitlePipe,
+    ShortcutIconPipe,
     WeatherService,
     WeatherDataService,
   ],

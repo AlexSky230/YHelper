@@ -13,6 +13,8 @@ export class FridgeComponent implements OnInit {
 
   ngOnInit(): void {
     this.fridgeService.getStoredItems('fridgeItems');
+    this.fridgeService.getStoredShelfItem();
+    this.fridgeService.setShelfItemList();
   }
 
 }
