@@ -1,5 +1,5 @@
 export class SearchShortcut {
-  link = 'https://';
+  link = '';
   title: string;
   shortTitle: string;
   icon: string;

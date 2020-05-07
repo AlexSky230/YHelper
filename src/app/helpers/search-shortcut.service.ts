@@ -19,10 +19,7 @@ export class SearchShortcutService {
   shortcutsArray: SearchShortcut[] = [];
 
   public addShortcut(shortcut: SearchShortcut) {
-    if (shortcut.link !== '') {
-      shortcut.icon = shortcut.link + '/favicon.ico';
-      shortcut.title = this.shortcutTitlePipe.transform(shortcut.link);
-      shortcut.shortTitle = this.shortcutIconPipe.transform(shortcut.link);
+    if (shortcut && shortcut.link !== '') {
       this.shortcutsArray.push(shortcut);
       this.saveToStorage('shortcuts', this.shortcutsArray);
     }

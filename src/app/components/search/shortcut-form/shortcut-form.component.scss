@@ -1,0 +1,41 @@
+.field {
+  width: 100%;
+}
+
+.card-top {
+  text-align: center;
+}
+
+.input {
+  width: 100%;
+  padding: 1em 0 1em 0;
+}
+
+.ava {
+  display: block;
+  padding-bottom: 1em;
+}
+
+.title {
+  display: inline-block;
+  padding-left: 0.5em;
+  text-wrap: normal;
+  word-break: break-word;
+}
+
+.sub-title {
+  padding-left: 3em;
+}
+
+.bottom-buttons {
+  position: relative;
+  text-align: right;
+}
+
+.image {
+  display: inline-block;
+}
+
+button {
+  outline: none;
+}

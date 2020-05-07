@@ -1,12 +1,3 @@
-import {ColorItem} from '../helpers/classes/color-item';
-import {ForecastLocation} from '../helpers/classes/forecast-location';
-
-export enum appColor {
-  primary = 'primary',
-  accent = 'accent',
-  warn = 'warn',
-}
-
 export enum buttonIcons {
   add = 'add',
   addToCart = 'add_shopping_cart',
@@ -38,14 +29,18 @@ export enum routerWeatherPath {
 }
 
 export enum coreLabels {
+  add = 'ADD',
   all = 'all',
   activeShelfItem = 'activeShelfItem',
   addItem = 'Add Item...',
   addTask = 'Add task...',
   allDone = 'All done!',
   category = 'Category: ',
+  close = 'CLOSE',
   fridgeItems = 'fridgeItems',
+  googleSearch = 'Google search...',
   leftToGo = '  left to go...',
+  linkPlaceholder = 'https://www.',
   shoppingItems = 'shoppingItems',
   shoppingItemsOld = 'shoppingItemsOld',
   toDo = 'To Do',

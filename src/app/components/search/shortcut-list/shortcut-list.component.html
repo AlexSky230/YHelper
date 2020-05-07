@@ -1,1 +1,27 @@
-<p>shortcut-list works!</p>
+<section *ngIf="shortcuts" class="field">
+
+  <div class="button-group">
+    <div *ngFor="let shortcut of shortcuts"
+         class="shortcut-card">
+      <button mat-mini-fab
+              color="primary"
+              class="button">
+        <a target="_blank"
+           [href]="shortcut.link"
+           class="text-in-icon">
+          {{ shortcut.shortTitle }}
+        </a>
+      </button>
+
+      <button mat-icon-button
+              (click)="deleteShortcut(shortcut)"
+              class="close-button">
+        <mat-icon>close</mat-icon>
+      </button>
+
+      <p class="small title">{{ shortcut.title }}</p>
+
+    </div>
+  </div>
+
+</section>

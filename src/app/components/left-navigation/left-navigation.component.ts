@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {appColor, MAIN_NAV} from '../../constants/constants';
+import {Component} from '@angular/core';
+import {MAIN_NAV} from '../../constants/constants';
 
 @Component({
   selector: 'app-left-navigation',
@@ -8,8 +8,6 @@ import {appColor, MAIN_NAV} from '../../constants/constants';
 })
 
 export class LeftNavigationComponent {
-
-  appColor = appColor;
 
   navItems = [
     {

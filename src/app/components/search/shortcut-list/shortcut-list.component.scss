@@ -1,0 +1,38 @@
+.text-in-icon {
+  text-decoration: none;
+  color: white;
+}
+
+.title {
+  padding-top: 0.3em;
+}
+
+.button-group {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.shortcut-card {
+  text-wrap: normal;
+  word-break: break-word;
+  display: inline-block;
+  margin: 0.5em;
+  width: 8em;
+  height: 7em;
+  //background-color: #3aa7f3;
+}
+
+.button{
+  position: relative;
+  left: 1.4em;
+}
+
+.close-button {
+  position: relative;
+  bottom: 1em;
+  left: 1em;
+  transform: scale(0.7);
+  color: #eb4334;
+}

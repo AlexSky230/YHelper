@@ -51,6 +51,7 @@ import {ShortcutListComponent} from './components/search/shortcut-list/shortcut-
 import {ShortcutFormComponent} from './components/search/shortcut-form/shortcut-form.component';
 import {ShortcutTitlePipe} from './helpers/pipes/shortcut-title.pipe';
 import {ShortcutIconPipe} from './helpers/pipes/shortcut-icon.pipe';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,11 @@ import {ShortcutIconPipe} from './helpers/pipes/shortcut-icon.pipe';
     ShoppingListOldComponent,
     SearchHeaderComponent,
     ShortcutListComponent,
+    ShortcutFormComponent,
+    ShortcutIconPipe,
+    ShortcutTitlePipe
+  ],
+  entryComponents: [
     ShortcutFormComponent
   ],
   imports: [
@@ -87,6 +93,7 @@ import {ShortcutIconPipe} from './helpers/pipes/shortcut-icon.pipe';
     HttpClientModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatDialogModule,
     MatSidenavModule,
     MatButtonModule,
     MatCardModule,
