@@ -23,6 +23,8 @@
     </mat-card-header>
 
     <div class="card-body">
+      <app-busy *ngIf="isLoading"></app-busy>
+
       <mat-card-content>
         <span>{{ forecast.daily.data[0].summary }}</span>
         <br><br>

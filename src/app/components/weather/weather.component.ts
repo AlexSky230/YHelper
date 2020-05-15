@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {map, switchMap, tap} from 'rxjs/operators';
-import {Observable, timer} from 'rxjs';
+import {Observable, Subscription, timer} from 'rxjs';
 
 import {LocalStorageService} from '../../services/local-storage.service';
 import {WeatherService} from '../../services/weather-http.service';
@@ -9,20 +9,24 @@ import {ForecastLocation} from '../../helpers/classes/forecast-location';
 import {SharedForecastService} from '../../helpers/shared-forecast.service';
 
 import {LOCATIONS} from '../../constants/constants';
+import {IsLoadingService} from '../../helpers/is-loading.service';
 
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.scss']
 })
-export class WeatherComponent implements OnInit {
+export class WeatherComponent implements OnInit, OnDestroy{
 
   public activeLocation: ForecastLocation;
   public forecast: any;
   public currentLocationLatitude: number;
   public currentLocationLongitude: number;
+  public isLoading: boolean;
+  public busySubscription: Subscription;
 
   constructor(
+    private isLoadingService: IsLoadingService,
     private sharedForecastService: SharedForecastService,
     private weatherService: WeatherService,
     private browserLocalStorageService: LocalStorageService
@@ -33,6 +37,8 @@ export class WeatherComponent implements OnInit {
    */
 
   public ngOnInit() {
+    this.busySubscription = this.isLoadingService.isLoading
+      .subscribe(isBusy => this.isLoading = isBusy);
     if (navigator.geolocation) {
       this.setLocationToCurrent();
     } else {
@@ -41,6 +47,7 @@ export class WeatherComponent implements OnInit {
     /**
      * execute straight away and then with intervals given. returns Observable,
      * and passes value to SharedForecast service
+     * also updating busy indicator boolean using Loading service
      */
     timer(0, (1000 * 60 * 60 * 1))
       .subscribe(() => {
@@ -82,10 +89,12 @@ export class WeatherComponent implements OnInit {
    * get forecast from API or Local storage if fresh
    */
   private getForecast(): Observable<object> {
+    this.isLoadingService.setIsLoading(true);
     return this.forecastIsFresh().pipe(
       switchMap((isFresh: boolean): Observable<object> => {
         if (isFresh) {
           // get from local storage
+          this.isLoadingService.setIsLoading(false);
           return this.browserLocalStorageService
             .getDataFromStorageById(this.activeLocation.key + 'Forecast');
         }
@@ -93,6 +102,7 @@ export class WeatherComponent implements OnInit {
         return this.forecastFromAPI().pipe(
           tap((forecastData: object) => {
             this.forecastSave(forecastData);
+            this.isLoadingService.setIsLoading(false);
           })
         );
       })
@@ -147,5 +157,9 @@ export class WeatherComponent implements OnInit {
   private setLocationToDefault() {
     this.activeLocation = LOCATIONS.goldCoast;
     this.sharedForecastService.setActiveLocation(LOCATIONS.goldCoast);
+  }
+
+  ngOnDestroy(): void {
+    this.busySubscription.unsubscribe();
   }
 }

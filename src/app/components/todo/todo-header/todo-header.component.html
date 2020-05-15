@@ -1,9 +1,9 @@
 <section>
-  <mat-card>
 
       <form>
-        <mat-form-field class="form-field">
+        <mat-form-field class="form-field" autofocus>
           <input #todoTitle
+                 appInputAutofocus
                  name="todoTitle"
                  [(ngModel)]="newTodo.title"
                  (keyup.enter)="addTodo(newTodo)"
@@ -27,16 +27,15 @@
         <div class="button-container">
           <button [disabled]="todoTitle.value.length === 0"
                   (click)="addTodo(newTodo)"
-                  mat-mini-fab
+                  mat-icon-button
                   color="primary"
                   class="core-button">
-            <mat-icon>{{ buttonIcons.add }}</mat-icon>
+            <mat-icon>{{ buttonIcons.addToList }}</mat-icon>
           </button>
         </div>
 
       </form>
 
-    </mat-card>
 </section>
 
 

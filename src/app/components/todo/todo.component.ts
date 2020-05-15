@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {LocalStorageService} from '../../services/local-storage.service';
-import {IdService} from '../../helpers/id.service';
+import {TodoService} from '../../helpers/todo.service';
+import {buttonIcons, coreLabels} from '../../constants/constants';
 import {Todo} from '../../helpers/classes/todo';
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
+import {TodoHeaderComponent} from './todo-header/todo-header.component';
 
 @Component({
   selector: 'app-todo',
@@ -10,49 +12,37 @@ import {Todo} from '../../helpers/classes/todo';
 })
 export class TodoComponent implements OnInit {
 
-  public incomplete: number;
-  public todos: Todo[] = [];
+  public buttonIcons = buttonIcons;
+  public todoLabels = coreLabels;
 
   constructor(
-    private idService: IdService,
-    private localStorageService: LocalStorageService,
+    private todoService: TodoService,
+    private bottomSheet: MatBottomSheet
   ) {
   }
 
   ngOnInit() {
-    this.getAllTodos();
+    this.todoService.getAllTodos();
   }
 
-  public addTodo(todo: Todo) {
-    this.todos.unshift(todo);
-    this.calculateIncompleteTodos();
+  public deleteCompleted() {
+    this.todoService.deleteCompleted();
   }
 
-  public buildTodoList(data): void {
-    this.todos = data ? data : [];
-    this.calculateIncompleteTodos();
+  public openMenu() {
+    this.bottomSheet.open(TodoHeaderComponent);
   }
 
-  public calculateIncompleteTodos(): void {
-    this.incomplete = this.todos.reduce((a, todo) => {
-      return (todo.complete) ? a : (a + 1);
-    }, 0);
-    this.localStorageService.addDataToStorage('todos', this.todos);
+  get todos(): Todo[] {
+    return this.todoService.getTodos();
   }
 
-  public getAllTodos(): void {
-    this.localStorageService
-      .getDataFromStorageById('todos')
-      .subscribe((data) => {
-        if (data === undefined) {
-          data = [];
-        }
-        this.buildTodoList(data);
-      });
+  get incomplete(): number {
+    return this.todoService.getIncomplete();
   }
 
-  public removeTodo(todo) {
-    this.todos = this.todos.filter(item => item.id !== todo.id);
-    this.calculateIncompleteTodos();
+  get completedExist(): boolean {
+    return this.todos.length !== this.incomplete;
   }
+
 }

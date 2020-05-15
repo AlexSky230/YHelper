@@ -40,6 +40,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import {SafeLinkPipe} from './helpers/pipes/safe-link.pipe';
@@ -51,7 +52,12 @@ import {ShortcutListComponent} from './components/search/shortcut-list/shortcut-
 import {ShortcutFormComponent} from './components/search/shortcut-form/shortcut-form.component';
 import {ShortcutTitlePipe} from './helpers/pipes/shortcut-title.pipe';
 import {ShortcutIconPipe} from './helpers/pipes/shortcut-icon.pipe';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
+import {BusyComponent} from './components/busy/busy.component';
+import {IsLoadingService} from './helpers/is-loading.service';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {LongTouchDirective} from './helpers/directives/long-touch.directive';
+import {InputAutofocusDirective} from './helpers/directives/input-autofocus.directive';
 
 @NgModule({
   declarations: [
@@ -80,9 +86,13 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
     ShortcutListComponent,
     ShortcutFormComponent,
     ShortcutIconPipe,
-    ShortcutTitlePipe
+    ShortcutTitlePipe,
+    BusyComponent,
+    LongTouchDirective,
+    InputAutofocusDirective
   ],
   entryComponents: [
+    TodoHeaderComponent,
     ShortcutFormComponent
   ],
   imports: [
@@ -96,6 +106,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
     MatDialogModule,
     MatSidenavModule,
     MatButtonModule,
+    MatBottomSheetModule,
     MatCardModule,
     MatInputModule,
     MatListModule,
@@ -104,8 +115,10 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
     MatMenuModule,
     MatSelectModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
+    IsLoadingService,
     IdService,
     LocalStorageService,
     SharedForecastService,

@@ -9,19 +9,21 @@
 
 .button-group {
   display: flex;
-  flex-flow: column;
-  justify-content: space-between;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   text-align: center;
 }
 
 .shortcut-card {
+  flex-grow: 0;
+  flex-shrink: 0;
   text-wrap: normal;
   word-break: break-word;
   display: inline-block;
   margin: 0.5em;
   width: 8em;
   height: 7em;
-  //background-color: #3aa7f3;
 }
 
 .button{

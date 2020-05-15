@@ -2,6 +2,7 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {SharedForecastService} from '../../../helpers/shared-forecast.service';
 import {weatherIcons, weatherCard} from '../../../constants/constants';
 import {Subscription} from 'rxjs';
+import {IsLoadingService} from '../../../helpers/is-loading.service';
 
 @Component({
   selector: 'app-today',
@@ -10,16 +11,24 @@ import {Subscription} from 'rxjs';
 })
 export class TodayComponent implements OnInit, OnDestroy {
 
-  public forecast: any;
   public weatherCard = weatherCard;
+  public forecast: any;
+  public isLoading: boolean;
 
+  private busySubscription: Subscription;
   private subscription: Subscription;
 
-  constructor(private sharedForecastService: SharedForecastService) { }
+  constructor(
+    private isLoadingService: IsLoadingService,
+    private sharedForecastService: SharedForecastService
+  ) {
+  }
 
   ngOnInit(): void {
     this.subscription = this.sharedForecastService.sharedForecast
       .subscribe(sharedForecast => this.forecast = sharedForecast);
+    this.busySubscription = this.isLoadingService.isLoading
+      .subscribe(isBusy => this.isLoading = isBusy);
   }
 
   /**
@@ -34,6 +43,7 @@ export class TodayComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.busySubscription.unsubscribe();
   }
 
 }

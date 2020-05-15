@@ -1,19 +1,36 @@
 <section class="main">
 
-  <div class="content">
-    <app-todo-list [todos]="todos"
-                   [incomplete]="incomplete"
-                   (removeItem)="removeTodo($event)"
-                   (toggleItem)="calculateIncompleteTodos()">
-    </app-todo-list>
+  <div class="title bottom-border">
+    <h3>
+      To Do:
+      {{todos.length > 0 ?
+      (incomplete > 0 ? incomplete + todoLabels.leftToGo : todoLabels.allDone) : ''}}
+    </h3>
   </div>
 
-  <div class="header">
-    <app-todo-header
-      [todos]="todos"
-      [incomplete]="incomplete"
-      (addTodoOutput)="addTodo($event)">
-    </app-todo-header>
+  <div class="content">
+    <app-todo-list></app-todo-list>
+  </div>
+
+  <div>
+    <button
+      (click)="openMenu()"
+      mat-fab
+      color="primary"
+      class="main-button">
+      <mat-icon>{{ buttonIcons.add }}</mat-icon>
+    </button>
+  </div>
+
+  <div>
+    <button
+      *ngIf="completedExist"
+      (click)="deleteCompleted()"
+      mat-mini-fab
+      color="warn"
+      class="main-delete-button">
+      <mat-icon>{{ buttonIcons.delete }}</mat-icon>
+    </button>
   </div>
 
 </section>

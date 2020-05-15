@@ -34,7 +34,6 @@ export class FridgeHeaderComponent implements OnInit{
       .keys(CORE_ITEMS)
       .map(key => CORE_ITEMS[key])
       .filter((a) => a.order < 5 || a.order === 9);
-    console.log(this.headerFridgeItems);
     this.activeFridgeHeaderItem = this.headerFridgeItems[this.headerFridgeItems.length - 1];
   }
 

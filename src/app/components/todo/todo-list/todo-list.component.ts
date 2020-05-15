@@ -1,33 +1,50 @@
-import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output, ViewChild} from '@angular/core';
 import {Todo} from '../../../helpers/classes/todo';
 import {buttonIcons} from '../../../constants/constants';
+import {TodoService} from '../../../helpers/todo.service';
+import {MatMenuTrigger} from '@angular/material/menu';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent {
 
-  @Input() todos: Todo[];
-  @Input() incomplete: number;
-  @Output() removeItem = new EventEmitter();
-  @Output() toggleItem = new EventEmitter();
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   buttonIcons = buttonIcons;
 
-  constructor() { }
+  public menuData: Todo;
 
-  ngOnInit(): void {
-  }
+  constructor(
+    private todoService: TodoService,
+  ) { }
 
   public removeTodo(todo: Todo): void {
-    this.removeItem.emit(todo);
+    this.todoService.removeTodo(todo);
+  }
+
+  public setMenuData(todo: Todo): void {
+    event.stopPropagation();
+    this.menuData = todo;
   }
 
   public toggleTodoComplete(todo: Todo): void {
-    todo.complete = !todo.complete;
-    this.toggleItem.emit();
+    this.todoService.toggleComplete(todo);
   }
 
+  // public longPressMenu(todo: Todo) {
+  //   this.menuData = todo;
+  //   console.log(this.menuData);
+  //   this.trigger.openMenu();
+  // }
+
+  get todos(): Todo[] {
+    return this.todoService.getTodos();
+  }
+
+  public editTodo(todo: Todo) {
+    this.todoService.editTodo(todo);
+  }
 }

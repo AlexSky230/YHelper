@@ -1,7 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SharedForecastService} from '../../../helpers/shared-forecast.service';
 import {Subscription} from 'rxjs';
-import {weatherIcons, weatherCard} from '../../../constants/constants';
+import {weatherIcons} from '../../../constants/constants';
+import {IsLoadingService} from '../../../helpers/is-loading.service';
 
 @Component({
   selector: 'app-week',
@@ -11,15 +12,22 @@ import {weatherIcons, weatherCard} from '../../../constants/constants';
 export class WeekComponent implements OnInit, OnDestroy {
 
   public forecast: any;
-  public weatherCard = weatherCard;
+  public isLoading: boolean;
 
   private subscription: Subscription;
+  private busySubscription: Subscription;
 
-  constructor(private sharedForecastService: SharedForecastService) { }
+  constructor(
+    private isLoadingService: IsLoadingService,
+    private sharedForecastService: SharedForecastService
+  ) {
+  }
 
   ngOnInit(): void {
     this.subscription = this.sharedForecastService.sharedForecast
       .subscribe(sharedForecast => this.forecast = sharedForecast);
+    this.busySubscription = this.isLoadingService.isLoading
+      .subscribe(isBusy => this.isLoading = isBusy);
   }
 
   /**
@@ -31,6 +39,8 @@ export class WeekComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.busySubscription.unsubscribe();
   }
+
 // TODO add proper scroll so the corners of the card do not cut
 }
