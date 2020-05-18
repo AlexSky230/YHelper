@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core';
 import {IdService} from './id.service';
 import {LocalStorageService} from '../services/local-storage.service';
 import {Todo} from './classes/todo';
-import {MatBottomSheet} from '@angular/material/bottom-sheet';
-import {TodoHeaderComponent} from '../components/todo/todo-header/todo-header.component';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +13,8 @@ export class TodoService {
 
   constructor(
     private idService: IdService,
-    private localStorageService: LocalStorageService,
-    private bottomSheet: MatBottomSheet
+    private localStorageService: LocalStorageService
   ) {
-  }
-
-  public editTodo(todo: Todo): void {
-    this.bottomSheet.open(TodoHeaderComponent, {data: todo});
   }
 
   public addTodo(todo: Todo) {

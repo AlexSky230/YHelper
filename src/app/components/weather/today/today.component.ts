@@ -26,7 +26,11 @@ export class TodayComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.sharedForecastService.sharedForecast
-      .subscribe(sharedForecast => this.forecast = sharedForecast);
+      .subscribe(sharedForecast => {
+        this.forecast = sharedForecast;
+        console.log(this.forecast);
+        }
+      );
     this.busySubscription = this.isLoadingService.isLoading
       .subscribe(isBusy => this.isLoading = isBusy);
   }

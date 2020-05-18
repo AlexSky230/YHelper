@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ReplaySubject, Subject} from 'rxjs';
+import {ReplaySubject} from 'rxjs';
 
 
 @Injectable({
@@ -7,7 +7,7 @@ import {ReplaySubject, Subject} from 'rxjs';
 })
 export class IsLoadingService {
 
-  private busy = new Subject<boolean>();
+  private busy = new ReplaySubject<boolean>();
   public isLoading = this.busy.asObservable();
 
   public setIsLoading(value: boolean): void {

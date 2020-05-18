@@ -1,11 +1,11 @@
 <section class="main">
 
   <div class="title bottom-border">
-    <h3>
+    <h2>
       To Do:
       {{todos.length > 0 ?
       (incomplete > 0 ? incomplete + todoLabels.leftToGo : todoLabels.allDone) : ''}}
-    </h3>
+    </h2>
   </div>
 
   <div class="content">
@@ -28,7 +28,7 @@
       (click)="deleteCompleted()"
       mat-mini-fab
       color="warn"
-      class="main-delete-button">
+      class="secondary-button">
       <mat-icon>{{ buttonIcons.delete }}</mat-icon>
     </button>
   </div>

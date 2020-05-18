@@ -1,15 +1,49 @@
-.card-header {
-  border-bottom: solid #b41059 2px;
-  padding: 1em 0 0 1em;
-  background-color: #424242;
-}
-.card-body {
-  padding-left: 3.5em;
-  padding-bottom: 0;
+.card-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 1em 0.2em 1em;
+  padding-top: 1em;
 }
 
-.primary-color {
-  color: #b41059
+.card-body {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.general-info {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  margin-bottom: 0.3em;
+}
+
+.hourly-table {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+
+.hourly-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //background-color: #191919;
+  padding: 0.3em 0.25em 0.25em 0.25em;
+  margin: 0 0.1em 0 0.1em;
+  border: solid #4b4b4b 1px;
+  border-radius: 5px;
+  box-shadow:
+    0 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.titles {
+  padding-top: 1em;
 }
 
 #ic {
