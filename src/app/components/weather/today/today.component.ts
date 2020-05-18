@@ -28,7 +28,6 @@ export class TodayComponent implements OnInit, OnDestroy {
     this.subscription = this.sharedForecastService.sharedForecast
       .subscribe(sharedForecast => {
         this.forecast = sharedForecast;
-        console.log(this.forecast);
         }
       );
     this.busySubscription = this.isLoadingService.isLoading

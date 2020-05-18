@@ -16,7 +16,7 @@ import {IsLoadingService} from '../../helpers/is-loading.service';
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.scss']
 })
-export class WeatherComponent implements OnInit, OnDestroy{
+export class WeatherComponent implements OnInit, OnDestroy {
 
   public activeLocation: ForecastLocation;
   public forecast: any;
@@ -24,13 +24,16 @@ export class WeatherComponent implements OnInit, OnDestroy{
   public currentLocationLongitude: number;
   public isLoading: boolean;
   public busySubscription: Subscription;
+  public lastSavedLocation: ForecastLocation;
 
   constructor(
     private isLoadingService: IsLoadingService,
     private sharedForecastService: SharedForecastService,
     private weatherService: WeatherService,
     private browserLocalStorageService: LocalStorageService
-  ) { }
+  ) {
+  }
+
   /**
    * get coordinates from browser, set activeLocation to Current Location
    * if restricted, set GoldCoast as activeLocation
@@ -39,26 +42,50 @@ export class WeatherComponent implements OnInit, OnDestroy{
   public ngOnInit() {
     this.busySubscription = this.isLoadingService.isLoading
       .subscribe(isBusy => this.isLoading = isBusy);
-    if (navigator.geolocation) {
-      this.setLocationToCurrent();
+    this.getSavedLocation();
+
+    if (this.lastSavedLocation && this.lastSavedLocation.title !== LOCATIONS.currentLocation.title) {
+      this.activeLocation = this.lastSavedLocation;
     } else {
-      this.setLocationToDefault();
+      if (navigator.geolocation) {
+        this.getCoordinates();
+        this.setLocationToCurrent();
+        this.saveLocationToStorage();
+      } else {
+        this.setLocationToDefault();
+      }
     }
     /**
      * execute straight away and then with intervals given. returns Observable,
      * and passes value to SharedForecast service
      * also updating busy indicator boolean using Loading service
      */
+
     timer(0, (1000 * 60 * 60 * 1))
       .subscribe(() => {
         if (this.activeLocation === LOCATIONS.currentLocation) {
-         this.setCoordinates();
+          this.setCoordinates();
         }
         this.getForecast()
           .subscribe((forecast: object) => {
             this.forecast = forecast;
             this.sharedForecastService.setSharedForecast(forecast);
           });
+      });
+  }
+
+  public saveLocationToStorage(): void {
+    this.lastSavedLocation = this.activeLocation;
+    this.browserLocalStorageService
+      .addDataToStorage('lastSavedLocation', this.lastSavedLocation);
+  }
+
+  public getSavedLocation(): void {
+    this.browserLocalStorageService.getDataFromStorageById('lastSavedLocation')
+      .subscribe(location => {
+        if (location) {
+          this.lastSavedLocation = location;
+        }
       });
   }
 
@@ -75,6 +102,7 @@ export class WeatherComponent implements OnInit, OnDestroy{
 
   public locationUpdate(location: ForecastLocation): void {
     this.activeLocation = location;
+    this.saveLocationToStorage();
     this.sharedForecastService.setActiveLocation(location);
     if (this.activeLocation === LOCATIONS.currentLocation) {
       navigator.geolocation ? this.getCoordinates() : this.setLocationToDefault();
@@ -143,7 +171,7 @@ export class WeatherComponent implements OnInit, OnDestroy{
   private forecastSave(forecastData: object): void {
     const currentTime = Date.now();
     this.browserLocalStorageService
-      .addDataToStorage( this.activeLocation.key + 'Forecast', forecastData);
+      .addDataToStorage(this.activeLocation.key + 'Forecast', forecastData);
     this.browserLocalStorageService
       .addDataToStorage(this.activeLocation.key + 'ForecastTime', currentTime);
   }
@@ -152,11 +180,13 @@ export class WeatherComponent implements OnInit, OnDestroy{
     this.activeLocation = LOCATIONS.currentLocation;
     this.sharedForecastService.setActiveLocation(LOCATIONS.currentLocation);
     this.getCoordinates();
+    this.saveLocationToStorage();
   }
 
   private setLocationToDefault() {
     this.activeLocation = LOCATIONS.goldCoast;
     this.sharedForecastService.setActiveLocation(LOCATIONS.goldCoast);
+    this.saveLocationToStorage();
   }
 
   ngOnDestroy(): void {
