@@ -16,6 +16,8 @@ export class WeatherHeaderComponent implements OnInit {
 
   public locations: ForecastLocation[];
 
+  // TODO add link selector for Radar and SeaBreeze
+
   /**
    * first create array of keys,
    * then change each element in this array with Valueobject of LOCATIONS

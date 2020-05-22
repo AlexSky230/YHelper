@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {SearchShortcutService} from '../../../helpers/search-shortcut.service';
 import {ShortcutFormComponent} from '../shortcut-form/shortcut-form.component';
 import {OverlayService} from '../../../helpers/overlay.service';
-import {buttonIcons, coreLabels} from '../../../constants/constants';
+import {ButtonIcons, CoreLabels} from '../../../constants/constants';
 import {MatDialog} from '@angular/material/dialog';
 
 @Component({
@@ -12,8 +12,8 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class SearchHeaderComponent {
 
-  public buttonIcons = buttonIcons;
-  public coreLabels = coreLabels;
+  public buttonIcons = ButtonIcons;
+  public coreLabels = CoreLabels;
   public searchLink: string;
 
   constructor(

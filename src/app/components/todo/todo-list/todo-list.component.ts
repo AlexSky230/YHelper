@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {Todo} from '../../../helpers/classes/todo';
-import {buttonIcons} from '../../../constants/constants';
+import {ButtonIcons} from '../../../constants/constants';
 import {TodoService} from '../../../helpers/todo.service';
 import {MatMenuTrigger} from '@angular/material/menu';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
@@ -15,7 +15,7 @@ export class TodoListComponent {
 
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
-  buttonIcons = buttonIcons;
+  buttonIcons = ButtonIcons;
 
   public menuData: Todo;
 

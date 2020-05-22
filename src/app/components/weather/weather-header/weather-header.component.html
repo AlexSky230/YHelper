@@ -4,26 +4,38 @@
 
   <mat-card>
 
-    <a mat-stroked-button
-       href="https://www.seabreeze.com.au/weather/wind-forecast/qld-gold-coast"
-       target="_blank"
-       class="seebreeze"
-       color="accent">
-      SB</a>
+    <div class="flex-container">
+      <div class="button-group">
+        <a
+           href="https://www.seabreeze.com.au/weather/wind-forecast/qld-gold-coast"
+           target="_blank"
+           class="mb-1 small link-button">
+          Seabreeze
+        </a>
+        <a
+           href="http://www.bom.gov.au/products/IDR663.loop.shtml"
+           target="_blank"
+           class="small link-button">
+          Radar
+        </a>
+      </div>
 
-    <mat-form-field class="form-field">
-      <mat-label>Forecast for:</mat-label>
-      <mat-select [value]="0" class="my-select">
-        <mat-option
-          *ngFor="let location of locations index as i"
-          [value]="i"
-          (click)="cityClicked(location)">
-          {{ location.title }}
-        </mat-option>
-      </mat-select>
-      <mat-hint>Lat: {{ latitude }}</mat-hint>
-      <mat-hint align="end">Long: {{ longitude }}</mat-hint>
-    </mat-form-field>
+      <div class="inputs">
+        <mat-form-field class="form-field">
+          <mat-label>Forecast for:</mat-label>
+          <mat-select [value]="0" class="my-select">
+            <mat-option
+              *ngFor="let location of locations index as i"
+              [value]="i"
+              (click)="cityClicked(location)">
+              {{ location.title }}
+            </mat-option>
+          </mat-select>
+          <mat-hint>Lat: {{ latitude }}</mat-hint>
+          <mat-hint align="end">Long: {{ longitude }}</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
   </mat-card>
 
 </section>

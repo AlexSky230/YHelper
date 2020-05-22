@@ -1,4 +1,4 @@
-export enum buttonIcons {
+export enum ButtonIcons {
   add = 'add',
   addToCart = 'add_shopping_cart',
   clear = 'close',
@@ -8,6 +8,7 @@ export enum buttonIcons {
   edit = 'edit',
   expandMore = 'expand_more',
   expandLess = 'expand_less',
+  info = 'info',
   toFridge = 'move_to_inbox',
   remove = 'remove',
 }
@@ -31,7 +32,7 @@ export enum routerWeatherPath {
   today = 'today',
 }
 
-export enum coreLabels {
+export enum CoreLabels {
   add = 'ADD',
   all = 'all',
   activeShelfItem = 'activeShelfItem',
@@ -78,10 +79,10 @@ export const CORE_ITEMS = {
   meat: {key: 'meat', title: 'Meat and Fish: Red', color: '#eb4334', order: 2},
   dairy: {key: 'dairy', title: 'Dairy Products: White', color: '#d2dee6', order: 3},
   drinks: {key: 'drinks', title: 'Drinks: Blue', color: '#3aa7f3', order: 4},
-  otherOrange: {key: 'otherOrange', title: 'Other: Orange', color: '#f89907', order: 5},
-  otherYellow: {key: 'otherYellow', title: 'Other: Yellow', color: '#fced42', order: 6},
-  otherBlue: {key: 'otherBlue', title: 'Other: Dark blue', color: '#454eb4', order: 7},
-  otherPurple: {key: 'otherPurple', title: 'Other: Violet', color: '#6735b6', order: 8},
+  // otherOrange: {key: 'otherOrange', title: 'Other: Orange', color: '#f89907', order: 5},
+  // otherYellow: {key: 'otherYellow', title: 'Other: Yellow', color: '#fced42', order: 6},
+  // otherBlue: {key: 'otherBlue', title: 'Other: Dark blue', color: '#454eb4', order: 7},
+  // otherPurple: {key: 'otherPurple', title: 'Other: Violet', color: '#6735b6', order: 8},
   default: {key: 'otherGrey', title: 'Other: Grey', color: '#9e9e9e', order: 9},
 };
 

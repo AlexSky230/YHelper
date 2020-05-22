@@ -4,7 +4,7 @@ import {IdService} from './id.service';
 import {FridgeService} from './fridge.service';
 
 import {ShoppingItem} from './classes/shopping-item';
-import {coreLabels} from '../constants/constants';
+import {CoreLabels} from '../constants/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -34,20 +34,20 @@ export class ShoppingService {
       item.isBought = false;
       this.shoppingItems.unshift(item);
       this.sortItems(item);
-      this.saveToStorage(coreLabels.shoppingItems, this.shoppingItems);
+      this.saveToStorage(CoreLabels.shoppingItems, this.shoppingItems);
     }
   }
 
   public deleteShoppingItem(item: ShoppingItem): void {
     this.shoppingItems = this.shoppingItems
       .filter(it => it !== item);
-    this.saveToStorage(coreLabels.shoppingItems, this.shoppingItems);
+    this.saveToStorage(CoreLabels.shoppingItems, this.shoppingItems);
   }
 
   public deleteOldShoppingItem(item: ShoppingItem): void {
     this.shoppingItemsOld = this.shoppingItemsOld
       .filter(it => it !== item);
-    this.saveToStorage(coreLabels.shoppingItemsOld, this.shoppingItemsOld);
+    this.saveToStorage(CoreLabels.shoppingItemsOld, this.shoppingItemsOld);
   }
 
   public getNewShoppingItems(): ShoppingItem[] {
@@ -89,7 +89,7 @@ export class ShoppingService {
     this.fridgeService.addFromShoppingList(selectedOldItems);
     this.shoppingItemsOld.forEach(it => it.selected = false);
     this.isSelectedInOld = false;
-    this.saveToStorage(coreLabels.shoppingItemsOld, this.shoppingItemsOld);
+    this.saveToStorage(CoreLabels.shoppingItemsOld, this.shoppingItemsOld);
   }
 
   /**
@@ -125,16 +125,16 @@ export class ShoppingService {
   public toggleItemSelected(item: ShoppingItem): void {
     item.selected = !item.selected;
     this.isOldItemSelected();
-    this.saveToStorage(coreLabels.shoppingItemsOld, this.shoppingItemsOld);
+    this.saveToStorage(CoreLabels.shoppingItemsOld, this.shoppingItemsOld);
   }
 
   /**
    * create shoppingItem array depending on data received from Local Storage
    */
   private buildShoppingList(items: ShoppingItem[], key: string): void {
-    if (key === coreLabels.shoppingItems) {
+    if (key === CoreLabels.shoppingItems) {
       this.shoppingItems = items;
-    } else if (key === coreLabels.shoppingItemsOld) {
+    } else if (key === CoreLabels.shoppingItemsOld) {
       this.shoppingItemsOld = items;
     }
   }
@@ -160,7 +160,7 @@ export class ShoppingService {
 
   private sortAndSave(item: ShoppingItem): void {
     this.sortItems(item);
-    this.saveToStorage(coreLabels.shoppingItems, this.shoppingItems);
-    this.saveToStorage(coreLabels.shoppingItemsOld, this.shoppingItemsOld);
+    this.saveToStorage(CoreLabels.shoppingItems, this.shoppingItems);
+    this.saveToStorage(CoreLabels.shoppingItemsOld, this.shoppingItemsOld);
   }
 }

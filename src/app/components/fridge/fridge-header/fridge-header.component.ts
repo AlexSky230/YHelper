@@ -5,7 +5,7 @@ import {FridgeService} from '../../../helpers/fridge.service';
 import {ColorItem} from '../../../helpers/classes/color-item';
 import {ShoppingItem} from '../../../helpers/classes/shopping-item';
 
-import {buttonIcons, CORE_ITEMS, coreLabels} from '../../../constants/constants';
+import {ButtonIcons, CORE_ITEMS, CoreLabels} from '../../../constants/constants';
 
 @Component({
   selector: 'app-fridge-header',
@@ -16,11 +16,11 @@ export class FridgeHeaderComponent implements OnInit{
 
   public activeShelf: string;
   public newFridgeItem: ShoppingItem;
-  public buttonIcons = buttonIcons;
+  public buttonIcons = ButtonIcons;
   // public shoppingLabels = shoppingLabels;
   public activeFridgeHeaderItem: ColorItem;
   public headerFridgeItems: ColorItem[];
-  public coreLabels = coreLabels;
+  public coreLabels = CoreLabels;
 
   constructor(private fridgeService: FridgeService) {
     this.newFridgeItem = new ShoppingItem();

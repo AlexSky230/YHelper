@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoService} from '../../helpers/todo.service';
-import {buttonIcons, coreLabels} from '../../constants/constants';
+import {ButtonIcons, CoreLabels} from '../../constants/constants';
 import {Todo} from '../../helpers/classes/todo';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {TodoHeaderComponent} from './todo-header/todo-header.component';
@@ -12,8 +12,8 @@ import {TodoHeaderComponent} from './todo-header/todo-header.component';
 })
 export class TodoComponent implements OnInit {
 
-  public buttonIcons = buttonIcons;
-  public todoLabels = coreLabels;
+  public buttonIcons = ButtonIcons;
+  public todoLabels = CoreLabels;
 
   constructor(
     private todoService: TodoService,

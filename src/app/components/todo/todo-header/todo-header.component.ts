@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
-import {buttonIcons, coreLabels} from '../../../constants/constants';
+import {ButtonIcons, CoreLabels} from '../../../constants/constants';
 import {Todo} from '../../../helpers/classes/todo';
 import {IdService} from '../../../helpers/id.service';
 import {TodoService} from '../../../helpers/todo.service';
@@ -13,8 +13,8 @@ import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom
 export class TodoHeaderComponent implements OnInit {
 
   public newTodo: Todo;
-  public buttonIcons = buttonIcons;
-  public todoLabels = coreLabels;
+  public buttonIcons = ButtonIcons;
+  public todoLabels = CoreLabels;
 
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public todo: Todo,

@@ -1,54 +1,48 @@
-<section *ngIf="forecast && forecast.daily && forecast.daily.data.length"
-         class="main">
+<section *ngIf="forecast && forecast.daily && forecast.daily.data.length">
 
+  <div class="flex-container">
+    <div>
+      <div *ngFor="let day of forecast.daily.data | slice:0:7, index as i, last as last"
+           class="day-forecast-item">
+        <div class="icon-container">
+          <i id="icon" [class]="getWiIcon(day.icon)"></i>
+        </div>
 
-
-  <mat-card class="card-field content">
-    <mat-card-content class="card-container">
-
-      <app-busy *ngIf="isLoading"></app-busy>
-
-      <div>
-        <div *ngFor="let day of forecast.daily.data | slice:0:7, index as i, last as last"
-             class="day-forecast-item">
-          <div class="icon-container">
-            <i id="icon" [class]="getWiIcon(day.icon)"></i>
-          </div>
-
-          <div class="forecast-text-container">
+        <div class="forecast-text-container">
             <span>
               {{ day.time * 1000 | date: 'E' }},
               {{ day.time * 1000 | date: 'd MMM' }}
             </span>
 
-            <div class="temperature-container">
-              <div class="up-arrow-icon-container">
-                <mat-icon class="arrow-icon hot-color">arrow_upward</mat-icon>
-              </div>
-              <strong>
-                <span class="hot-color">{{ day.temperatureMax.toFixed(0) + '°' }}</span>
-              </strong>
-
-              <div class="down-arrow-icon-container">
-                <mat-icon class="arrow-icon cold-color">arrow_downwards</mat-icon>
-              </div>
-              <strong>
-                <span class="cold-color">{{ forecast.daily.data[i + 1].temperatureMin.toFixed(0) + '°' }}</span>
-              </strong>
+          <div class="temperature-container">
+            <div class="up-arrow-icon-container">
+              <mat-icon class="arrow-icon hot-color">arrow_upward</mat-icon>
             </div>
+            <strong>
+              <span class="hot-color">{{ day.temperatureMax.toFixed(0) + '°' }}</span>
+            </strong>
 
-            <div>
-              <span class="small">{{ day.summary }}</span>
+            <div class="down-arrow-icon-container">
+              <mat-icon class="arrow-icon cold-color">arrow_downwards</mat-icon>
             </div>
+            <strong>
+              <span class="cold-color">{{ forecast.daily.data[i + 1].temperatureMin.toFixed(0) + '°' }}</span>
+            </strong>
           </div>
 
-          <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
+          <div>
+            <span class="small">{{ day.summary }}</span>
+          </div>
         </div>
 
-      </div>
 
-    </mat-card-content>
-  </mat-card>
+<!--        <mat-divider *ngIf="!last" [inset]="true"></mat-divider>-->
+      </div>
+    </div>
+
+  </div>
+
+  <!--    </mat-card-content>-->
 
 </section>
 

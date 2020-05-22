@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FridgeService} from '../../../helpers/fridge.service';
 import {ShoppingItem} from '../../../helpers/classes/shopping-item';
 import {ColorItem} from '../../../helpers/classes/color-item';
-import {buttonIcons} from '../../../constants/constants';
+import {ButtonIcons} from '../../../constants/constants';
 
 @Component({
   selector: 'app-fridge-list',
@@ -11,7 +11,7 @@ import {buttonIcons} from '../../../constants/constants';
 })
 export class FridgeListComponent {
 
-  buttonIcons = buttonIcons;
+  buttonIcons = ButtonIcons;
 
   constructor(private fridgeService: FridgeService) {
   }

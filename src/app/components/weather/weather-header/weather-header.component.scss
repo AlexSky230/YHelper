@@ -2,11 +2,36 @@
   max-height: none !important;
 }
 
-.form-field {
-  width: calc(100% - 6em);
+.flex-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: start;
+  align-items: center;
 }
 
-.seebreeze {
-  margin: 0 1em 0 0;
+.button-group {
+  display: flex;
+  flex-flow: column;
+}
+
+.inputs {
+  flex-grow: 1;
+}
+
+.form-field {
+  width: 100%;
+  padding: 0 0 0 1em;
+}
+
+.link-button {
+  text-align: center;
   text-decoration: none;
+  border: solid darkgrey 1px;
+  color: #b1bdc5;
+  border-radius: 5px;
+  padding: 0.25em 0.5em 0.25em 0.5em;
+  box-shadow:
+    0 3px 2px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.34),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.22);
 }

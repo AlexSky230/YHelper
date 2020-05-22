@@ -17,10 +17,10 @@ export class WeatherTabsComponent {
       title: WEATHER_TABS.week.title,
       link: WEATHER_TABS.week.link,
     },
-    {
-      title: WEATHER_TABS.radar.title,
-      link: WEATHER_TABS.radar.link,
-    },
+    // {
+    //   title: WEATHER_TABS.radar.title,
+    //   link: WEATHER_TABS.radar.link,
+    // },
   ];
 
 }

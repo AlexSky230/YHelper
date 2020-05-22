@@ -1,26 +1,26 @@
-.card-field {
-  overflow-y: scroll;
-  flex-grow: 1;
-}
-
-.card-container{
+.flex-container{
   display: flex;
+  flex-flow: column;
   justify-content: center;
+  align-items: center;
   padding: 0.5em 0 0 0;
 }
 
 .day-forecast-item {
-  position: relative;
-  padding: 0.8em 0 0 0;
+  display: flex;
+  flex-flow: row;
+  flex-grow: 1;
+  padding: 0.5em 0 0.5em 0;
+  border-bottom: solid #424242 1px;
 }
 
 .forecast-text-container {
-  width: calc(100% - 4em);
-  text-align: left;
-  position: relative;
-  top: -0.2em;
-  display: inline-block;
-  padding: 0 0 0.4em 1em;
+  //flex-grow: 1;
+  //text-align: left;
+  //position: relative;
+  //top: -0.2em;
+  //display: inline-block;
+  //padding: 0 0 0.4em 1em;
 }
 
 .temperature-container {

@@ -3,7 +3,7 @@ import {LocalStorageService} from '../services/local-storage.service';
 import {IdService} from './id.service';
 
 import {ShoppingItem} from './classes/shopping-item';
-import {coreLabels} from '../constants/constants';
+import {CoreLabels} from '../constants/constants';
 import {ColorItem} from './classes/color-item';
 
 @Injectable({
@@ -36,7 +36,7 @@ export class FridgeService {
       item.quantity = 1;
       this.fridgeItems.unshift(item);
       this.sortItems();
-      this.saveToStorage(coreLabels.fridgeItems, this.fridgeItems);
+      this.saveToStorage(CoreLabels.fridgeItems, this.fridgeItems);
     }
   }
 
@@ -50,14 +50,14 @@ export class FridgeService {
       this.fridgeItems.unshift(item);
       this.sortItems();
     }
-    this.saveToStorage(coreLabels.fridgeItems, this.fridgeItems);
+    this.saveToStorage(CoreLabels.fridgeItems, this.fridgeItems);
     this.setShelfItemList();
   }
 
   public deleteFridgeItemsBySelected(): void {
     this.fridgeItems = this.fridgeItems
       .filter(fridgeItem => fridgeItem.selected !== true);
-    this.saveToStorage(coreLabels.fridgeItems, this.fridgeItems);
+    this.saveToStorage(CoreLabels.fridgeItems, this.fridgeItems);
     this.setShelfItemList();
     this.isItemSelected();
   }
@@ -79,7 +79,7 @@ export class FridgeService {
 
   public getStoredShelfItem(): void {
     this.localStorage
-      .getDataFromStorageById(coreLabels.activeShelfItem)
+      .getDataFromStorageById(CoreLabels.activeShelfItem)
       .subscribe((si: ColorItem) => {
         this.setShelfItem(si);
       });
@@ -120,13 +120,13 @@ export class FridgeService {
   public toggleFridgeItemTicked(item: ShoppingItem): void {
     item.selected = !item.selected;
     this.isItemSelected();
-    this.saveToStorage(coreLabels.fridgeItems, this.fridgeItems);
+    this.saveToStorage(CoreLabels.fridgeItems, this.fridgeItems);
     this.setShelfItemList();
   }
 
   public quantityPlus(fridgeItem: ShoppingItem): void {
     fridgeItem.quantity += 1;
-    this.saveToStorage(coreLabels.fridgeItems, this.fridgeItems);
+    this.saveToStorage(CoreLabels.fridgeItems, this.fridgeItems);
     this.setShelfItemList();
   }
 
@@ -135,10 +135,10 @@ export class FridgeService {
       this.activeShelfItem = item;
     } else {
       this.activeShelfItem = new ColorItem();
-      this.activeShelfItem.key = coreLabels.all;
+      this.activeShelfItem.key = CoreLabels.all;
       this.activeShelfItem.title = 'All';
     }
-    this.saveToStorage(coreLabels.activeShelfItem, item);
+    this.saveToStorage(CoreLabels.activeShelfItem, item);
     this.setShelfItemList();
   }
 
@@ -147,12 +147,12 @@ export class FridgeService {
     if (item.quantity < 1) {
       this.fridgeItems = this.fridgeItems.filter(it => it.quantity > 0);
     }
-    this.saveToStorage(coreLabels.fridgeItems, this.fridgeItems);
+    this.saveToStorage(CoreLabels.fridgeItems, this.fridgeItems);
     this.setShelfItemList();
   }
 
   public setShelfItemList(): void {
-    this.fridgeShelfItems = (this.activeShelfItem.key === coreLabels.all) ?
+    this.fridgeShelfItems = (this.activeShelfItem.key === CoreLabels.all) ?
       this.fridgeItems :
       (this.activeShelfItem.order > 4) ?
         this.fridgeItems.filter(fi => fi.order > 4) :

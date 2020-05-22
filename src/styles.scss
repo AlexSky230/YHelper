@@ -32,18 +32,18 @@ mat-sidenav-container {
 .main {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   height: 100%;
 }
 
 .content {
   margin: 0;
   overflow-y: scroll;
-  flex-grow : 1;
-  padding-bottom: 5em;
+  flex: 1 1;
 }
 
 .header {
-  height: 6.8em;
+  //height: 6.8em;
   text-align: right;
   padding: 0 0.5em 0.5em 0.5em;
   z-index: 20;

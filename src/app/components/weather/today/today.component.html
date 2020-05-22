@@ -1,6 +1,6 @@
 <section *ngIf="forecast">
 
-    <mat-card-header class="card-top">
+    <mat-card-header class="card-top bottom-border">
       <i mat-card-avatar
          [class]="getWiIcon(forecast.daily.data[0].icon)"
          id="ic">
@@ -18,7 +18,7 @@
 
       </mat-card-title>
     </mat-card-header>
-  <mat-divider></mat-divider>
+
 
     <div class="card-body">
 

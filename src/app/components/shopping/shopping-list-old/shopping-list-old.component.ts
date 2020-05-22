@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ShoppingService} from '../../../helpers/shopping.service';
 import {ShoppingItem} from '../../../helpers/classes/shopping-item';
-import {buttonIcons} from '../../../constants/constants';
+import {ButtonIcons} from '../../../constants/constants';
 
 @Component({
   selector: 'app-shopping-list-old',
@@ -10,7 +10,7 @@ import {buttonIcons} from '../../../constants/constants';
 })
 export class ShoppingListOldComponent {
 
-  public buttonIcons = buttonIcons;
+  public buttonIcons = ButtonIcons;
 
   constructor( private shoppingListService: ShoppingService ) { }
 

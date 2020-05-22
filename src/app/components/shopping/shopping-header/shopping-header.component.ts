@@ -4,7 +4,7 @@ import {ShoppingItem} from '../../../helpers/classes/shopping-item';
 import {ShoppingService} from '../../../helpers/shopping.service';
 import {ColorItem} from '../../../helpers/classes/color-item';
 
-import {buttonIcons, CORE_ITEMS, coreLabels} from '../../../constants/constants';
+import {ButtonIcons, CORE_ITEMS, CoreLabels} from '../../../constants/constants';
 
 @Component({
   selector: 'app-shopping-header',
@@ -14,9 +14,9 @@ import {buttonIcons, CORE_ITEMS, coreLabels} from '../../../constants/constants'
 export class ShoppingHeaderComponent implements OnInit {
 
   public newShoppingItem: ShoppingItem;
-  public buttonIcons = buttonIcons;
+  public buttonIcons = ButtonIcons;
 
-  public coreLabels = coreLabels;
+  public coreLabels = CoreLabels;
   public activeShoppingHeaderItem: ColorItem;
   public headerShoppingItems: ColorItem[];
 

@@ -39,12 +39,15 @@ export class WeatherComponent implements OnInit, OnDestroy {
    * if restricted, set GoldCoast as activeLocation
    */
 
+  // TODO Fix bug with saving lst location. It does not work for some reason
+
   public ngOnInit() {
     this.busySubscription = this.isLoadingService.isLoading
       .subscribe(isBusy => this.isLoading = isBusy);
     this.getSavedLocation();
 
-    if (this.lastSavedLocation && this.lastSavedLocation.title !== LOCATIONS.currentLocation.title) {
+    // if (this.lastSavedLocation && this.lastSavedLocation.title !== LOCATIONS.currentLocation.title) {
+    if (this.lastSavedLocation) {
       this.activeLocation = this.lastSavedLocation;
     } else {
       if (navigator.geolocation) {

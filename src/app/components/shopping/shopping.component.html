@@ -1,12 +1,56 @@
 <section class="main">
 
+  <div class="title bottom-border">
+    <h2>
+      Shopping List:
+      <span class="grey">
+          {{toBuyAmount > 0 ? toBuyAmount + ' items' : 'Empty'}}
+        </span>
+    </h2>
+  </div>
+
   <div class="content">
+    <div *ngIf="toBuyAmount < 1" class="info">
+      <mat-icon class="grey">{{ buttonIcons.info }}</mat-icon>
+      <span class="small grey ml-1">
+      Tip: Click Plus button to add item to your shopping list.</span>
+    </div>
     <app-shopping-list-active class="new-list"></app-shopping-list-active>
+
+    <div class="title grey">
+      <h4>
+        Items Bought:
+      </h4>
+    </div>
+
+    <div *ngIf="boughtAmount < 1" class="info">
+      <mat-icon class="grey">{{ buttonIcons.info }}</mat-icon>
+      <span class="small grey ml-1">
+        Tip: Click on item to restore it, or tick the boxes to add ticked items to your fridge inventory.
+      </span>
+    </div>
     <app-shopping-list-old class="old-list"></app-shopping-list-old>
   </div>
 
-  <div class="header">
-    <app-shopping-header></app-shopping-header>
+  <div>
+    <button
+      (click)="openMenu()"
+      mat-fab
+      color="primary"
+      class="main-button">
+      <mat-icon>{{ buttonIcons.add }}</mat-icon>
+    </button>
+  </div>
+
+  <div>
+    <button
+      *ngIf="isSelectedInOld"
+      (click)="pushToFridge()"
+      mat-mini-fab
+      color="accent"
+      class="secondary-button">
+      <mat-icon>{{ buttonIcons.toFridge }}</mat-icon>
+    </button>
   </div>
 
 </section>
