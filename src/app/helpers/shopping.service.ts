@@ -28,13 +28,14 @@ export class ShoppingService {
    * save to local storage
    */
   public addShoppingItem(item: ShoppingItem): void {
-    if (item && item.title && item.color && item.order && item.key) {
-      item.id = this.getId();
-      item.selected = false;
-      item.isBought = false;
-      this.shoppingItems.unshift(item);
-      this.sortItems(item);
-      this.saveToStorage(CoreLabels.shoppingItems, this.shoppingItems);
+    if (item) {
+      if (this.shoppingItems.indexOf(item) === -1) {
+        item.id = this.getId();
+        item.selected = false;
+        item.isBought = false;
+        this.shoppingItems.unshift(item);
+      }
+      this.sortAndSave(item);
     }
   }
 
@@ -151,9 +152,9 @@ export class ShoppingService {
    * if item.bought sort old list, else sort active list
    */
   private sortItems(item: ShoppingItem): void {
-    if (item && !item.isBought) {
+    if (!item.isBought) {
       this.shoppingItems.sort((a, b) => a.order - b.order);
-    } else if (item && item.isBought === true) {
+    } else if (item.isBought) {
       this.shoppingItemsOld.sort((a, b) => a.order - b.order);
     }
   }

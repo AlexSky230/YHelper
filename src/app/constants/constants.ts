@@ -75,15 +75,69 @@ export enum weatherIcons {
 }
 
 export const CORE_ITEMS = {
-  vegetables: {key: 'vegetables', title: 'Vegetables and Fruits: Green', color: '#57b053', order: 1},
-  meat: {key: 'meat', title: 'Meat and Fish: Red', color: '#eb4334', order: 2},
-  dairy: {key: 'dairy', title: 'Dairy Products: White', color: '#d2dee6', order: 3},
-  drinks: {key: 'drinks', title: 'Drinks: Blue', color: '#3aa7f3', order: 4},
-  // otherOrange: {key: 'otherOrange', title: 'Other: Orange', color: '#f89907', order: 5},
-  // otherYellow: {key: 'otherYellow', title: 'Other: Yellow', color: '#fced42', order: 6},
-  // otherBlue: {key: 'otherBlue', title: 'Other: Dark blue', color: '#454eb4', order: 7},
-  // otherPurple: {key: 'otherPurple', title: 'Other: Violet', color: '#6735b6', order: 8},
-  default: {key: 'otherGrey', title: 'Other: Grey', color: '#9e9e9e', order: 9},
+  vegetables: {
+    key: 'vegetables',
+    title: 'Vegetables and Fruits: Green',
+    color: '#57b053',
+    isBought: undefined,
+    quantity: undefined,
+    id : undefined,
+    order: 1
+  },
+  meat: {
+    key: 'meat',
+    title: 'Meat and Fish: Red',
+    color: '#eb4334',
+    isBought: undefined,
+    quantity: undefined,
+    id : undefined,
+    order: 2
+  },
+  dairy: {
+    key: 'dairy',
+    title: 'Dairy Products: White',
+    color: '#dce8f0',
+    isBought: undefined,
+    quantity: undefined,
+    id : undefined,
+    order: 3
+  },
+  drinks: {
+    key: 'drinks',
+    title: 'Drinks: Blue',
+    color: '#58c7ef',
+    isBought: undefined,
+    quantity: undefined,
+    id : undefined,
+    order: 4
+  },
+  bread: {
+    key: 'bread',
+    title: 'Bread and Eggs: Orange',
+    color: '#f8ab3e',
+    isBought: undefined,
+    quantity: undefined,
+    id : undefined,
+    order: 5
+  },
+  frozen: {
+    key: 'frozen',
+    title: 'Frozen Products: Dark blue',
+    color: '#3c3eb4',
+    isBought: undefined,
+    quantity: undefined,
+    id : undefined,
+    order: 6
+  },
+  default: {
+    key: 'other',
+    title: 'Other: Grey',
+    color: '#9e9e9e',
+    isBought: undefined,
+    quantity: undefined,
+    id : undefined,
+    order: 9
+  },
 };
 
 export const LOCATIONS = {

@@ -30,7 +30,7 @@
                   mat-icon-button
                   color="primary"
                   class="core-button">
-            <mat-icon>{{ buttonIcons.addToList }}</mat-icon>
+            <mat-icon>{{ this.todo? buttonIcons.done : buttonIcons.addToList }}</mat-icon>
           </button>
         </div>
 

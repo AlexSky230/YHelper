@@ -1,4 +1,16 @@
 .core-list {
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0 0 0 6em;
+  margin-bottom: 5em;
+}
+
+.mat-menu {
+  outline: none;
+}
+
+.menu-item {
+  outline: none
+}
+
+.content {
+  padding: 0.5em 1em 0 1em;
 }

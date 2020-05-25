@@ -18,8 +18,7 @@ export class TodoService {
   }
 
   public addTodo(todo: Todo) {
-    const duplicate = this.todos.filter(item => item.id !== todo.id);
-    if (duplicate.length === this.todos.length) {
+    if (this.todos.indexOf(todo) === -1) {
       this.todos.unshift(todo);
     }
     this.calculateIncompleteTodos();

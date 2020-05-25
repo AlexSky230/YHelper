@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 
 import {ShoppingItem} from '../../../helpers/classes/shopping-item';
 import {ShoppingService} from '../../../helpers/shopping.service';
-import {ColorItem} from '../../../helpers/classes/color-item';
 
 import {ButtonIcons, CORE_ITEMS, CoreLabels} from '../../../constants/constants';
+import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-shopping-header',
@@ -17,47 +17,49 @@ export class ShoppingHeaderComponent implements OnInit {
   public buttonIcons = ButtonIcons;
 
   public coreLabels = CoreLabels;
-  public activeShoppingHeaderItem: ColorItem;
-  public headerShoppingItems: ColorItem[];
+  public activeColor: ShoppingItem;
+  public headerColors: ShoppingItem[];
 
-  constructor(private shoppingService: ShoppingService) {
-    this.newShoppingItem = new ShoppingItem();
-  }
+  constructor(
+    @Inject(MAT_BOTTOM_SHEET_DATA) public item: ShoppingItem,
+    private bottomSheetRef: MatBottomSheetRef<ShoppingHeaderComponent>,
+    private shoppingService: ShoppingService,
+    ) {}
 
   /**
    * create array of items from constants, make last coreItem "otherGrey" active
+   * if Item comes from list-Edit make it newShoppingItem
    */
   ngOnInit(): void {
-    this.headerShoppingItems = Object
+    this.headerColors = Object
       .keys(CORE_ITEMS)
       .map(key => CORE_ITEMS[key]);
-    this.activeShoppingHeaderItem = this.headerShoppingItems[this.headerShoppingItems.length - 1];
+    if (this.item) {
+      this.newShoppingItem = this.item;
+      this.activeColor = this.item;
+  } else {
+      this.newShoppingItem = new ShoppingItem();
+      this.activeColor = this.headerColors[this.headerColors.length - 1];
+    }
   }
 
   public addShoppingItem(): void {
-    this.newShoppingItem.color = this.activeShoppingHeaderItem.color;
-    this.newShoppingItem.order = this.activeShoppingHeaderItem.order;
-    this.newShoppingItem.key = this.activeShoppingHeaderItem.key;
-    this.shoppingService.addShoppingItem(this.newShoppingItem);
+    const localItem = this.newShoppingItem;
+
+    if (localItem.title !== '') {
+      this.shoppingService.addShoppingItem(localItem);
+    }
     this.newShoppingItem = new ShoppingItem();
+    if (this.item) {
+      this.bottomSheetRef.dismiss();
+    }
   }
 
-  public onHeaderItemClicked(item: ColorItem): void {
-    this.activeShoppingHeaderItem = item;
-  }
+  public onHeaderItemClicked(color: ShoppingItem): void {
+    this.activeColor = color;
+    this.newShoppingItem.color = color.color;
+    this.newShoppingItem.order = color.order;
 
-  /**
-   * button-click: move selected items from old Shopping list to fridge list component
-   */
-  public pushToFridge(): void {
-    this.shoppingService.moveSelectedToFridge();
-  }
-
-  /**
-   * return true if there are ticked items in the OldList Array
-   */
-  public get isSelectedInOld(): boolean {
-    return this.shoppingService.isSelectedInOld;
   }
 
 }

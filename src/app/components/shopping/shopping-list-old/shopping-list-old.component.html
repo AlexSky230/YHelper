@@ -2,16 +2,17 @@
     <ul *ngIf="shoppingItemsOld.length > 0" class="core-list small">
 
       <li *ngFor="let item of shoppingItemsOld"
-                     class="core-list-item">
-        <mat-checkbox (change)="toggleItemSelected(item)"
-                      [checked]="item.selected"
-                      color="accent"
-                      class="core-list-checkbox">
-          <span (click)="restoreItem(item)"
-                [class.bought]="item.isBought"
-                class="text">
-            {{ item.title }}
-          </span>
+          class="core-list-item">
+        <button mat-button
+                (click)="restoreItem(item)"
+                class="core-list-button">
+          <span [class.bought]="item.isBought" class="text">{{ item.title }}</span>
+        </button>
+
+        <mat-checkbox
+          (change)="toggleItemSelected(item)"
+          [checked]="item.selected"
+          class="check-box">
         </mat-checkbox>
 
         <button

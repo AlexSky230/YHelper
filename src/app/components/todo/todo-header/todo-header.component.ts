@@ -27,7 +27,6 @@ export class TodoHeaderComponent implements OnInit {
     this.newTodo = new Todo();
     if (this.todo && this.todo.title) {
       this.newTodo = this.todo;
-      console.log(this.newTodo);
     }
   }
 
@@ -39,6 +38,9 @@ export class TodoHeaderComponent implements OnInit {
       this.todoService.addTodo(localTodo);
     }
     this.newTodo = new Todo();
+    if (this.todo) {
+      this.bottomSheetRef.dismiss();
+    }
   }
 
   get todos(): Todo[] {
