@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ForecastLocation} from '../../../helpers/classes/forecast-location';
-import {LOCATIONS} from '../../../constants/constants';
+import {ButtonIcons, LOCATIONS} from '../../../constants/constants';
 
 @Component({
   selector: 'app-weather-header',
@@ -14,7 +14,9 @@ export class WeatherHeaderComponent implements OnInit {
   @Input() currentLocationLongitude: number;
   @Output() locationSelected = new EventEmitter();
 
+  public buttonIcons = ButtonIcons;
   public locations: ForecastLocation[];
+  public panelOpened: boolean;
 
   // TODO add link selector for Radar and SeaBreeze
 
@@ -23,6 +25,7 @@ export class WeatherHeaderComponent implements OnInit {
    * then change each element in this array with Valueobject of LOCATIONS
    */
   ngOnInit(): void {
+    this.panelOpened = false;
     this.locations = Object
       .keys(LOCATIONS)
       .map(key => LOCATIONS[key]);
@@ -36,6 +39,10 @@ export class WeatherHeaderComponent implements OnInit {
   public get longitude() {
     return this.activeLocation === LOCATIONS.currentLocation ?
       this.currentLocationLongitude : this.activeLocation.longitude;
+  }
+
+  public togglePanelOpened(): void {
+    this.panelOpened = !this.panelOpened;
   }
 
   public cityClicked(location: ForecastLocation): void {

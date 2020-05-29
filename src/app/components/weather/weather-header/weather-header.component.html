@@ -2,24 +2,37 @@
 
   <app-weather-tabs></app-weather-tabs>
 
-  <mat-card>
+  <mat-card *ngIf="panelOpened">
 
-    <div class="flex-container">
-      <div class="button-group">
+    <div class="button-group">
+      <div>
         <a
-           href="https://www.seabreeze.com.au/weather/wind-forecast/qld-gold-coast"
-           target="_blank"
-           class="mb-1 small link-button">
+          mat-stroked-button
+          color="accent"
+          href="https://www.seabreeze.com.au/weather/wind-forecast/qld-gold-coast"
+          target="_blank"
+          class="link-button">
           Seabreeze
         </a>
         <a
-           href="http://www.bom.gov.au/products/IDR663.loop.shtml"
-           target="_blank"
-           class="small link-button">
+          mat-stroked-button
+          color="accent"
+          href="http://www.bom.gov.au/products/IDR663.loop.shtml"
+          target="_blank"
+          class="ml-2 link-button">
           Radar
         </a>
       </div>
 
+      <mat-icon
+        (click)="togglePanelOpened()"
+        class="expand-less grey">
+        {{ buttonIcons.expandMore }}
+      </mat-icon>
+
+    </div>
+
+    <div class="flex-container">
       <div class="inputs">
         <mat-form-field class="form-field">
           <mat-label>Forecast for:</mat-label>
@@ -36,6 +49,18 @@
         </mat-form-field>
       </div>
     </div>
+  </mat-card>
+
+  <mat-card *ngIf="!panelOpened" class="mini">
+    <div class="mini-flex-container">
+      <span class="mini-text grey">Forecast for:</span>
+      <span class="mini-text ml-2">{{ activeLocation.title }}</span>
+    </div>
+    <mat-icon
+      (click)="togglePanelOpened()"
+      class="expand-more grey">
+      {{ buttonIcons.expandLess }}
+    </mat-icon>
   </mat-card>
 
 </section>

@@ -12,7 +12,7 @@ import {ColorItem} from './classes/color-item';
 export class FridgeService {
 
   public isSelectedInList: boolean;
-  public activeShelfItem: ColorItem;
+  public activeShelfItem: ShoppingItem;
   public fridgeItems: ShoppingItem[] = [];
   public fridgeShelfItems: ShoppingItem[] = [];
 
@@ -20,7 +20,7 @@ export class FridgeService {
     private localStorage: LocalStorageService,
     private idService: IdService,
   ) {
-    this.activeShelfItem = new ColorItem();
+    this.activeShelfItem = new ShoppingItem();
     this.activeShelfItem.title = 'All';
     this.activeShelfItem.key = 'all';
   }
@@ -30,11 +30,13 @@ export class FridgeService {
    * save to local storage
    */
   public addFridgeItem(item: ShoppingItem): void {
-    if (item && item.title && item.color && item.order && item.key) {
-      item.id = this.getId();
-      item.selected = false;
-      item.quantity = 1;
-      this.fridgeItems.unshift(item);
+    if (item) {
+      if (this.fridgeItems.indexOf(item) === -1) {
+        item.id = this.getId();
+        item.selected = false;
+        item.quantity = 1;
+        this.fridgeItems.unshift(item);
+      }
       this.sortItems();
       this.saveToStorage(CoreLabels.fridgeItems, this.fridgeItems);
     }
@@ -59,7 +61,15 @@ export class FridgeService {
       .filter(fridgeItem => fridgeItem.selected !== true);
     this.saveToStorage(CoreLabels.fridgeItems, this.fridgeItems);
     this.setShelfItemList();
-    this.isItemSelected();
+    this.setIsItemSelectedStatus();
+  }
+
+  public deleteFridgeItem(item: ShoppingItem): void {
+    this.fridgeItems = this.fridgeItems
+      .filter(fridgeItem => fridgeItem !== item);
+    this.saveToStorage(CoreLabels.fridgeItems, this.fridgeItems);
+    this.setShelfItemList();
+    this.setIsItemSelectedStatus();
   }
 
   /**
@@ -80,7 +90,7 @@ export class FridgeService {
   public getStoredShelfItem(): void {
     this.localStorage
       .getDataFromStorageById(CoreLabels.activeShelfItem)
-      .subscribe((si: ColorItem) => {
+      .subscribe((si: ShoppingItem) => {
         this.setShelfItem(si);
       });
   }
@@ -93,14 +103,14 @@ export class FridgeService {
     return this.fridgeShelfItems;
   }
 
-  public getActiveShelfItem(): ColorItem {
+  public getActiveShelfItem(): ShoppingItem {
     return this.activeShelfItem;
   }
 
   /**
    * sets isSelectedInList to true if there are ticked items in the OldList Array
    */
-  public isItemSelected(): void {
+  public setIsItemSelectedStatus(): void {
     this.isSelectedInList = this.fridgeItems
       .filter((item) => item.selected)
       .length > 0;
@@ -119,7 +129,7 @@ export class FridgeService {
 
   public toggleFridgeItemTicked(item: ShoppingItem): void {
     item.selected = !item.selected;
-    this.isItemSelected();
+    this.setIsItemSelectedStatus();
     this.saveToStorage(CoreLabels.fridgeItems, this.fridgeItems);
     this.setShelfItemList();
   }
@@ -130,11 +140,11 @@ export class FridgeService {
     this.setShelfItemList();
   }
 
-  public setShelfItem(item?: ColorItem): void {
+  public setShelfItem(item?: ShoppingItem): void {
     if (item && item.key && item.title) {
       this.activeShelfItem = item;
     } else {
-      this.activeShelfItem = new ColorItem();
+      this.activeShelfItem = new ShoppingItem();
       this.activeShelfItem.key = CoreLabels.all;
       this.activeShelfItem.title = 'All';
     }

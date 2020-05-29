@@ -92,6 +92,7 @@ import {InputAutofocusDirective} from './helpers/directives/input-autofocus.dire
     InputAutofocusDirective
   ],
   entryComponents: [
+    FridgeHeaderComponent,
     TodoHeaderComponent,
     ShortcutFormComponent
   ],

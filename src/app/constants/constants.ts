@@ -9,6 +9,7 @@ export enum ButtonIcons {
   expandMore = 'expand_more',
   expandLess = 'expand_less',
   info = 'info',
+  filterList = 'filter_list',
   toFridge = 'move_to_inbox',
   remove = 'remove',
 }
@@ -77,7 +78,7 @@ export enum weatherIcons {
 export const CORE_ITEMS = {
   vegetables: {
     key: 'vegetables',
-    title: 'Vegetables and Fruits: Green',
+    title: 'Vegetables and Fruits',
     color: '#57b053',
     isBought: undefined,
     quantity: undefined,
@@ -86,7 +87,7 @@ export const CORE_ITEMS = {
   },
   meat: {
     key: 'meat',
-    title: 'Meat and Fish: Red',
+    title: 'Meat and Fish',
     color: '#eb4334',
     isBought: undefined,
     quantity: undefined,
@@ -95,7 +96,7 @@ export const CORE_ITEMS = {
   },
   dairy: {
     key: 'dairy',
-    title: 'Dairy Products: White',
+    title: 'Dairy Products',
     color: '#dce8f0',
     isBought: undefined,
     quantity: undefined,
@@ -104,7 +105,7 @@ export const CORE_ITEMS = {
   },
   drinks: {
     key: 'drinks',
-    title: 'Drinks: Blue',
+    title: 'Drinks',
     color: '#58c7ef',
     isBought: undefined,
     quantity: undefined,
@@ -113,7 +114,7 @@ export const CORE_ITEMS = {
   },
   bread: {
     key: 'bread',
-    title: 'Bread and Eggs: Orange',
+    title: 'Bread and Eggs',
     color: '#f8ab3e',
     isBought: undefined,
     quantity: undefined,
@@ -122,8 +123,8 @@ export const CORE_ITEMS = {
   },
   frozen: {
     key: 'frozen',
-    title: 'Frozen Products: Dark blue',
-    color: '#3c3eb4',
+    title: 'Frozen Food',
+    color: '#ae74e6',
     isBought: undefined,
     quantity: undefined,
     id : undefined,
@@ -131,7 +132,7 @@ export const CORE_ITEMS = {
   },
   default: {
     key: 'other',
-    title: 'Other: Grey',
+    title: 'Other',
     color: '#9e9e9e',
     isBought: undefined,
     quantity: undefined,

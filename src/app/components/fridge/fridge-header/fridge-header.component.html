@@ -1,156 +1,47 @@
 <section>
 
   <div class="color-bar">
-
-    <div class="d-inline-block">
-      <button mat-button
-              [matMenuTriggerFor]="menu"
-              color="accent"
-              class="shelf-button">
-        <span>Shelf</span>
-        <mat-icon (click)="deleteFridgeItemsBySelected()">
-          {{ buttonIcons.expandLess }}
-        </mat-icon>
-      </button>
-    </div>
-
-    <mat-menu #menu="matMenu">
-      <button (click)="onShelfItemClicked()"
-              mat-menu-item
-              style="border-left: solid #b41059 3px"
-              class="menu-item">
-        All
-      </button>
-      <button *ngFor="let si of headerFridgeItems"
-              (click)="onShelfItemClicked(si)"
-              style="border-left: solid 3px"
-              [style.border-color]="si.color"
-              mat-menu-item
-              class="menu-item">
-        {{ si.title }}
-      </button>
-    </mat-menu>
-
-    <div class="color-bar-content">
-      <div class="colors-container">
-        <div *ngFor="let fi of headerFridgeItems"
-             [style.background]="fi.color"
-             (click)="onHeaderItemClicked(fi)"
-             [class.selected]="fi === activeFridgeHeaderItem"
-             class="square">
-        </div>
+    <span class="small grey mt-1 mb-1">Category: </span>
+    <div>
+      <div *ngFor="let color of headerFridgeItems"
+           (click)="onHeaderItemClicked(color)"
+           [style.background]="color.color"
+           [class.selected]="color === activeFridgeHeaderItem"
+           class="square">
       </div>
     </div>
-    <button mat-icon-button
-            [disabled]="!isSelectedInList"
-            color="warn"
-            class="push-to-fridge-button">
-      <mat-icon (click)="deleteFridgeItemsBySelected()">
-        {{ buttonIcons.delete }}
-      </mat-icon>
-    </button>
   </div>
+  <mat-divider></mat-divider>
 
-  <mat-card>
-    <form>
-      <mat-form-field class="form-field">
-        <input #fridgeItemTitle
-               name="message"
-               maxlength="100"
-               matInput type="text"
-               [placeholder]="coreLabels.addItem"
-               [(ngModel)]="newFridgeItem.title"
-               (keyup.enter)="addFridgeItem()">
-        <mat-hint align="end">{{ fridgeItemTitle.value.length }}/{{ fridgeItemTitle.maxLength }}</mat-hint>
-        <mat-hint align="start">{{ activeFridgeHeaderItem.title }}</mat-hint>
-        <button [disabled]="fridgeItemTitle.value.length === 0"
-                [class.grey]="fridgeItemTitle.value.length === 0"
-                (click)="fridgeItemTitle.value = ''"
-                color="warn"
-                mat-button matSuffix mat-icon-button aria-label="Clear">
-          <mat-icon>{{ buttonIcons.clear }}</mat-icon></button>
-      </mat-form-field>
-
+  <form>
+    <mat-form-field class="form-field">
+      <input #fridgeItemTitle
+             appInputAutofocus
+             name="message"
+             maxlength="99"
+             matInput type="text"
+             [(ngModel)]="newFridgeItem.title"
+             (keyup.enter)="addFridgeItem()">
+      <mat-hint align="end">{{ fridgeItemTitle.value.length }}/{{ fridgeItemTitle.maxLength }}</mat-hint>
+      <mat-hint align="start">Selected Category: {{ activeFridgeHeaderItem.title }}</mat-hint>
       <button [disabled]="fridgeItemTitle.value.length === 0"
-              mat-mini-fab
-              color="primary"
-              aria-label="Add"
-              (click)="addFridgeItem()"
-              class="core-button">
-        <mat-icon>{{ buttonIcons.toFridge }}</mat-icon>
+              [class.grey]="fridgeItemTitle.value.length === 0"
+              (click)="fridgeItemTitle.value = ''"
+              color="warn"
+              mat-button matSuffix mat-icon-button aria-label="Clear">
+        <mat-icon>{{ buttonIcons.clear }}</mat-icon>
       </button>
+    </mat-form-field>
 
-    </form>
-  </mat-card>
+    <button [disabled]="fridgeItemTitle.value.length === 0"
+            (click)="addFridgeItem()"
+            mat-icon-button
+            color="primary"
+            aria-label="Add"
+            class="core-button">
+      <mat-icon>{{ this.itemInEdit ? buttonIcons.done : buttonIcons.addToList }}</mat-icon>
+    </button>
 
-<!--<mat-card>-->
-
-<!--  <button-->
-<!--    mat-raised-button-->
-<!--    color="accent"-->
-<!--    [matMenuTriggerFor]="belowMenu">-->
-<!--    Select category:-->
-<!--  </button>-->
-
-<!--  <mat-menu-->
-<!--    #belowMenu="matMenu"-->
-<!--    yPosition="above">-->
-<!--    <button-->
-<!--      mat-menu-item-->
-<!--      *ngFor="let category of headerFridgeItems"-->
-<!--      (click)="onHeaderItemClicked(category)">-->
-<!--      {{ category.title }}-->
-<!--    </button>-->
-<!--  </mat-menu>-->
-
-<!--  <div-->
-<!--    *ngIf="activeFridgeHeaderItem"-->
-<!--    [style.background]="activeFridgeHeaderItem.color"-->
-<!--    class="square">-->
-<!--  </div>-->
-
-<!--  <mat-form-field-->
-<!--    *ngIf="activeFridgeHeaderItem"-->
-<!--    [style.fontSize]="'0.7em'"-->
-<!--    class="add-input">-->
-<!--    <input-->
-<!--      #message-->
-<!--      maxlength="23"-->
-<!--      matInput type="text"-->
-<!--      [placeholder]="activeFridgeHeaderItem.title + '...'"-->
-<!--      [(ngModel)]="newFridgeItem.title"-->
-<!--      (keyup.enter)="addFridgeItem()">-->
-<!--    <mat-hint-->
-<!--      align="end">-->
-<!--      {{message.value.length}} / 23-->
-<!--    </mat-hint>-->
-
-<!--  </mat-form-field>-->
-
-<!--  <button-->
-<!--    *ngIf="activeFridgeHeaderItem"-->
-<!--    [disabled]="newFridgeItem.title === ''"-->
-<!--    mat-mini-fab-->
-<!--    color="primary"-->
-<!--    aria-label="Add"-->
-<!--    (click)="addFridgeItem()"-->
-<!--    class="add-button">-->
-<!--    <mat-icon>-->
-<!--      save_alt-->
-<!--    </mat-icon>-->
-<!--  </button>-->
-
-<!--  <button-->
-<!--    [disabled]="!isSelectedInList"-->
-<!--    mat-mini-fab-->
-<!--    color="primary"-->
-<!--    class="delete-button">-->
-<!--    <mat-icon-->
-<!--      (click)="deleteFridgeItemsBySelected()">-->
-<!--      delete_forever-->
-<!--    </mat-icon>-->
-<!--  </button>-->
-
-<!--</mat-card>-->
+  </form>
 
 </section>

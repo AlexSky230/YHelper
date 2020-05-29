@@ -1,6 +1,6 @@
 <section>
 
-  <ul class="core-list content">
+  <ul *ngIf="shoppingItems.length > 0" class="core-list content">
     <li *ngFor="let item of shoppingItems"
         (click)="toggleShoppingItemBought(item)"
         [class.bought]="item.isBought"

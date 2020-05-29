@@ -50,6 +50,7 @@ export class ShoppingHeaderComponent implements OnInit {
       this.shoppingService.addShoppingItem(localItem);
     }
     this.newShoppingItem = new ShoppingItem();
+    this.newShoppingItem.color = this.activeColor.color;
     if (this.item) {
       this.bottomSheetRef.dismiss();
     }
