@@ -16,7 +16,8 @@
         </button>
 
         <div class="quantity-number ml-2 mb-1 pb-2 grey">
-          <span>: {{item.quantity}}</span>
+          <span *ngIf="!item.selected">: {{item.quantity}}</span>
+          <span *ngIf="item.selected">: 0</span>
         </div>
 
         <button

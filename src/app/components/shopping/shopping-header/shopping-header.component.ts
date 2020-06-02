@@ -3,7 +3,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {ShoppingItem} from '../../../helpers/classes/shopping-item';
 import {ShoppingService} from '../../../helpers/shopping.service';
 
-import {ButtonIcons, CORE_ITEMS, CoreLabels} from '../../../constants/constants';
+import {ButtonIcons, CORE_ITEMS} from '../../../constants/constants';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 
 @Component({
@@ -16,30 +16,30 @@ export class ShoppingHeaderComponent implements OnInit {
   public newShoppingItem: ShoppingItem;
   public buttonIcons = ButtonIcons;
 
-  public coreLabels = CoreLabels;
-  public activeColor: ShoppingItem;
-  public headerColors: ShoppingItem[];
+  public activeShoppingHeaderItem: ShoppingItem;
+  public headerShoppingItems: ShoppingItem[];
 
   constructor(
-    @Inject(MAT_BOTTOM_SHEET_DATA) public item: ShoppingItem,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public itemInEdit: ShoppingItem,
     private bottomSheetRef: MatBottomSheetRef<ShoppingHeaderComponent>,
     private shoppingService: ShoppingService,
-    ) {}
+  ) {
+  }
 
   /**
    * create array of items from constants, make last coreItem "otherGrey" active
    * if Item comes from list-Edit make it newShoppingItem
    */
   ngOnInit(): void {
-    this.headerColors = Object
+    this.headerShoppingItems = Object
       .keys(CORE_ITEMS)
       .map(key => CORE_ITEMS[key]);
-    if (this.item) {
-      this.newShoppingItem = this.item;
-      this.activeColor = this.item;
-  } else {
+    if (this.itemInEdit) {
+      this.newShoppingItem = this.itemInEdit;
+      this.activeShoppingHeaderItem = this.itemInEdit;
+    } else {
       this.newShoppingItem = new ShoppingItem();
-      this.activeColor = this.headerColors[this.headerColors.length - 1];
+      this.activeShoppingHeaderItem = this.headerShoppingItems[this.headerShoppingItems.length - 1];
     }
   }
 
@@ -50,14 +50,15 @@ export class ShoppingHeaderComponent implements OnInit {
       this.shoppingService.addShoppingItem(localItem);
     }
     this.newShoppingItem = new ShoppingItem();
-    this.newShoppingItem.color = this.activeColor.color;
-    if (this.item) {
+    this.newShoppingItem.color = this.activeShoppingHeaderItem.color;
+    this.newShoppingItem.order = this.activeShoppingHeaderItem.order;
+    if (this.itemInEdit) {
       this.bottomSheetRef.dismiss();
     }
   }
 
   public onHeaderItemClicked(color: ShoppingItem): void {
-    this.activeColor = color;
+    this.activeShoppingHeaderItem = color;
     this.newShoppingItem.color = color.color;
     this.newShoppingItem.order = color.order;
 

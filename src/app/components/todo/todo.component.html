@@ -1,11 +1,13 @@
 <section class="main">
 
   <div class="title bottom-border">
-    <h2>
+    <h3>
       To Do:
-      {{todos.length > 0 ?
-      (incomplete > 0 ? incomplete + todoLabels.leftToGo : todoLabels.allDone) : ''}}
-    </h2>
+      <span class="grey">
+        {{todos.length > 0 ?
+        (incomplete > 0 ? incomplete + todoLabels.leftToGo : todoLabels.allDone) : ''}}
+        </span>
+    </h3>
   </div>
 
   <div class="content">

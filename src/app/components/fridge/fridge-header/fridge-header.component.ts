@@ -1,11 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-
 import {FridgeService} from '../../../helpers/fridge.service';
-
-import {ColorItem} from '../../../helpers/classes/color-item';
 import {ShoppingItem} from '../../../helpers/classes/shopping-item';
-
-import {ButtonIcons, CORE_ITEMS, CoreLabels} from '../../../constants/constants';
+import {ButtonIcons, CORE_ITEMS} from '../../../constants/constants';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 
 @Component({
@@ -13,15 +9,13 @@ import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom
   templateUrl: './fridge-header.component.html',
   styleUrls: ['./fridge-header.component.scss']
 })
-export class FridgeHeaderComponent implements OnInit{
+export class FridgeHeaderComponent implements OnInit {
 
-  public activeShelf: string;
   public newFridgeItem: ShoppingItem;
   public buttonIcons = ButtonIcons;
 
   public activeFridgeHeaderItem: ShoppingItem;
   public headerFridgeItems: ShoppingItem[];
-  public coreLabels = CoreLabels;
 
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public itemInEdit: ShoppingItem,
@@ -55,6 +49,7 @@ export class FridgeHeaderComponent implements OnInit{
     }
     this.newFridgeItem = new ShoppingItem();
     this.newFridgeItem.color = this.activeFridgeHeaderItem.color;
+    this.newFridgeItem.order = this.activeFridgeHeaderItem.order;
     if (this.itemInEdit) {
       this.bottomSheetRef.dismiss();
     }
@@ -64,17 +59,5 @@ export class FridgeHeaderComponent implements OnInit{
     this.activeFridgeHeaderItem = item;
     this.newFridgeItem.color = item.color;
     this.newFridgeItem.order = item.order;
-  }
-
-  public onShelfItemClicked(item?: ShoppingItem): void {
-    this.fridgeService.setShelfItem(item);
-  }
-
-  public deleteFridgeItemsBySelected(): void {
-    this.fridgeService.deleteFridgeItemsBySelected();
-  }
-
-  public get isSelectedInList(): boolean {
-    return this.fridgeService.isSelectedInList;
   }
 }

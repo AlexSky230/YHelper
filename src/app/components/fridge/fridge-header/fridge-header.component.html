@@ -6,7 +6,7 @@
       <div *ngFor="let color of headerFridgeItems"
            (click)="onHeaderItemClicked(color)"
            [style.background]="color.color"
-           [class.selected]="color === activeFridgeHeaderItem"
+           [class.selected]="color.color === activeFridgeHeaderItem.color"
            class="square">
       </div>
     </div>

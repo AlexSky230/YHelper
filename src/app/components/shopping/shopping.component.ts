@@ -3,7 +3,6 @@ import {ShoppingService} from '../../helpers/shopping.service';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {ShoppingHeaderComponent} from './shopping-header/shopping-header.component';
 import {ButtonIcons} from '../../constants/constants';
-import {ShoppingItem} from '../../helpers/classes/shopping-item';
 
 @Component({
   selector: 'app-shopping',
