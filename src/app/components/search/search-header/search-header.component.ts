@@ -26,7 +26,7 @@ export class SearchHeaderComponent {
 
   public openShortcutForm(): void {
     this.dialog.open(ShortcutFormComponent, {
-      width: '320px'
+      width: '80vw'
     });
   }
 

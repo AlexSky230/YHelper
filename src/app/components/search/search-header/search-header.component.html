@@ -8,8 +8,7 @@
     <mat-icon>add_box</mat-icon>
   </button>
 
-  <mat-card>
-
+  <form action=""></form>
     <div class="header-container">
       <mat-form-field class="form-field">
 
@@ -29,7 +28,7 @@
 
       </mat-form-field>
 
-      <a mat-mini-fab
+      <a mat-icon-button
          [disabled]="message.value.length === 0"
          target="_blank"
          color="primary"
@@ -38,43 +37,6 @@
         <mat-icon class="search-icon">search</mat-icon>
       </a>
     </div>
-  </mat-card>
+
 </section>
 
-<!--<div class="header">-->
-<!--  <div class="header-container">-->
-<!--    <button-->
-<!--      [disabled]="portalAttached"-->
-<!--      mat-mini-fab-->
-<!--      color="primary"-->
-<!--      class="add-shortcut-button"-->
-<!--      (click)="openShortcutForm()">-->
-<!--      <mat-icon>-->
-<!--        add_box-->
-<!--      </mat-icon>-->
-<!--    </button>-->
-
-<!--    <mat-form-field-->
-<!--      appearance="outline"-->
-<!--      [style.fontSize]="'0.7em'"-->
-<!--      class="input-field">-->
-<!--      <input-->
-<!--        #message-->
-<!--        matInput type="text"-->
-<!--        [placeholder]="'Google search...'"-->
-<!--        [(ngModel)]="message.value">-->
-<!--      <a-->
-<!--        disabled="message.length < 1"-->
-<!--        matSuffix-->
-<!--        target="_blank"-->
-<!--        [href]='"https://google.com/search?q=" + message.value'-->
-<!--        class="input-suffix">-->
-<!--        <mat-icon-->
-<!--          class="search-icon">-->
-<!--          search-->
-<!--        </mat-icon>-->
-<!--      </a>-->
-<!--    </mat-form-field>-->
-
-<!--  </div>-->
-<!--</div>-->

@@ -1,8 +1,6 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {SearchShortcutService} from '../../../helpers/search-shortcut.service';
-import {FormControl, Validators} from '@angular/forms';
 import {SearchShortcut} from '../../../helpers/classes/search-shortcut';
-import {OverlayService} from '../../../helpers/overlay.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ButtonIcons, CoreLabels} from '../../../constants/constants';
 
@@ -17,12 +15,9 @@ export class ShortcutFormComponent implements OnInit, OnDestroy {
   public buttonIcons = ButtonIcons;
   public coreLabels = CoreLabels;
 
-  // private myreg = /http(?:s)?:\/\/(?:[\w-]+\.)*([\w-]{1,63})(?:\.(?:\w{3}|\w{2}))(?:$|\/)/i;
-  // public url = new FormControl(this.newShortcut.link, [Validators.required]);
-
   constructor(
-    public dialogRef: MatDialogRef<ShortcutFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<ShortcutFormComponent>,
     private searchShortcutService: SearchShortcutService,
   ) {
   }
