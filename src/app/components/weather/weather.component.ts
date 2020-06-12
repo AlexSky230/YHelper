@@ -8,7 +8,7 @@ import {WeatherService} from '../../services/weather-http.service';
 import {ForecastLocation} from '../../helpers/classes/forecast-location';
 import {SharedForecastService} from '../../helpers/shared-forecast.service';
 
-import {LOCATIONS} from '../../constants/constants';
+import {LOCATIONS, ServiceItems} from '../../constants/constants';
 import {IsLoadingService} from '../../helpers/is-loading.service';
 
 @Component({
@@ -25,6 +25,8 @@ export class WeatherComponent implements OnInit, OnDestroy {
   public isLoading: boolean;
   public busySubscription: Subscription;
   public lastSavedLocation: ForecastLocation;
+
+  public serviceItems: typeof ServiceItems = ServiceItems;
 
   constructor(
     private isLoadingService: IsLoadingService,
@@ -81,11 +83,11 @@ export class WeatherComponent implements OnInit, OnDestroy {
   public saveLocationToStorage(): void {
     this.lastSavedLocation = this.activeLocation;
     this.browserLocalStorageService
-      .addDataToStorage('lastSavedLocation', this.lastSavedLocation);
+      .addDataToStorage(this.serviceItems.lastSavedLocation, this.lastSavedLocation);
   }
 
   public getSavedLocation(): void {
-    this.browserLocalStorageService.getDataFromStorageById('lastSavedLocation')
+    this.browserLocalStorageService.getDataFromStorageById(this.serviceItems.lastSavedLocation)
       .subscribe(location => {
         if (location) {
           this.lastSavedLocation = location;
@@ -128,7 +130,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
           // get from local storage
           this.isLoadingService.setIsLoading(false);
           return this.browserLocalStorageService
-            .getDataFromStorageById(this.activeLocation.key + 'Forecast');
+            .getDataFromStorageById(this.activeLocation.key + (this.serviceItems.forecast));
         }
         // get from API
         return this.forecastFromAPI().pipe(
@@ -146,13 +148,13 @@ export class WeatherComponent implements OnInit, OnDestroy {
    */
   private forecastIsFresh(): Observable<boolean> {
     return this.browserLocalStorageService
-      .getDataFromStorageById(this.activeLocation.key + 'ForecastTime')
+      .getDataFromStorageById(this.activeLocation.key + this.serviceItems.forecastTime)
       .pipe(
         map((time: number): boolean => {
           let result = false;
           const currentTime = Date.now();
           if (time !== undefined) {
-            result = Math.abs(currentTime - time) < (1000 * 60 * 60 * 1);
+            result = Math.abs(currentTime - time) < (1000 * 60 * 60);
           }
           return result;
         })
@@ -175,9 +177,9 @@ export class WeatherComponent implements OnInit, OnDestroy {
   private forecastSave(forecastData: object): void {
     const currentTime = Date.now();
     this.browserLocalStorageService
-      .addDataToStorage(this.activeLocation.key + 'Forecast', forecastData);
+      .addDataToStorage(this.activeLocation.key + this.serviceItems.forecast, forecastData);
     this.browserLocalStorageService
-      .addDataToStorage(this.activeLocation.key + 'ForecastTime', currentTime);
+      .addDataToStorage(this.activeLocation.key + this.serviceItems.forecastTime, currentTime);
   }
 
   private setLocationToCurrent() {
