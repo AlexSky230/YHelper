@@ -22,6 +22,7 @@
            matInput type="text"
            [placeholder]="coreLabels.linkPlaceholder"
            [(ngModel)]="newShortcut.link"
+           (keyup.enter)="addShortcut()"
            required>
     <mat-hint align="end">Url length: {{ message.value.length }}</mat-hint>
     <mat-error>URL required.</mat-error>

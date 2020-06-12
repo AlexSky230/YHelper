@@ -173,7 +173,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
   }
 
   private forecastFromAPI(): Observable<object> {
-    if (this.activeLocation === LOCATIONS.currentLocation &&
+    if (this.activeLocation.key === LOCATIONS.currentLocation.key &&
       this.currentLocationLatitude && this.currentLocationLongitude) {
       return this.weatherService
         .getForecast(this.currentLocationLatitude, this.currentLocationLongitude);

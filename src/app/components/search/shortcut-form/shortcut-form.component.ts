@@ -27,13 +27,16 @@ export class ShortcutFormComponent implements OnInit, OnDestroy {
   }
 
   public addShortcut(): void {
-    this.newShortcut.shortTitle = (this.newShortcut.link.length < 5) ?
-      this.newShortcut.link : this.newShortcut.link.slice(0, 4);
-    this.newShortcut.title = (this.newShortcut.link.length < 20) ?
-      this.newShortcut.link : this.newShortcut.link.slice(0, 20) + '...';
-    this.newShortcut.link = CoreLabels.linkPlaceholder + this.newShortcut.link;
-    this.searchShortcutService.addShortcut(this.newShortcut);
-    this.newShortcut = new SearchShortcut();
+    if (this.newShortcut.link) {
+      this.newShortcut.shortTitle = (this.newShortcut.link.length < 5) ?
+        this.newShortcut.link : this.newShortcut.link.slice(0, 4);
+      this.newShortcut.title = (this.newShortcut.link.length < 20) ?
+        this.newShortcut.link : this.newShortcut.link.slice(0, 20) + '...';
+      this.newShortcut.link = CoreLabels.linkPlaceholder + this.newShortcut.link;
+      this.searchShortcutService.addShortcut(this.newShortcut);
+      this.newShortcut = new SearchShortcut();
+      this.closeOverlay();
+    }
   }
 
   public closeOverlay(): void {
