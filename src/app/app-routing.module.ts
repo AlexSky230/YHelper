@@ -8,63 +8,63 @@ import {WeatherComponent} from './components/weather/weather.component';
 import {TodayComponent} from './components/weather/today/today.component';
 import {WeekComponent} from './components/weather/week/week.component';
 import {RadarComponent} from './components/weather/radar/radar.component';
-import {routerMainPath, routerWeatherPath} from './constants/constants';
+import {RouterMainPath, RouterWeatherPath} from './constants/constants';
 
 
 const routes: Routes = [
   {
-    path: routerMainPath.todo,
+    path: RouterMainPath.todo,
     component: TodoComponent
   },
   {
-    path: routerMainPath.weather,
+    path: RouterMainPath.weather,
     component: WeatherComponent,
     children: [
       {
-        path: routerWeatherPath.today,
+        path: RouterWeatherPath.today,
         component: TodayComponent
       },
       {
-        path: routerWeatherPath.week,
+        path: RouterWeatherPath.week,
         component: WeekComponent
       },
       {
-        path: routerWeatherPath.radar,
+        path: RouterWeatherPath.radar,
         component: RadarComponent
       },
       {
-        path: routerWeatherPath.empty,
-        redirectTo: routerWeatherPath.today,
-        pathMatch: routerMainPath.full
+        path: RouterWeatherPath.empty,
+        redirectTo: RouterWeatherPath.today,
+        pathMatch: RouterMainPath.full
       },
       {
-        path: routerMainPath.wildcard,
-        redirectTo: routerWeatherPath.today,
-        pathMatch: routerMainPath.full
+        path: RouterMainPath.wildcard,
+        redirectTo: RouterWeatherPath.today,
+        pathMatch: RouterMainPath.full
       },
     ]
   },
   {
-    path: routerMainPath.shopping,
+    path: RouterMainPath.shopping,
     component: ShoppingComponent
   },
   {
-    path: routerMainPath.fridge,
+    path: RouterMainPath.fridge,
     component: FridgeComponent
   },
   {
-    path: routerMainPath.search,
+    path: RouterMainPath.search,
     component: SearchComponent
   },
   {
-    path: routerMainPath.empty,
-    redirectTo: routerMainPath.home,
-    pathMatch: routerMainPath.full
+    path: RouterMainPath.empty,
+    redirectTo: RouterMainPath.home,
+    pathMatch: RouterMainPath.full
   },
   {
-    path: routerMainPath.wildcard,
-    redirectTo: routerMainPath.home,
-    pathMatch: routerMainPath.full
+    path: RouterMainPath.wildcard,
+    redirectTo: RouterMainPath.home,
+    pathMatch: RouterMainPath.full
   },
 ];
 

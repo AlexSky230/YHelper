@@ -57,12 +57,4 @@ export class FridgeComponent implements OnInit {
     return this.fridgeService.getActiveShelfItem();
   }
 
-  // public get toBuyAmount(): number {
-  //   return this.shoppingService.getNewShoppingItems().length;
-  // }
-  //
-  // public get boughtAmount(): number {
-  //   return this.shoppingService.getOldShoppingItems().length;
-  // }
-
 }

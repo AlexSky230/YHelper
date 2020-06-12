@@ -65,7 +65,7 @@
         </div>
 
         <div class="hourly-table">
-          <div *ngFor="let hourTemp of forecast.hourly.data.slice(0, 20), even as even">
+          <div *ngFor="let hourTemp of forecast.hourly.data.slice(0, 16), even as even">
             <div *ngIf="even" class="hourly-item">
               <div class="small grey">{{hourTemp.time * 1000 | date: 'h a'}}</div>
               <div>{{hourTemp.temperature.toFixed(0) + weatherCard.degree}}</div>

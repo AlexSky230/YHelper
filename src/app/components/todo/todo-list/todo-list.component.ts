@@ -25,7 +25,9 @@ export class TodoListComponent {
   ) { }
 
   public editTodo(todo: Todo) {
-    this.bottomSheet.open(TodoHeaderComponent, {data: todo});
+    this.bottomSheet.open(TodoHeaderComponent, {
+      data: todo,
+    });
   }
 
   public removeTodo(todo: Todo): void {
@@ -40,12 +42,6 @@ export class TodoListComponent {
   public toggleTodoComplete(todo: Todo): void {
     this.todoService.toggleComplete(todo);
   }
-
-  // public longPressMenu(todo: Todo) {
-  //   this.menuData = todo;
-  //   console.log(this.menuData);
-  //   this.trigger.openMenu();
-  // }
 
   get todos(): Todo[] {
     return this.todoService.getTodos();

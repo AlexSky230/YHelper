@@ -24,6 +24,7 @@ export class ShoppingHeaderComponent implements OnInit {
     private bottomSheetRef: MatBottomSheetRef<ShoppingHeaderComponent>,
     private shoppingService: ShoppingService,
   ) {
+    this.newShoppingItem = new ShoppingItem();
   }
 
   /**

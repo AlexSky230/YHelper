@@ -36,10 +36,10 @@
       <div class="inputs">
         <mat-form-field class="form-field">
           <mat-label>Forecast for:</mat-label>
-          <mat-select [value]="0" class="my-select">
+          <mat-select [(value)]="activeLocation" class="my-select">
             <mat-option
-              *ngFor="let location of locations index as i"
-              [value]="i"
+              *ngFor="let location of locations"
+              [value]="location"
               (click)="cityClicked(location)">
               {{ location.title }}
             </mat-option>

@@ -30,7 +30,9 @@ export class TodoComponent implements OnInit {
   }
 
   public openMenu() {
-    this.bottomSheet.open(TodoHeaderComponent);
+    this.bottomSheet.open(TodoHeaderComponent, {
+      closeOnNavigation: true
+    });
   }
 
   get todos(): Todo[] {

@@ -163,10 +163,7 @@ export class FridgeService {
 
   public setShelfItemList(): void {
     this.fridgeShelfItems = (this.activeShelfItem.key === CoreLabels.all) ?
-      this.fridgeItems :
-      (this.activeShelfItem.order > 4) ?
-        this.fridgeItems.filter(fi => fi.order > 4) :
-        this.fridgeItems.filter(fi => fi.key === this.activeShelfItem.key);
+      this.fridgeItems : this.fridgeItems.filter(fi => fi.order === this.activeShelfItem.order);
   }
 
   private sortItems(): void {

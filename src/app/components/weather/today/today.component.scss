@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: center;
   margin: 0 1em 0.2em 1em;
-  padding-top: 1em;
+  padding-top: 2em;
 }
 
 .card-body {
@@ -20,9 +20,10 @@
 }
 
 .hourly-table {
+  max-width: 15em;
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .hourly-item {

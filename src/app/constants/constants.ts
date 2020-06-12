@@ -14,7 +14,7 @@ export enum ButtonIcons {
   remove = 'remove',
 }
 
-export enum routerMainPath {
+export enum RouterMainPath {
   empty = '',
   full = 'full',
   fridge = 'fridge',
@@ -26,7 +26,7 @@ export enum routerMainPath {
   wildcard = '**'
 }
 
-export enum routerWeatherPath {
+export enum RouterWeatherPath {
   empty = '',
   week = 'week',
   radar = 'radar',
@@ -51,7 +51,12 @@ export enum CoreLabels {
   toDo = 'To Do',
 }
 
-export enum weatherCard {
+export enum ServiceItems {
+  forecast = 'Forecast',
+  forecastTime = 'ForecastTime',
+  lastSavedLocation = 'lastSavedLocation',
+}
+export enum WeatherCard {
   chanceOfRain = 'Chance of rain: ',
   coldest = 'Coldest during night: ',
   degree = '°',
@@ -64,7 +69,7 @@ export enum weatherCard {
   windSpeed = 'Wind speed: ',
 }
 
-export enum weatherIcons {
+export enum WeatherIcons {
   'clear-day' = 'wi wi-day-sunny',
   'clear-night' = 'wi wi-night-clear',
   'partly-cloudy-day' = 'wi wi-day-cloudy',
@@ -147,21 +152,24 @@ export const LOCATIONS = {
     title: 'Current Location',
     latitude: null,
     longitude: null,
-    radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml'
+    radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml',
+    index: 0,
   },
   goldCoast: {
     key: 'goldCoast',
     title: 'Gold Coast',
     latitude: -28.0167,
     longitude: 153.4000,
-    radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml'
+    radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml',
+    index: 1,
   },
   brisbane: {
     key: 'brisbane',
     title: 'Brisbane',
     latitude: -27.4698,
     longitude: 153.0251,
-    radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml'
+    radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml',
+    index: 2,
   },
   sydney: {
     key: 'sydney',
@@ -169,6 +177,7 @@ export const LOCATIONS = {
     latitude: -33.8708,
     longitude: 151.2073,
     radarLink: 'http://www.bom.gov.au/products/IDR713.loop.shtml',
+    index: 3,
   },
   melbourne: {
     key: 'melbourne',
@@ -176,6 +185,7 @@ export const LOCATIONS = {
     latitude: -37.8136,
     longitude: 144.9631,
     radarLink: 'http://www.bom.gov.au/products/IDR023.loop.shtml',
+    index: 4,
   },
   perth: {
     key: 'perth',
@@ -183,6 +193,7 @@ export const LOCATIONS = {
     latitude: -31.9505,
     longitude: 115.8605,
     radarLink: 'http://www.bom.gov.au/products/IDR703.loop.shtml#skip',
+    index: 5,
   },
   canberra: {
     key: 'canberra',
@@ -190,21 +201,22 @@ export const LOCATIONS = {
     latitude: -35.2809,
     longitude: 149.1300,
     radarLink: 'http://www.bom.gov.au/products/IDR403.loop.shtml',
+    index: 6,
   },
 };
 
 export const MAIN_NAV = {
-  todo: {key: 'todo', title: 'Todo', icon: 'format_list_numbered', link: routerMainPath.todo},
-  weather: {key: 'weather', title: 'Weather', icon: 'filter_drama', link: routerMainPath.weather},
-  shoppingList: {key: 'shoppingList', title: 'Shopping List', icon: 'shopping_cart', link: routerMainPath.shopping},
-  fridgeInventory: {key: 'fridgeInventory', title: 'Fridge Inventory', icon: 'storage', link: routerMainPath.fridge},
-  search: {key: 'search', title: 'Search', icon: 'search', link: routerMainPath.search},
+  todo: {key: 'todo', title: 'Todo', icon: 'format_list_numbered', link: RouterMainPath.todo},
+  weather: {key: 'weather', title: 'Weather', icon: 'filter_drama', link: RouterMainPath.weather},
+  shoppingList: {key: 'shoppingList', title: 'Shopping List', icon: 'shopping_cart', link: RouterMainPath.shopping},
+  fridgeInventory: {key: 'fridgeInventory', title: 'Fridge Inventory', icon: 'storage', link: RouterMainPath.fridge},
+  search: {key: 'search', title: 'Search', icon: 'search', link: RouterMainPath.search},
 };
 
 export const WEATHER_TABS = {
-  today: {key: 'today', title: 'Today', link: routerWeatherPath.today},
-  week: {key: 'week', title: '7 Days', link: routerWeatherPath.week},
-  radar: {key: 'radar', title: 'Radar', link: routerWeatherPath.radar},
+  today: {key: 'today', title: 'Today', link: RouterWeatherPath.today},
+  week: {key: 'week', title: '7 Days', link: RouterWeatherPath.week},
+  radar: {key: 'radar', title: 'Radar', link: RouterWeatherPath.radar},
 };
 
 

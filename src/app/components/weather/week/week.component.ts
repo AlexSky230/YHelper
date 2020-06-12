@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SharedForecastService} from '../../../helpers/shared-forecast.service';
 import {Subscription} from 'rxjs';
-import {weatherIcons} from '../../../constants/constants';
+import {WeatherIcons} from '../../../constants/constants';
 import {IsLoadingService} from '../../../helpers/is-loading.service';
 
 @Component({
@@ -34,7 +34,7 @@ export class WeekComponent implements OnInit, OnDestroy {
    * match Icons from Weather Forecast API with Wi-Icons
    */
   public getWiIcon(icon: string) {
-    return weatherIcons[icon] ? weatherIcons[icon] : weatherIcons['partly-cloudy-day'];
+    return WeatherIcons[icon] ? WeatherIcons[icon] : WeatherIcons['partly-cloudy-day'];
   }
 
   ngOnDestroy(): void {

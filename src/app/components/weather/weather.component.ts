@@ -35,8 +35,9 @@ export class WeatherComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * get coordinates from browser, set activeLocation to Current Location
-   * if restricted, set GoldCoast as activeLocation
+   * get last saved Location and set it to activeLocation
+   * if activeLocation is current or does not exist, get coordinates from browser, set activeLocation to Current Location
+   * if restricted, set GoldCoast as default activeLocation
    */
 
   // TODO Fix bug with saving lst location. It does not work for some reason

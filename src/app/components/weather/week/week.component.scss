@@ -3,24 +3,15 @@
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  padding: 0.5em 1em 0 1em;
+  padding: 1.5em 1em 0 1em;
 }
 
 .day-forecast-item {
+  max-width: 18em;
   display: flex;
   flex-flow: row;
-  flex-grow: 1;
   padding: 0.5em 0 0.5em 0;
   border-bottom: solid #424242 1px;
-}
-
-.forecast-text-container {
-  //flex-grow: 1;
-  //text-align: left;
-  //position: relative;
-  //top: -0.2em;
-  //display: inline-block;
-  //padding: 0 0 0.4em 1em;
 }
 
 .temperature-container {
@@ -31,6 +22,7 @@
   display: inline-block;
   width: 4em;
   height: 3em;
+  padding-right: 1.5em;
 }
 
 .up-arrow-icon-container {

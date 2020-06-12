@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {SharedForecastService} from '../../../helpers/shared-forecast.service';
-import {weatherIcons, weatherCard} from '../../../constants/constants';
+import {WeatherIcons, WeatherCard} from '../../../constants/constants';
 import {Subscription} from 'rxjs';
 import {IsLoadingService} from '../../../helpers/is-loading.service';
 
@@ -11,7 +11,7 @@ import {IsLoadingService} from '../../../helpers/is-loading.service';
 })
 export class TodayComponent implements OnInit, OnDestroy {
 
-  public weatherCard = weatherCard;
+  public weatherCard = WeatherCard;
   public forecast: any;
   public isLoading: boolean;
 
@@ -38,7 +38,7 @@ export class TodayComponent implements OnInit, OnDestroy {
    * match Icons from Weather Forecast API with Wi-Icons
    */
   public getWiIcon(icon: string) {
-    return weatherIcons[icon] ? weatherIcons[icon] : weatherIcons['partly-cloudy-day'];
+    return WeatherIcons[icon] ? WeatherIcons[icon] : WeatherIcons['partly-cloudy-day'];
   }
 
   // TODO add logic to show seabreeze link only when windy and
