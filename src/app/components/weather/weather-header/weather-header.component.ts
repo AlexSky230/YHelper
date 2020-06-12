@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ForecastLocation} from '../../../helpers/classes/forecast-location';
 import {ButtonIcons, LOCATIONS} from '../../../constants/constants';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-weather-header',

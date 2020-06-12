@@ -35,7 +35,8 @@
     <div class="flex-container">
       <div class="inputs">
         <mat-form-field class="form-field">
-          <mat-label>Forecast for:</mat-label>
+          <mat-label>Choose Location:</mat-label>
+          <mat-placeholder>{{activeLocation.title}}</mat-placeholder>
           <mat-select [(value)]="activeLocation" class="my-select">
             <mat-option
               *ngFor="let location of locations"
@@ -44,8 +45,8 @@
               {{ location.title }}
             </mat-option>
           </mat-select>
-          <mat-hint>Lat: {{ latitude }}</mat-hint>
-          <mat-hint align="end">Long: {{ longitude }}</mat-hint>
+          <mat-hint *ngIf="latitude">Lat: {{ latitude }}</mat-hint>
+          <mat-hint *ngIf="longitude" align="end">Long: {{ longitude }}</mat-hint>
         </mat-form-field>
       </div>
     </div>
@@ -53,7 +54,7 @@
 
   <mat-card *ngIf="!panelOpened" class="mini">
     <div class="mini-flex-container">
-      <span class="mini-text grey">Forecast for:</span>
+      <span class="mini-text grey">Location:</span>
       <span class="mini-text ml-2">{{ activeLocation.title }}</span>
     </div>
     <mat-icon

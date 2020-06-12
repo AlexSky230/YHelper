@@ -11,6 +11,7 @@ export class SharedForecastService {
 
   // tslint:disable-next-line:variable-name
   private _forecast = new ReplaySubject();
+
   public sharedForecast = this._forecast.asObservable();
 
   public setSharedForecast(forecast): void {

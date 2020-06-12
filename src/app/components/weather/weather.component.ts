@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {map, switchMap, tap} from 'rxjs/operators';
-import {Observable, Subscription, timer} from 'rxjs';
+import {Observable, ReplaySubject, Subscription, timer} from 'rxjs';
 
 import {LocalStorageService} from '../../services/local-storage.service';
 import {WeatherService} from '../../services/weather-http.service';
@@ -18,15 +18,20 @@ import {IsLoadingService} from '../../helpers/is-loading.service';
 })
 export class WeatherComponent implements OnInit, OnDestroy {
 
+  private activeLocationSub = new ReplaySubject();
+  public activeLocationObs = this.activeLocationSub.asObservable();
+
   public activeLocation: ForecastLocation;
-  public forecast: any;
   public currentLocationLatitude: number;
   public currentLocationLongitude: number;
   public isLoading: boolean;
-  public busySubscription: Subscription;
   public lastSavedLocation: ForecastLocation;
 
   public serviceItems: typeof ServiceItems = ServiceItems;
+
+  private busySubscription: Subscription;
+  private locationSubscription: Subscription;
+  private forecastSubscription: Subscription;
 
   constructor(
     private isLoadingService: IsLoadingService,
@@ -49,14 +54,18 @@ export class WeatherComponent implements OnInit, OnDestroy {
       .subscribe(isBusy => this.isLoading = isBusy);
     this.getSavedLocation();
 
-    // if (this.lastSavedLocation && this.lastSavedLocation.title !== LOCATIONS.currentLocation.title) {
+    this.locationSubscription = this.activeLocationObs
+      .subscribe((location: ForecastLocation) => {
+        this.activeLocation = location;
+        this.sharedForecastService.setActiveLocation(location);
+      });
+
     if (this.lastSavedLocation) {
-      this.activeLocation = this.lastSavedLocation;
+      this.activeLocationSub.next(this.lastSavedLocation);
     } else {
       if (navigator.geolocation) {
         this.getCoordinates();
         this.setLocationToCurrent();
-        this.saveLocationToStorage();
       } else {
         this.setLocationToDefault();
       }
@@ -72,25 +81,26 @@ export class WeatherComponent implements OnInit, OnDestroy {
         if (this.activeLocation === LOCATIONS.currentLocation) {
           this.setCoordinates();
         }
-        this.getForecast()
+        this.forecastSubscription = this.getForecast()
           .subscribe((forecast: object) => {
-            this.forecast = forecast;
-            this.sharedForecastService.setSharedForecast(forecast);
+            if (forecast) {
+              this.sharedForecastService.setSharedForecast(forecast);
+            }
           });
       });
   }
 
   public saveLocationToStorage(): void {
-    this.lastSavedLocation = this.activeLocation;
     this.browserLocalStorageService
-      .addDataToStorage(this.serviceItems.lastSavedLocation, this.lastSavedLocation);
+      .addDataToStorage(this.serviceItems.lastSavedLocation, this.activeLocation);
   }
 
   public getSavedLocation(): void {
     this.browserLocalStorageService.getDataFromStorageById(this.serviceItems.lastSavedLocation)
       .subscribe(location => {
         if (location) {
-          this.lastSavedLocation = location;
+          this.lastSavedLocation = location; // TODO don't forget to assign active Location to this somewhere
+          this.activeLocationSub.next(location);
         }
       });
   }
@@ -107,16 +117,16 @@ export class WeatherComponent implements OnInit, OnDestroy {
   }
 
   public locationUpdate(location: ForecastLocation): void {
-    this.activeLocation = location;
-    this.saveLocationToStorage();
-    this.sharedForecastService.setActiveLocation(location);
-    if (this.activeLocation === LOCATIONS.currentLocation) {
+    this.activeLocationSub.next(location);
+    if (this.activeLocation.key === LOCATIONS.currentLocation.key) {
       navigator.geolocation ? this.getCoordinates() : this.setLocationToDefault();
     }
-    this.getForecast().subscribe((forecast: object) => {
-      this.forecast = forecast;
-      this.sharedForecastService.setSharedForecast(forecast);
-    });
+    this.getForecast()
+      .subscribe((forecast: object) => {
+        if (forecast) {
+          this.sharedForecastService.setSharedForecast(forecast);
+        }
+      });
   }
 
   /**
@@ -124,13 +134,14 @@ export class WeatherComponent implements OnInit, OnDestroy {
    */
   private getForecast(): Observable<object> {
     this.isLoadingService.setIsLoading(true);
+
     return this.forecastIsFresh().pipe(
       switchMap((isFresh: boolean): Observable<object> => {
         if (isFresh) {
           // get from local storage
           this.isLoadingService.setIsLoading(false);
           return this.browserLocalStorageService
-            .getDataFromStorageById(this.activeLocation.key + (this.serviceItems.forecast));
+            .getDataFromStorageById(this.activeLocation.key + this.serviceItems.forecast);
         }
         // get from API
         return this.forecastFromAPI().pipe(
@@ -151,8 +162,8 @@ export class WeatherComponent implements OnInit, OnDestroy {
       .getDataFromStorageById(this.activeLocation.key + this.serviceItems.forecastTime)
       .pipe(
         map((time: number): boolean => {
-          let result = false;
           const currentTime = Date.now();
+          let result = false;
           if (time !== undefined) {
             result = Math.abs(currentTime - time) < (1000 * 60 * 60);
           }
@@ -164,11 +175,9 @@ export class WeatherComponent implements OnInit, OnDestroy {
   private forecastFromAPI(): Observable<object> {
     if (this.activeLocation === LOCATIONS.currentLocation &&
       this.currentLocationLatitude && this.currentLocationLongitude) {
-
       return this.weatherService
         .getForecast(this.currentLocationLatitude, this.currentLocationLongitude);
     } else {
-
       return this.weatherService
         .getForecast(this.activeLocation.latitude, this.activeLocation.longitude);
     }
@@ -183,19 +192,18 @@ export class WeatherComponent implements OnInit, OnDestroy {
   }
 
   private setLocationToCurrent() {
-    this.activeLocation = LOCATIONS.currentLocation;
-    this.sharedForecastService.setActiveLocation(LOCATIONS.currentLocation);
+    this.activeLocationSub.next(LOCATIONS.currentLocation);
     this.getCoordinates();
-    this.saveLocationToStorage();
   }
 
   private setLocationToDefault() {
-    this.activeLocation = LOCATIONS.goldCoast;
-    this.sharedForecastService.setActiveLocation(LOCATIONS.goldCoast);
-    this.saveLocationToStorage();
+    this.activeLocationSub.next(LOCATIONS.goldCoast);
   }
 
   ngOnDestroy(): void {
+    this.saveLocationToStorage();
     this.busySubscription.unsubscribe();
+    this.locationSubscription.unsubscribe();
+    this.forecastSubscription.unsubscribe();
   }
 }
