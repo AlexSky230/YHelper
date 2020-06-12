@@ -46,9 +46,6 @@ export class WeatherComponent implements OnInit, OnDestroy {
    * if activeLocation is current or does not exist, get coordinates from browser, set activeLocation to Current Location
    * if restricted, set GoldCoast as default activeLocation
    */
-
-  // TODO Fix bug with saving lst location. It does not work for some reason
-
   public ngOnInit() {
     this.busySubscription = this.isLoadingService.isLoading
       .subscribe(isBusy => this.isLoading = isBusy);
@@ -75,7 +72,6 @@ export class WeatherComponent implements OnInit, OnDestroy {
      * and passes value to SharedForecast service
      * also updating busy indicator boolean using Loading service
      */
-
     timer(0, (1000 * 60 * 60 * 1))
       .subscribe(() => {
         if (this.activeLocation === LOCATIONS.currentLocation) {
@@ -127,6 +123,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
           this.sharedForecastService.setSharedForecast(forecast);
         }
       });
+    this.saveLocationToStorage();
   }
 
   /**
@@ -194,10 +191,12 @@ export class WeatherComponent implements OnInit, OnDestroy {
   private setLocationToCurrent() {
     this.activeLocationSub.next(LOCATIONS.currentLocation);
     this.getCoordinates();
+    this.saveLocationToStorage();
   }
 
   private setLocationToDefault() {
     this.activeLocationSub.next(LOCATIONS.goldCoast);
+    this.saveLocationToStorage();
   }
 
   ngOnDestroy(): void {
