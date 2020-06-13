@@ -7,23 +7,18 @@ import {ForecastLocation} from './classes/forecast-location';
 })
 export class SharedForecastService {
 
-  private activeLocation: ForecastLocation;
+  private locationReplaySubject = new ReplaySubject();
+  public sharedActiveLocation = this.locationReplaySubject.asObservable();
 
-  // tslint:disable-next-line:variable-name
-  private _forecast = new ReplaySubject();
+  private forecastReplaySubject = new ReplaySubject();
+  public sharedForecast = this.forecastReplaySubject.asObservable();
 
-  public sharedForecast = this._forecast.asObservable();
-
-  public setSharedForecast(forecast): void {
-    this._forecast.next(forecast);
-  }
 
   public setActiveLocation(location: ForecastLocation): void {
-    this.activeLocation = location;
+    this.locationReplaySubject.next(location);
   }
 
-  public getActiveLocation(): ForecastLocation {
-    return this.activeLocation;
+  public setSharedForecast(forecast: any): void {
+    this.forecastReplaySubject.next(forecast);
   }
-
 }

@@ -51,7 +51,7 @@ export enum CoreLabels {
   toDo = 'To Do',
 }
 
-export enum ServiceItems {
+export enum NamesForService {
   forecast = 'Forecast',
   forecastTime = 'ForecastTime',
   lastSavedLocation = 'lastSavedLocation',

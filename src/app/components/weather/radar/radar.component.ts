@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ForecastLocation} from '../../../helpers/classes/forecast-location';
 import {SharedForecastService} from '../../../helpers/shared-forecast.service';
 
 @Component({
@@ -18,13 +17,13 @@ export class RadarComponent implements OnInit, OnDestroy {
   //  Should readdress to the closest radar comparing coordinates somehow check link below...
   //  https://www.sitepoint.com/community/t/find-record-with-closest-latitude-longitude-from-stringifyed-data-in-localstorage/23845
   public ngOnInit(): void {
-    this.radarLink = this.activeLocation.radarLink;
+    // this.radarLink = this.activeLocation.radarLink;
   }
 
-  // TODO Update Link in Iframe dynamically, or create a refresh function.
-  get activeLocation(): ForecastLocation {
-    return this.sharedForecast.getActiveLocation();
-  }
+  // // TODO Update Link in Iframe dynamically, or create a refresh function.
+  // get activeLocation(): ForecastLocation {
+  //   this.sharedForecast.sharedActiveLocation.subscribe();
+  // }
 
   public ngOnDestroy(): void {
     this.radarLink = '';

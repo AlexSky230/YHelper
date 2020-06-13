@@ -22,8 +22,8 @@ export class WeatherHeaderComponent implements OnInit {
   // TODO add link selector for Radar and SeaBreeze
 
   /**
-   * first create array of keys,
-   * then change each element in this array with Valueobject of LOCATIONS
+   * crate list of locations, first create array of keys,
+   * then change each element in this array with Value of LOCATIONS
    */
   ngOnInit(): void {
     this.panelOpened = false;
@@ -33,12 +33,12 @@ export class WeatherHeaderComponent implements OnInit {
   }
 
   public get latitude() {
-    return this.activeLocation === LOCATIONS.currentLocation ?
+    return this.activeLocation.key === LOCATIONS.currentLocation.key ?
       this.currentLocationLatitude : this.activeLocation.latitude;
   }
 
   public get longitude() {
-    return this.activeLocation === LOCATIONS.currentLocation ?
+    return this.activeLocation.key === LOCATIONS.currentLocation.key ?
       this.currentLocationLongitude : this.activeLocation.longitude;
   }
 
