@@ -50,6 +50,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
       .subscribe((location: ForecastLocation) => {
         this.activeLocation = location;
         this.saveLocationToStorage();
+        this.updateForecast();
       });
 
     this.getLocation();
@@ -82,7 +83,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
     }, 1000 * 60 * 60);
   }
 
-  public updateForecast(): void {
+  public updateForecast(): void { // subscribe is after data came
     this.forecastSubscription = this.getForecast()
       .subscribe((forecastData: any) => {
           if (forecastData) {
@@ -104,11 +105,9 @@ export class WeatherComponent implements OnInit, OnDestroy {
           this.sharedForecastService.setActiveLocation(location);
         } else if (navigator.geolocation) {
           this.getCoordinates();
-          this.setLocationToCurrent();
         } else {
           this.setLocationToDefault();
         }
-        this.updateForecast();
       });
   }
 
@@ -125,6 +124,8 @@ export class WeatherComponent implements OnInit, OnDestroy {
     navigator.geolocation.getCurrentPosition(position => {
       this.currentLocationLatitude = Math.floor(position.coords.latitude * 10000) / 10000;
       this.currentLocationLongitude = Math.floor(position.coords.longitude * 10000) / 10000;
+      this.setLocationToCurrent();
+      this.updateForecast();
     });
   }
 
@@ -133,17 +134,18 @@ export class WeatherComponent implements OnInit, OnDestroy {
     if (this.activeLocation.key === LOCATIONS.currentLocation.key) {
       navigator.geolocation ? this.getCoordinates() : this.setLocationToDefault();
     }
-    this.updateForecast();
   }
 
   /**
    * get forecast from API or Local storage if fresh
    */
   private getForecast(): Observable<object> {
-    let forecastResult: Observable<object>;
+    // let forecastResult: Observable<object>;
     this.isLoadingService.setIsLoading(true);
 
-    forecastResult = this.forecastIsFresh().pipe(
+    // forecastResult = this.forecastIsFresh().pipe(
+
+    return this.forecastIsFresh().pipe(
       switchMap((isFresh: boolean): Observable<object> => {
         if (isFresh) {
           // get from local storage
@@ -158,9 +160,10 @@ export class WeatherComponent implements OnInit, OnDestroy {
             this.isLoadingService.setIsLoading(false);
           })
         );
+        // return this.forecastFromAPI();
       })
     );
-    return forecastResult;
+    // return forecastResult;
   }
 
   /**
