@@ -50,26 +50,14 @@ export class WeatherComponent implements OnInit, OnDestroy {
       .subscribe((location: ForecastLocation) => {
         this.activeLocation = location;
         this.saveLocationToStorage();
+        if (this.activeLocation.key === LOCATIONS.currentLocation.key
+          && (!this.currentLocationLongitude || !this.currentLocationLatitude)) {
+          this.getCoordinates();
+        }
         this.updateForecast();
       });
 
     this.getLocation();
-
-    //   // TODO FIX ORDER timer fires before getLocation()
-    //   this.forecastSubscription = timer(0, (1000 * 60 * 60)).pipe(
-    //     switchMap((): Observable<object> => {
-    //       if (this.activeLocation.key === LOCATIONS.currentLocation.key) {
-    //         this.setCoordinates();
-    //       }
-    //       return this.getForecast().pipe(
-    //         tap((forecastData: object) => {
-    //           if (forecastData) {
-    //             this.sharedForecastService.setSharedForecast(forecastData);
-    //           }
-    //         }));
-    //     })
-    //   ).subscribe();
-    // }
 
     /**
      * execute straight away and then with intervals given
@@ -83,7 +71,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
     }, 1000 * 60 * 60);
   }
 
-  public updateForecast(): void { // subscribe is after data came
+  public updateForecast(): void {
     this.forecastSubscription = this.getForecast()
       .subscribe((forecastData: any) => {
           if (forecastData) {
@@ -103,10 +91,11 @@ export class WeatherComponent implements OnInit, OnDestroy {
       .subscribe(location => {
         if (location) {
           this.sharedForecastService.setActiveLocation(location);
-        } else if (navigator.geolocation) {
-          this.getCoordinates();
+          if (location.key === LOCATIONS.currentLocation.key) {
+            this.setCoordinates();
+          }
         } else {
-          this.setLocationToDefault();
+          this.setLocationToCurrent();
         }
       });
   }
@@ -124,13 +113,15 @@ export class WeatherComponent implements OnInit, OnDestroy {
     navigator.geolocation.getCurrentPosition(position => {
       this.currentLocationLatitude = Math.floor(position.coords.latitude * 10000) / 10000;
       this.currentLocationLongitude = Math.floor(position.coords.longitude * 10000) / 10000;
-      this.setLocationToCurrent();
       this.updateForecast();
+    }, () => {
+      this.setLocationToDefault();
     });
   }
 
   public locationUpdate(location: ForecastLocation): void {
     this.sharedForecastService.setActiveLocation(location);
+    this.saveLocationToStorage();
     if (this.activeLocation.key === LOCATIONS.currentLocation.key) {
       navigator.geolocation ? this.getCoordinates() : this.setLocationToDefault();
     }
@@ -142,8 +133,6 @@ export class WeatherComponent implements OnInit, OnDestroy {
   private getForecast(): Observable<object> {
     // let forecastResult: Observable<object>;
     this.isLoadingService.setIsLoading(true);
-
-    // forecastResult = this.forecastIsFresh().pipe(
 
     return this.forecastIsFresh().pipe(
       switchMap((isFresh: boolean): Observable<object> => {
@@ -160,7 +149,6 @@ export class WeatherComponent implements OnInit, OnDestroy {
             this.isLoadingService.setIsLoading(false);
           })
         );
-        // return this.forecastFromAPI();
       })
     );
     // return forecastResult;
