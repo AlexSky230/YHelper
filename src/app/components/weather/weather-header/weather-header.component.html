@@ -8,7 +8,7 @@
       <div>
         <button mat-stroked-button color="accent">
           <a
-            class="neg-margin-l pr-1 text-decoration-none primary-color"
+            class="neg-margin-l pr-1 text-decoration-none"
             [href]="seabreezeLink"
             target="_blank">
             Seabreeze
@@ -29,7 +29,7 @@
 
         <button mat-stroked-button color="accent" class="ml-2">
           <a
-            class="neg-margin-l pr-1 text-decoration-none primary-color"
+            class="neg-margin-l pr-1 text-decoration-none"
             [href]="radarLink"
             target="_blank">
             Radar
@@ -60,7 +60,7 @@
     <div class="flex-container">
       <div class="inputs">
         <mat-form-field class="form-field" floatLabel="never">
-          <mat-label>Location:</mat-label>
+          <mat-label>{{activeLocation.title}}</mat-label>
 <!--          <mat-placeholder>{{activeLocation.title}}</mat-placeholder>-->
           <mat-select [(value)]="activeLocation" class="my-select">
             <mat-option
