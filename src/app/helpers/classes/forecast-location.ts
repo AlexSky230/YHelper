@@ -4,5 +4,6 @@ export class ForecastLocation {
   latitude: number;
   longitude: number;
   radarLink: string;
+  seabreezeLink: string;
   index: number;
 }

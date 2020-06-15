@@ -6,22 +6,47 @@
 
     <div class="button-group">
       <div>
-        <a
-          mat-stroked-button
-          color="accent"
-          href="https://www.seabreeze.com.au/weather/wind-forecast/qld-gold-coast"
-          target="_blank"
-          class="link-button">
-          Seabreeze
-        </a>
-        <a
-          mat-stroked-button
-          color="accent"
-          href="http://www.bom.gov.au/products/IDR663.loop.shtml"
-          target="_blank"
-          class="ml-2 link-button">
-          Radar
-        </a>
+        <button mat-stroked-button color="accent">
+          <a
+            class="neg-margin-l pr-1 text-decoration-none primary-color"
+            [href]="seabreezeLink"
+            target="_blank">
+            Seabreeze
+          </a>
+          <mat-icon class="pl-1 border-left border-secondary neg-margin-r"
+                    [matMenuTriggerFor]="seabreezeMenu">{{buttonIcons.menu}}
+          </mat-icon>
+        </button>
+
+        <mat-menu #seabreezeMenu="matMenu">
+          <button *ngFor="let location of seabreezeLocations" mat-menu-item
+          (click)="seabreezeLinkClicked(location)">
+            <div [class.primary-color]="location.key === seabreezeSelected">
+              {{location.title}}
+            </div>
+          </button>
+        </mat-menu>
+
+        <button mat-stroked-button color="accent" class="ml-2">
+          <a
+            class="neg-margin-l pr-1 text-decoration-none primary-color"
+            [href]="radarLink"
+            target="_blank">
+            Radar
+          </a>
+          <mat-icon class="pl-1 border-left border-secondary neg-margin-r"
+                    [matMenuTriggerFor]="radarMenu">{{buttonIcons.menu}}
+          </mat-icon>
+        </button>
+
+        <mat-menu #radarMenu="matMenu">
+          <button *ngFor="let location of radarLocations" mat-menu-item
+                  (click)="radarLinkClicked(location)">
+            <div [class.primary-color]="location.key === radarSelected">
+              {{location.title}}
+            </div>
+          </button>
+        </mat-menu>
       </div>
 
       <mat-icon
@@ -34,9 +59,9 @@
 
     <div class="flex-container">
       <div class="inputs">
-        <mat-form-field class="form-field">
+        <mat-form-field class="form-field" floatLabel="never">
           <mat-label>Location:</mat-label>
-          <mat-placeholder>{{activeLocation.title}}</mat-placeholder>
+<!--          <mat-placeholder>{{activeLocation.title}}</mat-placeholder>-->
           <mat-select [(value)]="activeLocation" class="my-select">
             <mat-option
               *ngFor="let location of locations"

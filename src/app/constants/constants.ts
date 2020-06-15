@@ -10,6 +10,7 @@ export enum ButtonIcons {
   expandLess = 'expand_less',
   info = 'info',
   filterList = 'filter_list',
+  menu = 'menu',
   toFridge = 'move_to_inbox',
   remove = 'remove',
 }
@@ -52,9 +53,13 @@ export enum CoreLabels {
 }
 
 export enum NamesForService {
+  activeRadar = 'activeRadar',
+  activeSeabreeze = 'activeSeebreeze',
   forecast = 'Forecast',
   forecastTime = 'ForecastTime',
   lastSavedLocation = 'lastSavedLocation',
+  radarLink = 'radarLink',
+  seabreezeLink = 'seabreezeLink',
 }
 export enum WeatherCard {
   chanceOfRain = 'Chance of rain: ',
@@ -150,9 +155,10 @@ export const LOCATIONS = {
   currentLocation: {
     key: 'currentLocation',
     title: 'Current Location',
-    latitude: null,
-    longitude: null,
-    radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml',
+    latitude: undefined,
+    longitude: undefined,
+    radarLink: undefined,
+    seabreezeLink: undefined,
     index: 0,
   },
   goldCoast: {
@@ -161,6 +167,7 @@ export const LOCATIONS = {
     latitude: -28.0167,
     longitude: 153.4000,
     radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml',
+    seabreezeLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml',
     index: 1,
   },
   brisbane: {
@@ -169,6 +176,7 @@ export const LOCATIONS = {
     latitude: -27.4698,
     longitude: 153.0251,
     radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml',
+    seabreezeLink: 'https://www.seabreeze.com.au/weather/wind-forecast/brisbane',
     index: 2,
   },
   sydney: {
@@ -177,6 +185,7 @@ export const LOCATIONS = {
     latitude: -33.8708,
     longitude: 151.2073,
     radarLink: 'http://www.bom.gov.au/products/IDR713.loop.shtml',
+    seabreezeLink: 'https://www.seabreeze.com.au/weather/wind-forecast/sydney',
     index: 3,
   },
   melbourne: {
@@ -185,6 +194,7 @@ export const LOCATIONS = {
     latitude: -37.8136,
     longitude: 144.9631,
     radarLink: 'http://www.bom.gov.au/products/IDR023.loop.shtml',
+    seabreezeLink: 'https://www.seabreeze.com.au/weather/wind-forecast/melbourne',
     index: 4,
   },
   perth: {
@@ -192,7 +202,8 @@ export const LOCATIONS = {
     title: 'Perth',
     latitude: -31.9505,
     longitude: 115.8605,
-    radarLink: 'http://www.bom.gov.au/products/IDR703.loop.shtml#skip',
+    radarLink: 'http://www.bom.gov.au/products/IDR703.loop.shtml',
+    seabreezeLink: 'https://www.seabreeze.com.au/weather/wind-forecast/perth',
     index: 5,
   },
   canberra: {
@@ -201,6 +212,7 @@ export const LOCATIONS = {
     latitude: -35.2809,
     longitude: 149.1300,
     radarLink: 'http://www.bom.gov.au/products/IDR403.loop.shtml',
+    seabreezeLink: undefined,
     index: 6,
   },
 };
