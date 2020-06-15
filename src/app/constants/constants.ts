@@ -167,7 +167,7 @@ export const LOCATIONS = {
     latitude: -28.0167,
     longitude: 153.4000,
     radarLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml',
-    seabreezeLink: 'http://www.bom.gov.au/products/IDR663.loop.shtml',
+    seabreezeLink: 'https://www.seabreeze.com.au/weather/wind-forecast/qld-gold-coast',
     index: 1,
   },
   brisbane: {
