@@ -61,7 +61,6 @@
       <div class="inputs">
         <mat-form-field class="form-field" floatLabel="never">
           <mat-label>{{activeLocation.title}}</mat-label>
-<!--          <mat-placeholder>{{activeLocation.title}}</mat-placeholder>-->
           <mat-select [(value)]="activeLocation" class="my-select">
             <mat-option
               *ngFor="let location of locations"
