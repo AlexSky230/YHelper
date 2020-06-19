@@ -2,19 +2,22 @@
 
   <app-weather-tabs></app-weather-tabs>
 
-  <mat-card *ngIf="panelOpened">
+  <mat-card *ngIf="panelOpened" @slideOut>
 
     <div class="button-group">
       <div>
-        <button mat-stroked-button color="accent">
+        <button mat-stroked-button color="accent" disableRipple>
           <a
             class="neg-margin-l pr-1 text-decoration-none"
             [href]="seabreezeLink"
             target="_blank">
-            Seabreeze
+            <span>Seabreeze</span>
+<!--            <span class="small">{{seabreezeSelected}}</span>-->
           </a>
-          <mat-icon class="pl-1 border-left border-secondary neg-margin-r"
-                    [matMenuTriggerFor]="seabreezeMenu">{{buttonIcons.menu}}
+          <mat-icon class="pl-1 border-left border-secondary neg-margin-r primary-color"
+                    [matMenuTriggerFor]="seabreezeMenu">
+            {{buttonIcons.menu}}
+
           </mat-icon>
         </button>
 
@@ -27,14 +30,14 @@
           </button>
         </mat-menu>
 
-        <button mat-stroked-button color="accent" class="ml-2">
+        <button mat-stroked-button color="accent" class="ml-2" disableRipple>
           <a
             class="neg-margin-l pr-1 text-decoration-none"
             [href]="radarLink"
             target="_blank">
             Radar
           </a>
-          <mat-icon class="pl-1 border-left border-secondary neg-margin-r"
+          <mat-icon class="pl-1 border-left border-secondary neg-margin-r primary-color"
                     [matMenuTriggerFor]="radarMenu">{{buttonIcons.menu}}
           </mat-icon>
         </button>
@@ -76,7 +79,9 @@
     </div>
   </mat-card>
 
-  <mat-card *ngIf="!panelOpened" (click)="togglePanelOpened()" class="mini">
+  <mat-card *ngIf="!panelOpened"
+            (click)="togglePanelOpened()"
+            class="mini">
     <div class="mini-flex-container">
       <span class="mini-text grey">Location:</span>
       <span class="mini-text ml-2">{{ activeLocation.title }}</span>

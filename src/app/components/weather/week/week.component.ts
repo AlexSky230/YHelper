@@ -3,11 +3,13 @@ import {SharedForecastService} from '../../../helpers/shared-forecast.service';
 import {Subscription} from 'rxjs';
 import {WeatherIcons} from '../../../constants/constants';
 import {IsLoadingService} from '../../../helpers/is-loading.service';
+import {slideComponentRight} from '../../../animations/animations';
 
 @Component({
   selector: 'app-week',
   templateUrl: './week.component.html',
-  styleUrls: ['./week.component.scss']
+  styleUrls: ['./week.component.scss'],
+  // animations: [slideComponentRight]
 })
 export class WeekComponent implements OnInit, OnDestroy {
 

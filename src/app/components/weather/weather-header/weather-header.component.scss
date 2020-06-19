@@ -16,7 +16,7 @@ a {
 .button-group {
   display: flex;
   justify-content: space-between;
-  flex-flow: row;
+  flex-flow: row nowrap;
 }
 
 .inputs {
