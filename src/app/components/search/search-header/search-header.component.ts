@@ -1,36 +1,32 @@
 import {Component} from '@angular/core';
-import {SearchShortcutService} from '../../../helpers/search-shortcut.service';
-import {ShortcutFormComponent} from '../shortcut-form/shortcut-form.component';
-import {OverlayService} from '../../../helpers/overlay.service';
 import {ButtonIcons, CoreLabels} from '../../../constants/constants';
-import {MatDialog} from '@angular/material/dialog';
+import {slideOut} from '../../../animations/animations';
 
 @Component({
   selector: 'app-search-header',
   templateUrl: './search-header.component.html',
-  styleUrls: ['./search-header.component.scss']
+  styleUrls: ['./search-header.component.scss'],
+  animations: [slideOut]
 })
 export class SearchHeaderComponent {
 
   public buttonIcons = ButtonIcons;
+  public message: string;
   public coreLabels = CoreLabels;
   public searchLink: string;
+  public isInputVisible: boolean;
 
-  constructor(
-    public dialog: MatDialog,
-    private searchShortcutService: SearchShortcutService,
-    private overlayService: OverlayService
-  ) {
+  constructor() {
     this.searchLink = 'https://google.com/search?q=';
+    this.message = '';
   }
 
-  public openShortcutForm(): void {
-    this.dialog.open(ShortcutFormComponent, {
-      width: '80vw'
-    });
+  public toggleInput(): void {
+    this.isInputVisible = !this.isInputVisible;
+    this.message = '';
   }
 
-  public get portalAttached(): boolean {
-    return this.overlayService.portalAttached;
+  public search(): void {
+    window.open(this.searchLink + this.message, '_blank');
   }
 }

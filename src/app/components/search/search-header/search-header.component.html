@@ -1,40 +1,30 @@
-<section>
+<section class="back">
 
-  <button mat-fab
-          color="primary"
-          class="float-button"
-          (click)="openShortcutForm()">
-    <mat-icon>add_box</mat-icon>
-  </button>
+  <div class="container" [class.backdrop]="isInputVisible">
+    <button (click)="isInputVisible && message ? search() : toggleInput()"
+            color="primary" mat-fab class="search-button"
+            [disabled]="isInputVisible && !message">
+      <mat-icon class="search-icon">{{buttonIcons.search}}</mat-icon>
+    </button>
 
-    <div class="header-container">
-      <mat-form-field class="form-field">
+    <mat-form-field *ngIf="isInputVisible" class="search-form" @slideOut floatLabel="never">
+      <input #input matInput
+             maxlength="99"
+             appInputAutofocus
+             type="text"
+             [placeholder]="coreLabels.googleSearch"
+             [(ngModel)]="message"
+             (keyup.enter)="search()">
 
-        <input #message
-               maxlength="100"
-               matInput type="text"
-               [placeholder]="coreLabels.googleSearch"
-               [(ngModel)]="message.value">
-        <mat-hint align="end">{{ message.value.length }}/{{ message.maxLength }}</mat-hint>
-        <button [disabled]="message.value.length === 0"
-                [class.grey]="message.value.length === 0"
-                (click)="message.value = ''"
-                color="warn"
-                mat-button matSuffix mat-icon-button aria-label="Clear">
-          <mat-icon>{{ buttonIcons.clear }}</mat-icon>
-        </button>
+      <button (click)="toggleInput()"
+              color="warn"
+              mat-button matSuffix mat-icon-button aria-label="Clear">
+        <mat-icon>{{ buttonIcons.clear }}</mat-icon>
+      </button>
 
-      </mat-form-field>
-
-      <a mat-icon-button
-         [disabled]="message.value.length === 0"
-         target="_blank"
-         color="primary"
-         [href]='searchLink + message.value'
-         class="core-button">
-        <mat-icon class="search-icon">search</mat-icon>
-      </a>
-    </div>
+      <mat-hint align="start">{{ message.length }}/{{ input.maxLength }}</mat-hint>
+    </mat-form-field>
+  </div>
 
 </section>
 

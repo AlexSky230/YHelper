@@ -9,7 +9,7 @@ import {slideComponentRight} from '../../../animations/animations';
   selector: 'app-week',
   templateUrl: './week.component.html',
   styleUrls: ['./week.component.scss'],
-  // animations: [slideComponentRight]
+  animations: [slideComponentRight]
 })
 export class WeekComponent implements OnInit, OnDestroy {
 

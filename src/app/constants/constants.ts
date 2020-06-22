@@ -13,6 +13,7 @@ export enum ButtonIcons {
   menu = 'menu',
   toFridge = 'move_to_inbox',
   remove = 'remove',
+  search = 'search',
 }
 
 export enum RouterMainPath {
@@ -40,6 +41,7 @@ export enum CoreLabels {
   activeShelfItem = 'activeShelfItem',
   addItem = 'Add Item...',
   addTask = 'Add task...',
+  addShortcut = 'Add shortcut...',
   allDone = 'All done!',
   category = 'Category: ',
   close = 'CLOSE',

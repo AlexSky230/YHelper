@@ -16,12 +16,20 @@
       <button mat-icon-button
               (click)="deleteShortcut(shortcut)"
               class="close-button">
-        <mat-icon>close</mat-icon>
+        <mat-icon>{{buttonIcons.clear}}</mat-icon>
       </button>
 
       <p class="small title">{{ shortcut.title }}</p>
-
     </div>
+
+    <div class="shortcut-card">
+      <button mat-mini-fab (click)="addShortcutClicked()">
+        <mat-icon>{{buttonIcons.add}}</mat-icon>
+      </button>
+
+      <p class="small title grey">{{coreLabels.addShortcut}}</p>
+    </div>
+
   </div>
 
 </section>

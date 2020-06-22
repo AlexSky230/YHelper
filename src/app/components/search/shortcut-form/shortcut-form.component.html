@@ -19,13 +19,15 @@
 
   <mat-form-field floatLabel="always" class="input">
     <input #message
+           appInputAutofocus
            matInput type="text"
+           maxlength="300"
            [placeholder]="coreLabels.linkPlaceholder"
            [(ngModel)]="newShortcut.link"
            (keyup.enter)="addShortcut()"
            required>
-    <mat-hint align="end">Url length: {{ message.value.length }}</mat-hint>
-    <mat-error>URL required.</mat-error>
+    <mat-hint align="end">{{ message.value.length }}/{{ message.maxLength }}</mat-hint>
+    <mat-error>Please use valid URL</mat-error>
     <button [disabled]="message.value.length === 0"
             [class.grey]="message.value.length === 0"
             (click)="newShortcut.link = ''"

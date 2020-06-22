@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import {SearchShortcutService} from '../../../helpers/search-shortcut.service';
 import {SearchShortcut} from '../../../helpers/classes/search-shortcut';
+import {ButtonIcons, CoreLabels} from '../../../constants/constants';
+import {ShortcutFormComponent} from '../shortcut-form/shortcut-form.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-shortcut-list',
@@ -9,7 +12,12 @@ import {SearchShortcut} from '../../../helpers/classes/search-shortcut';
 })
 export class ShortcutListComponent {
 
-  constructor(private searchShortcutService: SearchShortcutService) {
+  public buttonIcons = ButtonIcons;
+  public coreLabels = CoreLabels;
+
+  constructor(
+    public dialog: MatDialog,
+    private searchShortcutService: SearchShortcutService) {
   }
 
   public get shortcuts(): SearchShortcut[] {
@@ -18,6 +26,12 @@ export class ShortcutListComponent {
 
   public deleteShortcut(shortcut: SearchShortcut) {
     this.searchShortcutService.deleteShortcutByLink(shortcut);
+  }
+
+  public addShortcutClicked() {
+    this.dialog.open(ShortcutFormComponent, {
+      width: '80vw'
+    });
   }
 
 }
