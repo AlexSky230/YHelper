@@ -39,8 +39,10 @@ export class ShoppingHeaderComponent implements OnInit {
       this.newShoppingItem = this.itemInEdit;
       this.activeShoppingHeaderItem = this.itemInEdit;
     } else {
-      this.newShoppingItem = new ShoppingItem();
       this.activeShoppingHeaderItem = this.headerShoppingItems[this.headerShoppingItems.length - 1];
+      this.newShoppingItem = new ShoppingItem();
+      this.newShoppingItem.color = this.activeShoppingHeaderItem.color;
+      this.newShoppingItem.order = this.activeShoppingHeaderItem.order;
     }
   }
 

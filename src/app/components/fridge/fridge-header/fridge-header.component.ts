@@ -36,16 +36,17 @@ export class FridgeHeaderComponent implements OnInit {
       this.newFridgeItem = this.itemInEdit;
       this.activeFridgeHeaderItem = this.itemInEdit;
     } else {
-      this.newFridgeItem = new ShoppingItem();
       this.activeFridgeHeaderItem = this.headerFridgeItems[this.headerFridgeItems.length - 1];
+      this.newFridgeItem = new ShoppingItem();
+      this.newFridgeItem.color = this.activeFridgeHeaderItem.color;
+      this.newFridgeItem.order = this.activeFridgeHeaderItem.order;
     }
   }
 
   public addFridgeItem(): void {
-    const localItem = this.newFridgeItem;
-
-    if (localItem.title !== '') {
-      this.fridgeService.addFridgeItem(localItem);
+    if (this.newFridgeItem.title !== '') {
+      const toFridgeItem = this.newFridgeItem;
+      this.fridgeService.addFridgeItem(toFridgeItem);
     }
     this.newFridgeItem = new ShoppingItem();
     this.newFridgeItem.color = this.activeFridgeHeaderItem.color;

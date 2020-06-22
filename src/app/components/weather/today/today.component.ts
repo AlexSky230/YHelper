@@ -3,11 +3,13 @@ import {SharedForecastService} from '../../../helpers/shared-forecast.service';
 import {WeatherIcons, WeatherCard} from '../../../constants/constants';
 import {Subscription} from 'rxjs';
 import {IsLoadingService} from '../../../helpers/is-loading.service';
+import {slideComponentLeft} from '../../../animations/animations';
 
 @Component({
   selector: 'app-today',
   templateUrl: './today.component.html',
-  styleUrls: ['./today.component.scss']
+  styleUrls: ['./today.component.scss'],
+  animations: [slideComponentLeft]
 })
 export class TodayComponent implements OnInit, OnDestroy {
 
