@@ -1,0 +1,18 @@
+<section class="tabs">
+
+  <nav
+    mat-tab-nav-bar
+    class="nav-panel"
+    mat-stretch-tabs
+    mat-align-tabs="center">
+    <a *ngFor="let tab of tabs"
+       [routerLink]="[tab.link]"
+       routerLinkActive #rla="routerLinkActive"
+       [active]="rla.isActive"
+       mat-tab-link
+       class="nav-tab">
+      {{ tab.title }}
+    </a>
+  </nav>
+
+</section>

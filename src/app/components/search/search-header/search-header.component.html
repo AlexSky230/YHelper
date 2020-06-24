@@ -1,0 +1,30 @@
+<section class="back">
+
+  <div class="container" [class.backdrop]="isInputVisible">
+    <button (click)="isInputVisible && message ? search() : toggleInput()"
+            color="primary" mat-fab class="search-button"
+            [disabled]="isInputVisible && !message">
+      <mat-icon class="search-icon">{{buttonIcons.search}}</mat-icon>
+    </button>
+
+    <mat-form-field *ngIf="isInputVisible" class="search-form" @slideOut floatLabel="never">
+      <input #input matInput
+             maxlength="99"
+             appInputAutofocus
+             type="text"
+             [placeholder]="coreLabels.googleSearch"
+             [(ngModel)]="message"
+             (keyup.enter)="search()">
+
+      <button (click)="toggleInput()"
+              color="warn"
+              mat-button matSuffix mat-icon-button aria-label="Clear">
+        <mat-icon>{{ buttonIcons.clear }}</mat-icon>
+      </button>
+
+      <mat-hint align="start">{{ message.length }}/{{ input.maxLength }}</mat-hint>
+    </mat-form-field>
+  </div>
+
+</section>
+

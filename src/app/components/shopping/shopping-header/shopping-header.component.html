@@ -1,0 +1,48 @@
+<section>
+
+  <div class="color-bar">
+    <span class="small grey mt-1 mb-1">Category: </span>
+    <div>
+      <div *ngFor="let color of headerShoppingItems"
+           (click)="onHeaderItemClicked(color)"
+           [style.background]="color.color"
+           [class.selected]="color.color === activeShoppingHeaderItem.color"
+           class="square">
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+
+  <form>
+    <mat-form-field class="form-field">
+      <input #itemTitle
+             appInputAutofocus
+             name="message"
+             maxlength="99"
+             matInput type="text"
+             [(ngModel)]="newShoppingItem.title"
+             (keyup.enter)="addShoppingItem()">
+      <mat-hint align="end">{{ itemTitle.value.length }}/{{ itemTitle.maxLength }}</mat-hint>
+      <mat-hint align="start">Selected Category: {{ activeShoppingHeaderItem.title }}</mat-hint>
+      <button [disabled]="itemTitle.value.length === 0"
+              [class.grey]="itemTitle.value.length === 0"
+              (click)="itemTitle.value = ''"
+              color="warn"
+              mat-button matSuffix mat-icon-button aria-label="Clear">
+        <mat-icon>{{ buttonIcons.clear }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button [disabled]="itemTitle.value.length === 0"
+            (click)="addShoppingItem()"
+            mat-icon-button
+            color="primary"
+            aria-label="Add"
+            class="core-button">
+      <mat-icon>{{ this.itemInEdit ? buttonIcons.done : buttonIcons.addToCart }}</mat-icon>
+    </button>
+  </form>
+
+
+</section>
+

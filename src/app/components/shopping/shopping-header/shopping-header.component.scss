@@ -1,0 +1,40 @@
+.color-bar {
+  display: flex;
+  flex-flow: row;
+  padding: 0.5em 0 0.5em 0;
+}
+
+.push-to-fridge-button {
+  display: inline-block;
+  position: relative;
+  margin: 0 0.25em 0 0.8em;
+  outline: none;
+}
+
+.square {
+  display: inline-block;
+  border-radius: 3px;
+  height: 1em;
+  width: 1em;
+  margin-left: 0.8em;
+  box-shadow:
+  0 3px 2px -1px rgba(0, 0, 0, 0.3),
+  0px 2px 2px 0px rgba(0, 0, 0, 0.24),
+  0px 2px 4px 0px rgba(0, 0, 0, 0.22);
+}
+
+.square.selected {
+  border: solid 2px #ffffff;
+  height: 1.4em;
+  width: 1.4em;
+  box-shadow:
+    0 5px 4px -3px rgba(0, 0, 0, 0.3),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.24),
+    0px 4px 6px 0px rgba(0, 0, 0, 0.22);
+}
+
+.core-button {
+  margin-left: 0.5em;
+  outline: none;
+}
+

@@ -1,0 +1,53 @@
+<section class="field">
+  <div class="card-top">
+    <div class="ava">
+      <button mat-mini-fab
+              color="primary"
+              class="d-inline-block">
+        {{ newShortcut.link | shortcutIcon }}
+      </button>
+    </div>
+
+    <div class="title">
+      <h3 *ngIf="message.value.length > 0">
+        {{ newShortcut.link | shortcutTitle }}
+      </h3>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <mat-form-field floatLabel="always" class="input">
+    <input #message
+           appInputAutofocus
+           matInput type="text"
+           maxlength="300"
+           [placeholder]="coreLabels.linkPlaceholder"
+           [(ngModel)]="newShortcut.link"
+           (keyup.enter)="addShortcut()"
+           required>
+    <mat-hint align="end">{{ message.value.length }}/{{ message.maxLength }}</mat-hint>
+    <mat-error>Please use valid URL</mat-error>
+    <button [disabled]="message.value.length === 0"
+            [class.grey]="message.value.length === 0"
+            (click)="newShortcut.link = ''"
+            color="warn"
+            mat-button matSuffix mat-icon-button aria-label="Clear">
+      <mat-icon>{{ buttonIcons.clear }}</mat-icon></button>
+  </mat-form-field>
+
+  <div class="bottom-buttons">
+    <button (click)="closeOverlay();"
+            mat-button>
+      {{ coreLabels.close }}
+    </button>
+
+    <button (click)="addShortcut()"
+            [disabled]="message.value.length === 0"
+            mat-button
+            color="primary">
+      {{ coreLabels.add }}
+    </button>
+  </div>
+</section>
+

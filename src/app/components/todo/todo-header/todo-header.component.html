@@ -1,0 +1,41 @@
+<section>
+
+      <form>
+        <mat-form-field class="form-field" autofocus>
+          <input #todoTitle
+                 appInputAutofocus
+                 name="todoTitle"
+                 [(ngModel)]="newTodo.title"
+                 (keyup.enter)="addTodo(newTodo)"
+                 [placeholder]="todoLabels.addTask"
+                 maxlength="100" matInput class="text-field">
+            <mat-hint *ngIf="todoTitle.value.length > 0" align="end">
+              {{todoTitle.value.length}}/{{todoTitle.maxLength}}
+            </mat-hint>
+            <mat-hint align="start">
+              {{todos.length > 0 ?
+              (incomplete > 0 ? incomplete + todoLabels.leftToGo : todoLabels.allDone) : todoLabels.toDo}}
+            </mat-hint>
+            <button [disabled]="todoTitle.value.length === 0"
+                    [class.grey]="todoTitle.value.length === 0"
+                    (click)="todoTitle.value = ''"
+                    color="warn"
+                    mat-button matSuffix mat-icon-button aria-label="Clear">
+              <mat-icon>{{ buttonIcons.clear }}</mat-icon></button>
+        </mat-form-field>
+
+        <div class="button-container">
+          <button [disabled]="todoTitle.value.length === 0"
+                  (click)="addTodo(newTodo)"
+                  mat-icon-button
+                  color="primary"
+                  class="core-button">
+            <mat-icon>{{ this.todo? buttonIcons.done : buttonIcons.addToList }}</mat-icon>
+          </button>
+        </div>
+
+      </form>
+
+</section>
+
+

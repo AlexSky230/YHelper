@@ -1,0 +1,38 @@
+<section class="main">
+
+  <div class="title bottom-border">
+    <h2>
+      To Do:
+      <span class="grey">
+        {{todos.length > 0 ?
+        (incomplete > 0 ? incomplete + todoLabels.leftToGo : todoLabels.allDone) : ''}}
+        </span>
+    </h2>
+  </div>
+
+  <div class="content">
+    <app-todo-list></app-todo-list>
+  </div>
+
+  <div>
+    <button
+      (click)="openMenu()"
+      mat-fab
+      color="primary"
+      class="main-button">
+      <mat-icon>{{ buttonIcons.add }}</mat-icon>
+    </button>
+  </div>
+
+  <div>
+    <button
+      *ngIf="completedExist"
+      (click)="deleteCompleted()"
+      mat-mini-fab
+      color="warn"
+      class="secondary-button">
+      <mat-icon>{{ buttonIcons.delete }}</mat-icon>
+    </button>
+  </div>
+
+</section>

@@ -1,0 +1,68 @@
+<section>
+
+  <ul *ngIf="shoppingItems.length > 0" class="core-list content">
+    <li *ngFor="let item of shoppingItems"
+        (click)="toggleShoppingItemBought(item)"
+        [class.bought]="item.isBought"
+        [style.border-left]="'0.2em solid'"
+        [style.border-left-color]="item.color"
+        class="core-list-item">
+      <button mat-button class="core-list-button b">
+        <span class="text">{{ item.title }}</span>
+      </button>
+
+      <button
+        (click)="setMenuData(item)"
+        [matMenuTriggerFor]="longMenu"
+        [matMenuTriggerData]="menuData"
+        mat-icon-button
+        color="accent" class="ul-delete-container">
+        <mat-icon class="ul-delete">{{ buttonIcons.edit }}</mat-icon>
+      </button>
+
+      <mat-menu #longMenu="matMenu" yPosition="below" class="mat-menu">
+        <button
+          (click)="editItem(menuData)"
+          mat-menu-item
+          class="menu-item">
+          Edit
+        </button>
+        <button
+          (click)="removeItem(item)"
+          mat-menu-item
+          class="menu-item hot-color">
+          Delete
+        </button>
+      </mat-menu>
+
+    </li>
+  </ul>
+</section>
+<!--<section>-->
+
+<!--  <mat-card *ngIf="shoppingItems.length > 0">-->
+<!--    <ul class="core-list">-->
+
+<!--      <li *ngFor="let item of shoppingItems"-->
+<!--                     [style.border-left]="'0.2em solid'"-->
+<!--                     [style.border-left-color]="item.color"-->
+<!--                     class="core-list-item">-->
+
+<!--        <a (click)="toggleShoppingItemBought(item)"-->
+<!--                [class.bought]="item.isBought"-->
+<!--                class="core-list-a">-->
+<!--          <span class="ul-list-a-span">{{ item.title }}</span>-->
+<!--        </a>-->
+
+<!--        <button (click)="removeItem(item)"-->
+<!--                mat-icon-button-->
+<!--                color="warn" class="ul-delete-container">-->
+<!--          <mat-icon class="ul-delete">{{ buttonIcons.delete }}</mat-icon>-->
+<!--        </button>-->
+<!--      </li>-->
+
+<!--    </ul>-->
+<!--  </mat-card>-->
+<!--</section>-->
+
+

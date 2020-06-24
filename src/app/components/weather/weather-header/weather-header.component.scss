@@ -1,0 +1,68 @@
+::ng-deep .mat-select-panel {
+  max-height: none !important;
+}
+
+a {
+  color: #b0bdc5;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: start;
+  align-items: center;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+}
+
+.inputs {
+  flex-grow: 1;
+}
+
+.form-field {
+  width: 100%;
+  padding: 0;
+}
+
+.neg-margin-l {
+  margin-left: -0.3em;
+}
+
+.neg-margin-r {
+  margin-right: -0.2em;
+}
+
+.link-button {
+  text-decoration: none;
+  margin: 0 0 1em 0;
+}
+
+.mini-flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+.mini {
+  height: 20px;
+  overflow: hidden;
+  .mini-text {
+    position: relative;
+    bottom: 0.7em;
+  }
+}
+
+.expand-more {
+  position: relative;
+  left: 0.5em;
+  bottom: 1.35em;
+}
+
+.expand-less {
+  position: relative;
+  left: 0.5em;
+  bottom: 0.5em;
+}

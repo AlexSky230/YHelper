@@ -1,0 +1,16 @@
+<section class="main">
+
+  <div class="content">
+    <app-busy *ngIf="isLoading"></app-busy>
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="header">
+    <app-weather-header (locationSelected)="locationUpdate($event)"
+                        [activeLocation]="activeLocation"
+                        [currentLocationLatitude]="currentLocationLatitude"
+                        [currentLocationLongitude]="currentLocationLongitude">
+    </app-weather-header>
+  </div>
+
+</section>

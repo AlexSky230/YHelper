@@ -1,0 +1,40 @@
+.core-list {
+  padding: 0.5em 0.5em 6em 0.5em;
+}
+
+.core-list-item {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.core-list-checkbox {
+  width: calc(100% - 6.8em);
+  position: relative;
+  top: 0.6em;
+  margin-left: 1em;
+}
+
+.button-panel {
+  display: flex;
+  flex-flow:row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid grey 1px;
+}
+
+.ul-delete-container {
+  margin-left: 0;
+}
+
+.shelf-title {
+  text-align: center;
+  padding: 0.5em 0 0.5em 0;
+}
+
+.quantity-number {
+}
+
+button {
+  outline: none;
+}

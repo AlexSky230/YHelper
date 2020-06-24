@@ -1,0 +1,69 @@
+<section class="main">
+
+  <div class="title bottom-border">
+    <h2>
+      Fridge Inventory: <br>
+      <span class="grey small">Category: </span>
+      <span class="grey primary-color small" [style.color]="activeShelf.color">{{activeShelf.title}}</span>
+    </h2>
+  </div>
+
+  <div class="content">
+    <app-fridge-list></app-fridge-list>
+  </div>
+
+  <div>
+    <div>
+      <button
+        (click)="openMenu()"
+        mat-fab
+        color="primary"
+        class="main-button">
+        <mat-icon>{{ buttonIcons.add }}</mat-icon>
+      </button>
+    </div>
+
+    <div>
+      <button
+        *ngIf="isSelected"
+        (click)="deleteSelected()"
+        mat-mini-fab
+        color="warn"
+        [ngClass]="{
+          'secondary-button': !isSelected,
+          'third-button': isSelected
+        }">
+        <mat-icon>{{ buttonIcons.delete }}</mat-icon>
+      </button>
+    </div>
+
+    <div>
+      <button mat-mini-fab
+              [matMenuTriggerFor]="menu"
+              color="accent"
+              class="shelf-button secondary-button">
+        <mat-icon>{{ buttonIcons.filterList }}</mat-icon>
+      </button>
+    </div>
+
+    <mat-menu #menu="matMenu">
+      <button (click)="onShelfItemClicked()"
+              mat-menu-item
+              style="border-left: solid #b41059 3px"
+              class="menu-item primary-color">
+        All
+      </button>
+
+      <button *ngFor="let si of headerFridgeItems"
+              (click)="onShelfItemClicked(si)"
+              style="border-left: solid 3px"
+              [style.border-color]="si.color"
+              [style.color]="si.color"
+              mat-menu-item
+              class="menu-item">
+        {{ si.title }}
+      </button>
+    </mat-menu>
+  </div>
+
+</section>

@@ -1,0 +1,38 @@
+<section>
+
+    <ul class="core-list content">
+      <li *ngFor="let todo of todos;"
+          (click)="toggleTodoComplete(todo)"
+          [class.completed]="todo.complete"
+          class="core-list-item">
+        <button mat-button class="core-list-button b">
+          <span class="text">{{ todo.title }}</span>
+        </button>
+
+        <button
+          (click)="setMenuData(todo)"
+          [matMenuTriggerFor]="longMenu"
+          [matMenuTriggerData]="menuData"
+          mat-icon-button
+          color="accent" class="ul-delete-container">
+          <mat-icon class="ul-delete">{{ buttonIcons.edit }}</mat-icon>
+        </button>
+
+        <mat-menu #longMenu="matMenu" yPosition="below" class="mat-menu">
+          <button
+            (click)="editTodo(menuData)"
+            mat-menu-item
+            class="menu-item">
+            Edit
+          </button>
+          <button
+            (click)="removeTodo(menuData)"
+            mat-menu-item
+            class="menu-item hot-color">
+            Delete
+          </button>
+        </mat-menu>
+
+      </li>
+    </ul>
+</section>

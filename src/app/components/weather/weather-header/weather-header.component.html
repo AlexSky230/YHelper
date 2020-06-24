@@ -1,0 +1,95 @@
+<section *ngIf="activeLocation">
+
+  <app-weather-tabs></app-weather-tabs>
+
+  <mat-card *ngIf="panelOpened" @slideOut>
+
+    <div class="button-group">
+      <div>
+        <button mat-stroked-button color="accent" disableRipple>
+          <a
+            class="neg-margin-l pr-1 text-decoration-none"
+            [href]="seabreezeLink"
+            target="_blank">
+            <span>Seabreeze</span>
+<!--            <span class="small">{{seabreezeSelected}}</span>-->
+          </a>
+          <mat-icon class="pl-1 border-left border-secondary neg-margin-r primary-color"
+                    [matMenuTriggerFor]="seabreezeMenu">
+            {{buttonIcons.menu}}
+
+          </mat-icon>
+        </button>
+
+        <mat-menu #seabreezeMenu="matMenu">
+          <button *ngFor="let location of seabreezeLocations" mat-menu-item
+          (click)="seabreezeLinkClicked(location)">
+            <div [class.primary-color]="location.key === seabreezeSelected">
+              {{location.title}}
+            </div>
+          </button>
+        </mat-menu>
+
+        <button mat-stroked-button color="accent" class="ml-2" disableRipple>
+          <a
+            class="neg-margin-l pr-1 text-decoration-none"
+            [href]="radarLink"
+            target="_blank">
+            Radar
+          </a>
+          <mat-icon class="pl-1 border-left border-secondary neg-margin-r primary-color"
+                    [matMenuTriggerFor]="radarMenu">{{buttonIcons.menu}}
+          </mat-icon>
+        </button>
+
+        <mat-menu #radarMenu="matMenu">
+          <button *ngFor="let location of radarLocations" mat-menu-item
+                  (click)="radarLinkClicked(location)">
+            <div [class.primary-color]="location.key === radarSelected">
+              {{location.title}}
+            </div>
+          </button>
+        </mat-menu>
+      </div>
+
+      <mat-icon
+        (click)="togglePanelOpened()"
+        class="expand-less grey">
+        {{ buttonIcons.expandMore }}
+      </mat-icon>
+
+    </div>
+
+    <div class="flex-container">
+      <div class="inputs">
+        <mat-form-field class="form-field" floatLabel="never">
+          <mat-label>{{activeLocation.title}}</mat-label>
+          <mat-select [(value)]="activeLocation" class="my-select">
+            <mat-option
+              *ngFor="let location of locations"
+              [value]="location"
+              (click)="cityClicked(location)">
+              {{ location.title }}
+            </mat-option>
+          </mat-select>
+          <mat-hint *ngIf="latitude">Lat: {{ latitude }}</mat-hint>
+          <mat-hint *ngIf="longitude" align="end">Long: {{ longitude }}</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card *ngIf="!panelOpened"
+            (click)="togglePanelOpened()"
+            class="mini">
+    <div class="mini-flex-container">
+      <span class="mini-text grey">Location:</span>
+      <span class="mini-text ml-2">{{ activeLocation.title }}</span>
+    </div>
+    <mat-icon
+      class="expand-more grey">
+      {{ buttonIcons.expandLess }}
+    </mat-icon>
+  </mat-card>
+
+</section>
