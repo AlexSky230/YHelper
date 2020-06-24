@@ -28,5 +28,6 @@ export class SearchHeaderComponent {
 
   public search(): void {
     window.open(this.searchLink + this.message, '_blank');
+    this.isInputVisible = false;
   }
 }
