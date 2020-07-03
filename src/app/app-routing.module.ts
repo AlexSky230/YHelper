@@ -9,9 +9,14 @@ import {TodayComponent} from './components/weather/today/today.component';
 import {WeekComponent} from './components/weather/week/week.component';
 import {RadarComponent} from './components/weather/radar/radar.component';
 import {RouterMainPath, RouterWeatherPath} from './constants/constants';
+import {LoginComponent} from './components/login/login.component';
 
 
 const routes: Routes = [
+  {
+    path: RouterMainPath.login,
+    component: LoginComponent
+  },
   {
     path: RouterMainPath.todo,
     component: TodoComponent

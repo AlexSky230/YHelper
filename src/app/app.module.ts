@@ -59,6 +59,12 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {LongTouchDirective} from './helpers/directives/long-touch.directive';
 import {InputAutofocusDirective} from './helpers/directives/input-autofocus.directive';
 
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {LoginComponent} from './components/login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +95,8 @@ import {InputAutofocusDirective} from './helpers/directives/input-autofocus.dire
     ShortcutTitlePipe,
     BusyComponent,
     LongTouchDirective,
-    InputAutofocusDirective
+    InputAutofocusDirective,
+    LoginComponent
   ],
   entryComponents: [
     FridgeHeaderComponent,
@@ -97,6 +104,9 @@ import {InputAutofocusDirective} from './helpers/directives/input-autofocus.dire
     ShortcutFormComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,

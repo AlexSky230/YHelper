@@ -1,0 +1,46 @@
+<section class="section h-100">
+
+    <div class="nav-container h-100 d-flex flex-column align-items-center justify-content-between">
+      <div class="pt-4 login d-flex flex-column align-items-center flex-wrap">
+        <div *ngIf="(user && userImgUrl) else iconButton"
+             [matMenuTriggerFor]="logOutmenu">
+          <img [src]="userImgUrl" class="avatar">
+        </div>
+
+        <mat-menu #logOutmenu="matMenu">
+          <button mat-menu-item (click)="logOut()">Log out</button>
+        </mat-menu>
+
+        <ng-template #iconButton>
+          <button (click)="logIn()"
+                  disableRipple
+                  mat-button
+                  class="grey avatar">
+            <mat-icon>{{ loginIcon }}</mat-icon>
+          </button>
+        </ng-template>
+      </div>
+
+      <div class="nav-panel pb-4">
+        <div *ngFor="let button of navItems"
+             class="pt-4">
+          <button [routerLink]="[button.link]"
+                  disableRipple
+                  routerLinkActive="active"
+                  color="accent"
+                  mat-button>
+            <mat-icon>{{ button.icon }}</mat-icon>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+</section>
+
+<ng-container *ngIf="user | async"></ng-container>
+
+
+
+
+

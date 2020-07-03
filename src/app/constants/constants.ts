@@ -1,4 +1,5 @@
 export enum ButtonIcons {
+  accountLogIn = 'account_circle',
   add = 'add',
   addToCart = 'add_shopping_cart',
   clear = 'close',
@@ -21,6 +22,7 @@ export enum RouterMainPath {
   full = 'full',
   fridge = 'fridge',
   home = '/todo',
+  login = 'login',
   search = 'search',
   shopping = 'shopping',
   todo = 'todo',
@@ -62,6 +64,7 @@ export enum NamesForService {
   lastSavedLocation = 'lastSavedLocation',
   radarLink = 'radarLink',
   seabreezeLink = 'seabreezeLink',
+  user = 'user',
 }
 export enum WeatherCard {
   chanceOfRain = 'Chance of rain: ',

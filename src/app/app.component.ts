@@ -9,4 +9,3 @@ export class AppComponent {
   title = 'TabHelperBeta1';
 }
 
-// TODO Busy element or weather

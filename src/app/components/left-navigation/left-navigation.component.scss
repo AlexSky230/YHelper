@@ -1,19 +1,12 @@
-.nav-button-panel {
-  position: absolute;
-  bottom: 3em;
-  width: 3.5em;
-}
-
-.nav-button {
-  position: relative;
-  left: -0.7em;
-  padding-top: 2em;
-}
-
 .active {
   outline: none;
-  color: #bb145a;
-  //background-color: #878787;
-  //text-shadow: 0 0 15px rgba(255, 226, 231, 0.95);
+  color: #f5365f;
+  text-shadow: 0 0 16px rgba(245, 54, 95, 0.8);
+}
+
+.avatar {
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
 }
 

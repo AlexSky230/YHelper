@@ -1,0 +1,16 @@
+<section class="h-100 d-flex flex-column justify-content-center">
+  <button
+    (click)="login()"
+    class="btn btn-primary m-3">
+    Login with Google
+  </button>
+
+  <button
+    (click)="logOut()"
+    class="btn btn-danger m-3">
+    Log Out
+  </button>
+
+</section>
+
+<ng-content *ngIf="user | async"></ng-content>
