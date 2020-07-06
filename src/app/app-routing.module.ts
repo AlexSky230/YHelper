@@ -10,6 +10,7 @@ import {WeekComponent} from './components/weather/week/week.component';
 import {RadarComponent} from './components/weather/radar/radar.component';
 import {RouterMainPath, RouterWeatherPath} from './constants/constants';
 import {LoginComponent} from './components/login/login.component';
+// import {AuthGuard} from './services/auth-guard.service';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: RouterMainPath.todo,
-    component: TodoComponent
+    component: TodoComponent,
+    // canActivate: [AuthGuard],
   },
   {
     path: RouterMainPath.weather,

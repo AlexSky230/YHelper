@@ -1,26 +1,34 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
-import {User} from '../../shared/user';
 import {Observable} from 'rxjs';
+import {IsLoadingService} from '../../helpers/is-loading.service';
+import {User} from 'firebase';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
+
+  public isBusy: Observable<boolean>;
+  public userObs: Observable<User>;
 
   constructor(
-    private authService: AuthService,
+    private isLoading: IsLoadingService,
+    private auth: AuthService,
   ) { }
 
-  public user: Observable<User> = this.authService.user;
+  public ngOnInit(): void {
+    this.isBusy = this.isLoading.isLoading;
+    this.userObs = this.auth.fireUser;
+  }
 
   public login() {
-    this.authService.SignInWithGoogle();
+    this.auth.logInGoogle();
   }
 
   public logOut() {
-    this.authService.SignOut();
+    this.auth.logOut();
   }
 }

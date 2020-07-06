@@ -2,23 +2,33 @@
 
     <div class="nav-container h-100 d-flex flex-column align-items-center justify-content-between">
       <div class="pt-4 login d-flex flex-column align-items-center flex-wrap">
-        <div *ngIf="(user && userImgUrl) else iconButton"
-             [matMenuTriggerFor]="logOutmenu">
+
+        <div *ngIf="user$ | async as user; else iconButton"
+             [matMenuTriggerFor]="logOutMenu">
           <img [src]="userImgUrl" class="avatar">
         </div>
 
-        <mat-menu #logOutmenu="matMenu">
-          <button mat-menu-item (click)="logOut()">Log out</button>
-        </mat-menu>
-
         <ng-template #iconButton>
-          <button (click)="logIn()"
+          <button [matMenuTriggerFor]="logOutMenu"
                   disableRipple
                   mat-button
                   class="grey avatar">
             <mat-icon>{{ loginIcon }}</mat-icon>
           </button>
         </ng-template>
+
+        <mat-menu #logOutMenu="matMenu">
+          <button *ngIf="user$ | async as user; else in"
+                  (click)="logOut()"
+                  mat-menu-item class="hot-color">
+            Log out
+          </button>
+
+          <ng-template #in>
+            <button [routerLink]="[loginPath]" mat-menu-item >Log in</button>
+          </ng-template>
+
+        </mat-menu>
       </div>
 
       <div class="nav-panel pb-4">
@@ -38,7 +48,7 @@
 
 </section>
 
-<ng-container *ngIf="user | async"></ng-container>
+<!--<ng-container *ngIf="user$ | async"></ng-container>-->
 
 
 

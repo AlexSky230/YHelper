@@ -1,11 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ButtonIcons, MAIN_NAV, NamesForService, RouterMainPath} from '../../constants/constants';
+import {Component, OnInit} from '@angular/core';
+import {ButtonIcons, MAIN_NAV, RouterMainPath} from '../../constants/constants';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {LocalStorageService} from '../../services/local-storage.service';
-import {Observable, Subscription} from 'rxjs';
-import {User} from '../../shared/user';
+import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {User} from 'firebase';
+import {IsLoadingService} from '../../helpers/is-loading.service';
 
 @Component({
   selector: 'app-left-navigation',
@@ -13,19 +14,21 @@ import {tap} from 'rxjs/operators';
   styleUrls: ['./left-navigation.component.scss']
 })
 
-export class LeftNavigationComponent implements OnInit, OnDestroy{
+export class LeftNavigationComponent implements OnInit {
 
   constructor(
+    private isLoading: IsLoadingService,
     private localStorage: LocalStorageService,
     private router: Router,
-    private authService: AuthService) {
+    private auth: AuthService) {
   }
 
-  public user: Observable<User>;
+  public user$: Observable<User>;
   public userImgUrl: string;
   public userName: string;
-  public loginLink = RouterMainPath.login;
+
   public loginIcon = ButtonIcons.accountLogIn;
+  public loginPath = RouterMainPath.login;
 
   public navItems = [
     {
@@ -50,35 +53,29 @@ export class LeftNavigationComponent implements OnInit, OnDestroy{
     },
   ];
 
-  private subscription: Subscription;
-
   public ngOnInit(): void {
-    this.user = this.authService.user.pipe(
+    this.user$ = this.auth.fireUser.pipe(
       tap(user => {
         if (user) {
           this.userName = user.displayName;
           this.userImgUrl = user.photoURL;
+          this.isLoading.setIsLoading(false);
+          this.router.navigate(['todo']);
+        } else {
+          this.userName = '';
+          this.userImgUrl = '';
         }
       })
     );
-
-    // this.subscription = this.localStorage.getDataFromStorageById(NamesForService.user)
-    //   .subscribe((user: User) => {
-    //       this.authService.setUser(user);
-    //   });
   }
 
   public logOut(): void {
-    this.authService.SignOut();
-    this.router.navigate(['login']).then();
+    this.auth.logOut();
+    // this.router.navigate(['login']);
   }
 
-  public logIn(): void {
-    this.router.navigate(['todo']).then();
-  }
-
-  public ngOnDestroy(): void {
-    // this.subscription.unsubscribe();
-  }
+  // public toLogIn(): void {
+  //   this.router.navigate(['login']);
+  // }
 
 }
