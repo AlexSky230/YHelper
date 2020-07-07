@@ -11,7 +11,8 @@ import {User} from 'firebase';
 })
 export class LoginComponent implements OnInit{
 
-  public isBusy: Observable<boolean>;
+  // public isBusy: Observable<boolean>;
+  public isBusy: boolean;
   public userObs: Observable<User>;
 
   constructor(
@@ -20,7 +21,11 @@ export class LoginComponent implements OnInit{
   ) { }
 
   public ngOnInit(): void {
-    this.isBusy = this.isLoading.isLoading;
+    this.isLoading.setIsLoading(true);
+    this.isLoading.isLoading.subscribe(busy => {
+      console.log(busy);
+      this.isBusy = busy;
+    });
     this.userObs = this.auth.fireUser;
   }
 

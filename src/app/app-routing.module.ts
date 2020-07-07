@@ -10,6 +10,8 @@ import {WeekComponent} from './components/weather/week/week.component';
 import {RadarComponent} from './components/weather/radar/radar.component';
 import {RouterMainPath, RouterWeatherPath} from './constants/constants';
 import {LoginComponent} from './components/login/login.component';
+import {AuthGuard} from './services/auth-guard.service';
+import {AdminAuthGuardService} from './services/admin-auth-guard.service';
 // import {AuthGuard} from './services/auth-guard.service';
 
 
@@ -21,7 +23,7 @@ const routes: Routes = [
   {
     path: RouterMainPath.todo,
     component: TodoComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: RouterMainPath.weather,
@@ -29,49 +31,59 @@ const routes: Routes = [
     children: [
       {
         path: RouterWeatherPath.today,
-        component: TodayComponent
+        component: TodayComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: RouterWeatherPath.week,
-        component: WeekComponent
+        component: WeekComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: RouterWeatherPath.radar,
-        component: RadarComponent
+        component: RadarComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: RouterWeatherPath.empty,
         redirectTo: RouterWeatherPath.today,
-        pathMatch: RouterMainPath.full
+        pathMatch: RouterMainPath.full,
+        canActivate: [AuthGuard],
       },
       {
         path: RouterMainPath.wildcard,
         redirectTo: RouterWeatherPath.today,
-        pathMatch: RouterMainPath.full
+        pathMatch: RouterMainPath.full,
+        canActivate: [AuthGuard],
       },
     ]
   },
   {
     path: RouterMainPath.shopping,
-    component: ShoppingComponent
+    component: ShoppingComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: RouterMainPath.fridge,
-    component: FridgeComponent
+    component: FridgeComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: RouterMainPath.search,
-    component: SearchComponent
+    component: SearchComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: RouterMainPath.empty,
     redirectTo: RouterMainPath.home,
-    pathMatch: RouterMainPath.full
+    pathMatch: RouterMainPath.full,
+    canActivate: [AuthGuard],
   },
   {
     path: RouterMainPath.wildcard,
     redirectTo: RouterMainPath.home,
-    pathMatch: RouterMainPath.full
+    pathMatch: RouterMainPath.full,
+    canActivate: [AuthGuard],
   },
 ];
 

@@ -18,13 +18,13 @@
         </ng-template>
 
         <mat-menu #logOutMenu="matMenu">
-          <button *ngIf="user$ | async as user; else in"
+          <button *ngIf="user$ | async as user; else login"
                   (click)="logOut()"
                   mat-menu-item class="hot-color">
             Log out
           </button>
 
-          <ng-template #in>
+          <ng-template #login>
             <button [routerLink]="[loginPath]" mat-menu-item >Log in</button>
           </ng-template>
 
@@ -34,7 +34,8 @@
       <div class="nav-panel pb-4">
         <div *ngFor="let button of navItems"
              class="pt-4">
-          <button [routerLink]="[button.link]"
+          <button *ngIf="appUser"
+                  [routerLink]="[button.link]"
                   disableRipple
                   routerLinkActive="active"
                   color="accent"

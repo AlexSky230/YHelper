@@ -1,14 +1,17 @@
-<section class="h-100 w-100 d-flex flex-column justify-content-around">
+<section class="h-100 w-100 d-flex flex-column justify-content-between">
 
-  <app-busy *ngIf="isBusy | async"></app-busy>
-
-  <div class="text-center">
+  <div class="text-center mt-5">
     <h1>Welcome to YHelper!</h1>
-    <p class="py-3">Please log in...</p>
+    <p *ngIf="isBusy else standard" class="py-3">Logging in...</p>
+    <ng-template #standard>
+      <p class="py-3">Please log in...</p>
+    </ng-template>
 
   </div>
 
-  <div class="text-center w-100">
+  <app-busy *ngIf="isBusy"></app-busy>
+
+  <div class="text-center w-100 mb-5">
 
     <button *ngIf="!(userObs | async) as user; else out"
             (click)="login()"

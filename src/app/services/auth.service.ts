@@ -2,9 +2,12 @@ import {Injectable} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth, User} from 'firebase';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {LocalStorageService} from './local-storage.service';
 import {IsLoadingService} from '../helpers/is-loading.service';
+import {AppUser} from '../models/app.user';
+import {switchMap, tap} from 'rxjs/operators';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +24,7 @@ export class AuthService {
     private isLoading: IsLoadingService,
     private localStorage: LocalStorageService,
     private route: ActivatedRoute,
+    private userService: UserService,
     public router: Router,
     public afAuth: AngularFireAuth,
   ) {
@@ -29,11 +33,10 @@ export class AuthService {
 
   // Firebase Google Sign-in
   public logInGoogle(): void {
-    // // following code helps to return user to the page where they were before they were redirected
-    // const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-    // this.localStorage.addDataToStorage('returnUrl', returnUrl);
-    // this.afAuth.signInWithRedirect(new auth.GoogleAuthProvider()).then(() => {
-    //     this.router.navigate([this.localStorage.getDataFromStorageById('returnUrl')]);
+    // following helps to return user to the page where they were before they were redirected
+    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    localStorage.setItem('returnUrl', returnUrl);
+
     this.afAuth.signInWithRedirect(new auth.GoogleAuthProvider());
   }
 
@@ -42,6 +45,22 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
         this.router.navigate(['login']);
       });
+  }
+
+  get appUser$(): Observable<AppUser> {
+    return this.fireUser.pipe(
+      switchMap(user => {
+        if (user) {
+          return this.userService.get(user.uid).valueChanges();
+        } else {
+          return of(null);
+        }
+      }),
+      tap(user => {
+        this.isLoading.setIsLoading(false);
+        console.log(user);
+      })
+    );
   }
 
 }

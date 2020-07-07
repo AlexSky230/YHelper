@@ -35,14 +35,15 @@ import {AuthService} from './services/auth.service';
 import {AuthGuard} from './services/auth-guard.service';
 import {IdService} from './helpers/id.service';
 import {IsLoadingService} from './helpers/is-loading.service';
+import {UserService} from './services/user.service';
 import {SharedForecastService} from './helpers/shared-forecast.service';
-import {WeatherDataService} from './helpers/weather-data.service';
 
+import {WeatherDataService} from './helpers/weather-data.service';
 import {LocalStorageService} from './services/local-storage.service';
+
 import {WeatherService} from './services/weather-http.service';
 
 import {HttpClientModule} from '@angular/common/http';
-
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
@@ -56,21 +57,22 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
-import {MatDialogModule} from '@angular/material/dialog';
 
+import {MatDialogModule} from '@angular/material/dialog';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {AngularFireAuthModule} from '@angular/fire/auth';
 
+import {AngularFireAuthModule} from '@angular/fire/auth';
 import {SafeLinkPipe} from './helpers/pipes/safe-link.pipe';
 import {ShortcutTitlePipe} from './helpers/pipes/shortcut-title.pipe';
+
 import {ShortcutIconPipe} from './helpers/pipes/shortcut-icon.pipe';
-
 import {LongTouchDirective} from './helpers/directives/long-touch.directive';
+
+
 import {InputAutofocusDirective} from './helpers/directives/input-autofocus.directive';
-
-
 import {environment} from '../environments/environment';
+import {AdminAuthGuardService} from './services/admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -137,10 +139,12 @@ import {environment} from '../environments/environment';
   ],
   providers: [
     AuthGuard,
+    AdminAuthGuardService,
     AuthService,
     IsLoadingService,
     IdService,
     LocalStorageService,
+    UserService,
     SharedForecastService,
     ShortcutTitlePipe,
     ShortcutIconPipe,
