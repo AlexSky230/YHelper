@@ -59,22 +59,25 @@ export class LeftNavigationComponent implements OnInit {
   ];
 
   public ngOnInit(): void {
-    this.auth.appUser$.subscribe(user => this.appUser = user);
-
-    this.user$ = this.auth.fireUser.pipe(
+    this.auth.appUser$.subscribe(user => this.appUser = user); // app user
+    this.user$ = this.auth.fireUser.pipe( // firebase user
       tap(user => {
-        if (user) {
-          const returnUrl = localStorage.getItem('returnUrl'); // this URL is set in authService
-
-          this.userService.save(user);
-          this.userName = user.displayName;
-          // this is needed to return user to the page where he was before redirect
-          this.userImgUrl = user.photoURL;
-          this.isLoading.setIsLoading(false);
-          this.router.navigateByUrl(returnUrl);
-        } else {
+        if (!user) {
           this.userName = '';
           this.userImgUrl = '';
+          return;
+        }
+
+        const returnUrl = localStorage.getItem('returnUrl'); // this URL is set in authService
+
+        this.userService.save(user);
+        this.userName = user.displayName;
+        this.userImgUrl = user.photoURL;
+        this.isLoading.setIsLoading(false);
+
+        if (returnUrl) { // this is needed to return user to the page where he was before redirect and clear local storage after
+          localStorage.removeItem('returnUrl');
+          this.router.navigateByUrl(returnUrl);
         }
       })
     );
