@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {LocalStorageService} from '../services/local-storage.service';
+import {LocalStorageService} from 'shared/services/local-storage.service';
 import {ShortcutIconPipe} from './pipes/shortcut-icon.pipe';
 import {ShortcutTitlePipe} from './pipes/shortcut-title.pipe';
-import {SearchShortcut} from './classes/search-shortcut';
+import {SearchShortcut} from 'shared/classes/search-shortcut';
 
 @Injectable({
   providedIn: 'root'

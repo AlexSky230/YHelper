@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {ButtonIcons, MAIN_NAV, RouterMainPath} from '../../constants/constants';
-import {AuthService} from '../../services/auth.service';
+import {ButtonIcons, MAIN_NAV, RouterMainPath} from 'shared/constants/constants';
+import {AuthService} from 'shared/services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {LocalStorageService} from '../../services/local-storage.service';
+import {LocalStorageService} from 'shared/services/local-storage.service';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {User} from 'firebase';
-import {IsLoadingService} from '../../helpers/is-loading.service';
-import {UserService} from '../../services/user.service';
-import {AppUser} from '../../models/app.user';
+import {IsLoadingService} from 'helpers/is-loading.service';
+import {UserService} from 'shared/services/user.service';
+import {AppUser} from 'shared/models/app.user';
+
 
 @Component({
   selector: 'app-left-navigation',

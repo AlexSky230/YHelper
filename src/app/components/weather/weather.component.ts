@@ -1,15 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {map, switchMap, tap, throttleTime} from 'rxjs/operators';
-import {Observable, Subscription, timer} from 'rxjs';
+import {map, switchMap, tap} from 'rxjs/operators';
+import {Observable, Subscription} from 'rxjs';
 
-import {LocalStorageService} from '../../services/local-storage.service';
-import {WeatherService} from '../../services/weather-http.service';
+import {LocalStorageService} from 'shared/services/local-storage.service';
+import {WeatherService} from 'shared/services/weather-http.service';
 
-import {ForecastLocation} from '../../helpers/classes/forecast-location';
-import {SharedForecastService} from '../../helpers/shared-forecast.service';
+import {ForecastLocation} from 'shared/classes/forecast-location';
+import {SharedForecastService} from 'helpers/shared-forecast.service';
 
-import {LOCATIONS, NamesForService} from '../../constants/constants';
-import {IsLoadingService} from '../../helpers/is-loading.service';
+import {LOCATIONS, NamesForService} from 'shared/constants/constants';
+import {IsLoadingService} from 'helpers/is-loading.service';
 
 @Component({
   selector: 'app-weather',

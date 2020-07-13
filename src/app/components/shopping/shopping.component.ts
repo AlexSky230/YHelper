@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ShoppingService} from '../../helpers/shopping.service';
+import {ShoppingService} from 'helpers/shopping.service';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {ShoppingHeaderComponent} from './shopping-header/shopping-header.component';
-import {ButtonIcons} from '../../constants/constants';
+import {ButtonIcons} from 'shared/constants/constants';
 
 @Component({
   selector: 'app-shopping',

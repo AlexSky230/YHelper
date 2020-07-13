@@ -4,10 +4,11 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {auth, User} from 'firebase';
 import {Observable, of} from 'rxjs';
 import {LocalStorageService} from './local-storage.service';
-import {IsLoadingService} from '../helpers/is-loading.service';
-import {AppUser} from '../models/app.user';
+import {IsLoadingService} from 'helpers/is-loading.service';
+
 import {switchMap, tap} from 'rxjs/operators';
 import {UserService} from './user.service';
+import {AppUser} from 'shared/models/app.user';
 
 @Injectable({
   providedIn: 'root'

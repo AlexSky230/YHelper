@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../services/auth.service';
+import {AuthService} from 'shared/services/auth.service';
 import {Observable} from 'rxjs';
-import {IsLoadingService} from '../../helpers/is-loading.service';
+import {IsLoadingService} from 'helpers/is-loading.service';
 import {User} from 'firebase';
 
 @Component({
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit{
   public ngOnInit(): void {
     this.isLoading.setIsLoading(true);
     this.isLoading.isLoading.subscribe(busy => {
-      console.log(busy);
+      console.log('app is Busy: ' + busy);
       this.isBusy = busy;
     });
     this.userObs = this.auth.fireUser;

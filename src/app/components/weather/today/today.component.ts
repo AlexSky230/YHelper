@@ -1,9 +1,9 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {SharedForecastService} from '../../../helpers/shared-forecast.service';
-import {WeatherIcons, WeatherCard} from '../../../constants/constants';
+import {SharedForecastService} from 'helpers/shared-forecast.service';
+import {WeatherIcons, WeatherCard} from 'shared/constants/constants';
 import {Subscription} from 'rxjs';
-import {IsLoadingService} from '../../../helpers/is-loading.service';
-import {slideComponentLeft} from '../../../animations/animations';
+import {IsLoadingService} from 'helpers/is-loading.service';
+import {slideComponentLeft} from 'animations/animations';
 
 @Component({
   selector: 'app-today',
@@ -25,6 +25,8 @@ export class TodayComponent implements OnInit, OnDestroy {
     private sharedForecastService: SharedForecastService
   ) {
   }
+
+  // TODO add rain chance/intensity to hourly forecast, convert it to graph
 
   ngOnInit(): void {
     this.subscription = this.sharedForecastService.sharedForecast

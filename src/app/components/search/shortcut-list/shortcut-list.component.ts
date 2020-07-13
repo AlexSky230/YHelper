@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {SearchShortcutService} from '../../../helpers/search-shortcut.service';
-import {SearchShortcut} from '../../../helpers/classes/search-shortcut';
-import {ButtonIcons, CoreLabels} from '../../../constants/constants';
+import {SearchShortcutService} from 'helpers/search-shortcut.service';
+import {SearchShortcut} from 'shared/classes/search-shortcut';
+import {ButtonIcons, CoreLabels} from 'shared/constants/constants';
 import {ShortcutFormComponent} from '../shortcut-form/shortcut-form.component';
 import {MatDialog} from '@angular/material/dialog';
 

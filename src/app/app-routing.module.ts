@@ -8,11 +8,9 @@ import {WeatherComponent} from './components/weather/weather.component';
 import {TodayComponent} from './components/weather/today/today.component';
 import {WeekComponent} from './components/weather/week/week.component';
 import {RadarComponent} from './components/weather/radar/radar.component';
-import {RouterMainPath, RouterWeatherPath} from './constants/constants';
-import {LoginComponent} from './components/login/login.component';
-import {AuthGuard} from './services/auth-guard.service';
-import {AdminAuthGuardService} from './services/admin-auth-guard.service';
-// import {AuthGuard} from './services/auth-guard.service';
+import {RouterMainPath, RouterWeatherPath} from 'shared/constants/constants';
+import {LoginComponent} from './components/core/login/login.component';
+import {AuthGuard} from 'shared/services/auth-guard.service';
 
 
 const routes: Routes = [

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {ButtonIcons, CoreLabels} from '../../../constants/constants';
-import {slideOut} from '../../../animations/animations';
+import {ButtonIcons, CoreLabels} from 'shared/constants/constants';
+import {slideOut} from 'animations/animations';
 
 @Component({
   selector: 'app-search-header',

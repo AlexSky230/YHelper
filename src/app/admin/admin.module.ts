@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {AdminAuthGuardService} from './services/admin-auth-guard.service';
 
 
 
@@ -7,6 +8,9 @@ import { CommonModule } from '@angular/common';
   declarations: [],
   imports: [
     CommonModule
-  ]
+  ],
+  providers: [
+    AdminAuthGuardService,
+  ],
 })
-export class RoutingModule { }
+export class AdminModule { }

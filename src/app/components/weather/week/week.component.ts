@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SharedForecastService} from '../../../helpers/shared-forecast.service';
+import {SharedForecastService} from 'helpers/shared-forecast.service';
 import {Subscription} from 'rxjs';
-import {WeatherIcons} from '../../../constants/constants';
-import {IsLoadingService} from '../../../helpers/is-loading.service';
-import {slideComponentRight} from '../../../animations/animations';
+import {WeatherIcons} from 'shared/constants/constants';
+import {IsLoadingService} from 'helpers/is-loading.service';
+import {slideComponentRight} from 'animations/animations';
 
 @Component({
   selector: 'app-week',

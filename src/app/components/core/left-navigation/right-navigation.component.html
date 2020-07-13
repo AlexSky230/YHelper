@@ -5,7 +5,7 @@
 
         <div *ngIf="user$ | async as user; else iconButton"
              [matMenuTriggerFor]="logOutMenu">
-          <img [src]="userImgUrl" class="avatar">
+          <img [src]="userImgUrl" class="avatar" alt="user image">
         </div>
 
         <ng-template #iconButton>
