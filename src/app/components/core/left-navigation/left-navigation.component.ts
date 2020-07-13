@@ -71,9 +71,7 @@ export class LeftNavigationComponent implements OnInit {
 
         const returnUrl = localStorage.getItem('returnUrl'); // this URL is set in authService
 
-        this.userService.save(user);
-        this.userName = user.displayName;
-        this.userImgUrl = user.photoURL;
+        this.setUser(user);
         this.isLoading.setIsLoading(false);
 
         if (returnUrl) { // this is needed to return user to the page where he was before redirect and clear local storage after
@@ -86,5 +84,11 @@ export class LeftNavigationComponent implements OnInit {
 
   public logOut(): void {
     this.auth.logOut();
+  }
+
+  private setUser(user: User): void {
+    this.userService.save(user);
+    this.userName = user.displayName;
+    this.userImgUrl = user.photoURL;
   }
 }

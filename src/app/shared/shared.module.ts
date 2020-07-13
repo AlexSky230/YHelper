@@ -17,6 +17,8 @@ import {AppLogoComponent} from 'shared/components/app-logo/app-logo.component';
 import {SafeLinkPipe} from 'helpers/pipes/safe-link.pipe';
 import {LongTouchDirective} from 'helpers/directives/long-touch.directive';
 import {RouterModule} from '@angular/router';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import {RouterModule} from '@angular/router';
     SafeLinkPipe,
   ],
   imports: [
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     CommonModule,
     AngularMaterialsModule,
     FormsModule,
@@ -35,10 +39,13 @@ import {RouterModule} from '@angular/router';
     RouterModule,
   ],
   exports: [
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     LongTouchDirective,
     SafeLinkPipe,
     AppLogoComponent,
     BusyComponent,
+    CommonModule,
     InputAutofocusDirective,
     AngularMaterialsModule,
     FormsModule,

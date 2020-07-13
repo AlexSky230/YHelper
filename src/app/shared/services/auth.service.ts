@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth, User} from 'firebase';
-import {Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import {LocalStorageService} from './local-storage.service';
 import {IsLoadingService} from 'helpers/is-loading.service';
 
@@ -18,8 +18,8 @@ export class AuthService {
   public fireUser: Observable<User>;
 
   // // following code implements subject, but can be done without it for now
-  // private userSubject = new BehaviorSubject(this.fireUser);
-  // public user = this.userSubject.asObservable();
+  private userSubject = new BehaviorSubject(this.fireUser);
+  public fUser = this.userSubject.asObservable();
 
   constructor(
     private isLoading: IsLoadingService,
@@ -30,6 +30,7 @@ export class AuthService {
     public afAuth: AngularFireAuth,
   ) {
     this.fireUser = afAuth.authState;
+    this.userSubject.next(this.fireUser);
   }
 
   // Firebase Google Sign-in
