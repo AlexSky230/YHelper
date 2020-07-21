@@ -8,7 +8,6 @@ import {AuthService} from 'shared/services/auth.service';
 import {IsLoadingService} from 'helpers/is-loading.service';
 import {IdService} from 'helpers/id.service';
 import {LocalStorageService} from 'shared/services/local-storage.service';
-import {UserService} from 'shared/services/user.service';
 
 import {AngularMaterialsModule} from '../angular-materials.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -58,7 +57,6 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     IsLoadingService,
     IdService,
     LocalStorageService,
-    UserService,
   ],
 })
 export class SharedModule {

@@ -11,8 +11,7 @@ export class LocalStorageService {
   constructor(private storage: StorageMap) {
   }
 
-  // TODO check .subscribe works or should be changed to .subscribe(() => {})
-  public addDataToStorage(key: string, data: any) {
+  public addDataToStorage(key: string, data: any): void {
     this.storage.set(key, data).subscribe();
   }
 

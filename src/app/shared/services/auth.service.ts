@@ -2,67 +2,97 @@ import {Injectable} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth, User} from 'firebase';
-import {BehaviorSubject, Observable, of} from 'rxjs';
-import {LocalStorageService} from './local-storage.service';
-import {IsLoadingService} from 'helpers/is-loading.service';
-
-import {switchMap, tap} from 'rxjs/operators';
-import {UserService} from './user.service';
+import {Observable, of} from 'rxjs';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {switchMap} from 'rxjs/operators';
 import {AppUser} from 'shared/models/app.user';
+import {IsLoadingService} from 'helpers/is-loading.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public fireUser: Observable<User>;
-
-  // // following code implements subject, but can be done without it for now
-  private userSubject = new BehaviorSubject(this.fireUser);
-  public fUser = this.userSubject.asObservable();
+  public appUser$: Observable<AppUser>;
 
   constructor(
+    private afs: AngularFirestore,
+    private afAuth: AngularFireAuth,
     private isLoading: IsLoadingService,
-    private localStorage: LocalStorageService,
     private route: ActivatedRoute,
-    private userService: UserService,
-    public router: Router,
-    public afAuth: AngularFireAuth,
+    private router: Router,
   ) {
-    this.fireUser = afAuth.authState;
-    this.userSubject.next(this.fireUser);
-  }
-
-  // Firebase Google Sign-in
-  public logInGoogle(): void {
-    // following helps to return user to the page where they were before they were redirected
-    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-    localStorage.setItem('returnUrl', returnUrl);
-
-    this.afAuth.signInWithRedirect(new auth.GoogleAuthProvider());
-  }
-
-  // Firebase Logout
-  public logOut() {
-    return this.afAuth.signOut().then(() => {
-        this.router.navigate(['login']);
-      });
-  }
-
-  get appUser$(): Observable<AppUser> {
-    return this.fireUser.pipe(
-      switchMap(user => {
-        if (user) {
-          return this.userService.get(user.uid).valueChanges();
+    this.appUser$ = afAuth.authState.pipe(
+      switchMap(fireUser => {
+        if (fireUser) {
+          // returns observable of app User in Database using uid
+          return this.afs.doc<AppUser>(`users/${fireUser.uid}`).valueChanges();
         } else {
           return of(null);
         }
-      }),
-      tap(user => {
-        this.isLoading.setIsLoading(false);
-        console.log(user);
       })
     );
   }
 
+  // Firebase create user using email and pass
+  public async createUserWithEmail(name: string, email: string, password: string): Promise<void> {
+    this.isLoading.setIsLoading(true);
+    this.setReturnUrl();
+    await this.afAuth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        this.updateUserData(userCredential.user, name);
+      })
+      .catch((error) => {
+        window.alert(error.message);
+      });
+    this.isLoading.setIsLoading(false);
+  }
+
+  // Firebase Google Sign-in
+  public async logInWithGoogle(): Promise<void> {
+    this.isLoading.setIsLoading(true);
+    const provider = new auth.GoogleAuthProvider();
+    const credential = await this.afAuth.signInWithPopup(provider);
+
+    this.setReturnUrl();
+    this.isLoading.setIsLoading(false);
+
+    return this.updateUserData(credential.user);
+  }
+
+  // Firebase login using email and pass
+  public async logInWithEmail(email: string, password: string): Promise<void> {
+    this.isLoading.setIsLoading(true);
+    this.setReturnUrl();
+    await this.afAuth.signInWithEmailAndPassword(email, password)
+      .catch((error) => {
+        window.alert(error.message);
+      });
+    this.isLoading.setIsLoading(false);
+  }
+
+  // Firebase Logout
+  public async logOut() {
+    await this.afAuth.signOut();
+    return this.router.navigate(['login']);
+  }
+
+  private setReturnUrl(): void {
+    // return URL returns user to the page where they were before redirect
+    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    localStorage.setItem('returnUrl', returnUrl);
+  }
+
+  private updateUserData(user: User, name?: string): Promise<void> {
+    // Sets user data to firestore on login
+    const userRef: AngularFirestoreDocument<AppUser> = this.afs.doc(`users/${user.uid}`);
+    const data = {
+      uid: user.uid,
+      displayName: user.displayName || name,
+      email: user.email,
+      photoUrl: user.photoURL,
+    };
+
+    return userRef.set(data, {merge: true});
+  }
 }

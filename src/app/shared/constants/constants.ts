@@ -17,6 +17,10 @@ export enum ButtonIcons {
   search = 'search',
 }
 
+export enum ImagePath {
+  defaultAva = '../../../assets/images/no-image.png',
+}
+
 export enum RouterMainPath {
   empty = '',
   full = 'full',

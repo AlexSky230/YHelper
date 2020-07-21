@@ -1,6 +1,7 @@
 export interface AppUser {
-  name: string;
+  uid: string;
   email: string;
-  isAdmin: boolean;
-  imgUrl?: string;
+  isAdmin?: boolean;
+  photoUrl?: string;
+  displayName?: string;
 }
