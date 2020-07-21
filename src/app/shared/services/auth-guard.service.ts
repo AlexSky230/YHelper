@@ -9,19 +9,18 @@ import {Observable} from 'rxjs';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(
-    private auth: AuthService,
-    private router: Router,
-    ) {}
+  constructor(private auth: AuthService, private router: Router) {
+  }
 
   canActivate(route, state: RouterStateSnapshot): Observable<boolean> {
+    const returnUrl = localStorage.getItem('returnUrl');
     return this.auth.appUser$.pipe(
       take(1),
       map(user => {
         if (!user) {
           return true;
         } else {
-          this.router.navigate(['todo'], { queryParams: { returnUrl: state.url}});
+          this.router.navigate([returnUrl]);
           return false;
         }
       })

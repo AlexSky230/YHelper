@@ -54,10 +54,9 @@ export class AuthService {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.signInWithPopup(provider);
 
+    this.updateUserData(credential.user);
     this.setReturnUrl();
     this.isLoading.setIsLoading(false);
-
-    return this.updateUserData(credential.user);
   }
 
   // Firebase login using email and pass
