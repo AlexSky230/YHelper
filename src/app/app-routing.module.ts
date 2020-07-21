@@ -8,13 +8,21 @@ import {WeatherComponent} from './components/weather/weather.component';
 import {TodayComponent} from './components/weather/today/today.component';
 import {WeekComponent} from './components/weather/week/week.component';
 import {RadarComponent} from './components/weather/radar/radar.component';
-import {RouterMainPath, RouterWeatherPath} from './constants/constants';
+import {RouterMainPath, RouterWeatherPath} from 'shared/constants/constants';
+import {LoginComponent} from './components/core/login/login.component';
+import {AuthGuard} from 'shared/services/auth-guard.service';
 
 
 const routes: Routes = [
   {
+    path: RouterMainPath.login,
+    component: LoginComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: RouterMainPath.todo,
-    component: TodoComponent
+    component: TodoComponent,
+    // canActivate: [AuthGuard],
   },
   {
     path: RouterMainPath.weather,
@@ -22,49 +30,59 @@ const routes: Routes = [
     children: [
       {
         path: RouterWeatherPath.today,
-        component: TodayComponent
+        component: TodayComponent,
+        // canActivate: [AuthGuard],
       },
       {
         path: RouterWeatherPath.week,
-        component: WeekComponent
+        component: WeekComponent,
+        // canActivate: [AuthGuard],
       },
       {
         path: RouterWeatherPath.radar,
-        component: RadarComponent
+        component: RadarComponent,
+        // canActivate: [AuthGuard],
       },
       {
         path: RouterWeatherPath.empty,
         redirectTo: RouterWeatherPath.today,
-        pathMatch: RouterMainPath.full
+        pathMatch: RouterMainPath.full,
+        // canActivate: [AuthGuard],
       },
       {
         path: RouterMainPath.wildcard,
         redirectTo: RouterWeatherPath.today,
-        pathMatch: RouterMainPath.full
+        pathMatch: RouterMainPath.full,
+        // canActivate: [AuthGuard],
       },
     ]
   },
   {
     path: RouterMainPath.shopping,
-    component: ShoppingComponent
+    component: ShoppingComponent,
+    // canActivate: [AuthGuard],
   },
   {
     path: RouterMainPath.fridge,
-    component: FridgeComponent
+    component: FridgeComponent,
+    // canActivate: [AuthGuard],
   },
   {
     path: RouterMainPath.search,
-    component: SearchComponent
+    component: SearchComponent,
+    // canActivate: [AuthGuard],
   },
   {
     path: RouterMainPath.empty,
     redirectTo: RouterMainPath.home,
-    pathMatch: RouterMainPath.full
+    pathMatch: RouterMainPath.full,
+    // canActivate: [AuthGuard],
   },
   {
     path: RouterMainPath.wildcard,
     redirectTo: RouterMainPath.home,
-    pathMatch: RouterMainPath.full
+    pathMatch: RouterMainPath.full,
+    // canActivate: [AuthGuard],
   },
 ];
 

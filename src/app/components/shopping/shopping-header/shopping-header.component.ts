@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 
-import {ShoppingItem} from '../../../helpers/classes/shopping-item';
-import {ShoppingService} from '../../../helpers/shopping.service';
+import {ShoppingItem} from 'shared/classes/shopping-item';
+import {ShoppingService} from 'helpers/shopping.service';
 
-import {ButtonIcons, CORE_ITEMS} from '../../../constants/constants';
+import {ButtonIcons, CORE_ITEMS} from 'shared/constants/constants';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 
 @Component({

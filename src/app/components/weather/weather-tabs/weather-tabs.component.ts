@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {WEATHER_TABS} from '../../../constants/constants';
+import {WEATHER_TABS} from 'shared/constants/constants';
 
 @Component({
   selector: 'app-weather-tabs',

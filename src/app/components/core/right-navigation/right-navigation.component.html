@@ -1,0 +1,64 @@
+<section class="section h-100">
+    <div class="nav-container h-100 d-flex flex-column align-items-center justify-content-between">
+
+      <div class="pt-4 login d-flex flex-column align-items-center flex-wrap">
+
+        <div *ngIf="appUser else iconButton" [matMenuTriggerFor]="logOutMenu">
+          <img *ngIf="appUser.photoUrl else initials" [src]="appUser.photoUrl" class="avatar">
+
+        </div>
+
+        <ng-template #iconButton>
+          <button
+            [matMenuTriggerFor]="logOutMenu"
+            disableRipple
+            mat-button
+            class="grey">
+            <mat-icon>account_circle</mat-icon>
+          </button>
+        </ng-template>
+
+        <mat-menu #logOutMenu="matMenu">
+          <div *ngIf="appUser; else login">
+          <button
+            (click)="logOut()"
+            mat-menu-item class="hot-color">
+            Log out
+          </button>
+          </div>
+
+          <ng-template #login>
+            <button [routerLink]="[loginPath]" mat-menu-item >Log in</button>
+          </ng-template>
+
+        </mat-menu>
+      </div>
+
+      <div class="nav-panel pb-4">
+        <div *ngFor="let button of navItems"
+             class="pt-4">
+          <button
+                  [routerLink]="[button.link]"
+                  disableRipple
+                  routerLinkActive="active"
+                  color="accent"
+                  mat-button>
+            <mat-icon>{{ button.icon }}</mat-icon>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+</section>
+
+<ng-template #initials>
+  <div class="avatar d-flex align-items-center justify-content-center">
+    {{appUser.displayName[0]}}
+  </div>
+</ng-template>
+
+
+
+
+

@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SharedForecastService} from '../../../helpers/shared-forecast.service';
 
 @Component({
   selector: 'app-radar',
@@ -10,8 +9,6 @@ import {SharedForecastService} from '../../../helpers/shared-forecast.service';
 export class RadarComponent implements OnInit, OnDestroy {
 
   public radarLink: string;
-
-  constructor(private sharedForecast: SharedForecastService) { }
 
   // TODO Deal with current location.
   //  Should readdress to the closest radar comparing coordinates somehow check link below...

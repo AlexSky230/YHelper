@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {TodoService} from '../../helpers/todo.service';
-import {ButtonIcons, CoreLabels} from '../../constants/constants';
-import {Todo} from '../../helpers/classes/todo';
+import {TodoService} from 'helpers/todo.service';
+import {ButtonIcons, CoreLabels} from 'shared/constants/constants';
+import {Todo} from 'shared/classes/todo';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {TodoHeaderComponent} from './todo-header/todo-header.component';
 

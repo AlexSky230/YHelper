@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {ShoppingService} from '../../../helpers/shopping.service';
-import {ShoppingItem} from '../../../helpers/classes/shopping-item';
-import {ButtonIcons} from '../../../constants/constants';
+import {ShoppingService} from 'helpers/shopping.service';
+import {ShoppingItem} from 'shared/classes/shopping-item';
+import {ButtonIcons} from 'shared/constants/constants';
 
 @Component({
   selector: 'app-shopping-list-old',

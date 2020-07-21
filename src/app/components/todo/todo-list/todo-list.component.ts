@@ -1,7 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
-import {Todo} from '../../../helpers/classes/todo';
-import {ButtonIcons} from '../../../constants/constants';
-import {TodoService} from '../../../helpers/todo.service';
+import {Todo} from 'shared/classes/todo';
+import {ButtonIcons} from 'shared/constants/constants';
+import {TodoService} from 'helpers/todo.service';
 import {MatMenuTrigger} from '@angular/material/menu';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {TodoHeaderComponent} from '../todo-header/todo-header.component';

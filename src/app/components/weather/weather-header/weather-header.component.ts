@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output, OnDestroy} from '@angular/core';
-import {ForecastLocation} from '../../../helpers/classes/forecast-location';
-import {ButtonIcons, LOCATIONS, NamesForService} from '../../../constants/constants';
-import {LocalStorageService} from '../../../services/local-storage.service';
+import {ForecastLocation} from 'shared/classes/forecast-location';
+import {ButtonIcons, LOCATIONS, NamesForService} from 'shared/constants/constants';
+import {LocalStorageService} from 'shared/services/local-storage.service';
 import {Subscription} from 'rxjs';
-import {slide} from '../../../animations/animations';
+import {slide} from 'animations/animations';
 
 @Component({
   selector: 'app-weather-header',

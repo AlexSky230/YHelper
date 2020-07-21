@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FridgeService} from '../../helpers/fridge.service';
-import {ButtonIcons, CORE_ITEMS} from '../../constants/constants';
+import {FridgeService} from 'helpers/fridge.service';
+import {ButtonIcons, CORE_ITEMS} from 'shared/constants/constants';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
-import {ShoppingHeaderComponent} from '../shopping/shopping-header/shopping-header.component';
 import {FridgeHeaderComponent} from './fridge-header/fridge-header.component';
-import {ShoppingItem} from '../../helpers/classes/shopping-item';
+import {ShoppingItem} from 'shared/classes/shopping-item';
 
 @Component({
   selector: 'app-fridge',

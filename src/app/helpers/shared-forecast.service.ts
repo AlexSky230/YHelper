@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ReplaySubject} from 'rxjs';
-import {ForecastLocation} from './classes/forecast-location';
+import {ForecastLocation} from 'shared/classes/forecast-location';
 
 @Injectable({
   providedIn: 'root'

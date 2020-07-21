@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {IdService} from './id.service';
-import {LocalStorageService} from '../services/local-storage.service';
-import {Todo} from './classes/todo';
+import {LocalStorageService} from 'shared/services/local-storage.service';
+import {Todo} from 'shared/classes/todo';
 
 @Injectable({
   providedIn: 'root'

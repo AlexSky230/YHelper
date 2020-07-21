@@ -1,0 +1,101 @@
+<section class="h-100 w-100 d-flex flex-column justify-content-between">
+
+  <div class="text-center pt-3 mt-5">
+    <h1>Welcome to YHelper!</h1>
+  </div>
+
+  <app-busy *ngIf="isBusy | async"></app-busy>
+
+  <div class="text-center d-block mb-5">
+    <ng-container *ngIf="auth.appUser$ | async as appUser else login">
+      <button (click)="logOut()"
+              mat-raised-button
+              color="warn"
+              class="m-2 w-75">
+        Log out
+      </button>
+    </ng-container>
+  </div>
+
+  <ng-template #login>
+    <p *ngIf="!isRegistering" class="py-3 mx-4 px-4">
+      Please log in to sync data with your other devices.
+    </p>
+    <form [formGroup]="logInForm" class="example-form">
+
+      <mat-form-field *ngIf="isRegistering" class="w-75 mb-2">
+        <mat-label>Username</mat-label>
+        <input matInput [formControl]="userNameControl" placeholder="Ex. Alex Sky">
+        <mat-error *ngIf="userNameControl.hasError('minlength') && !userNameControl.hasError('required')">
+          Username should be at least 2 characters
+        </mat-error>
+        <mat-error *ngIf="userNameControl.hasError('required')">
+          Username <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <ng-container>
+        <mat-form-field class="w-75 mb-2">
+          <mat-label>Email</mat-label>
+          <input matInput [formControl]="userEmailControl" placeholder="Ex. user@example.com">
+          <mat-error *ngIf="userEmailControl.hasError('email') && !userEmailControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="userEmailControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-75">
+          <mat-label>Password</mat-label>
+          <input matInput [formControl]="userPasswordControl">
+          <mat-error *ngIf="userPasswordControl.hasError('minlength') && !userPasswordControl.hasError('required')">
+            Should be 6 characters or longer
+          </mat-error>
+          <mat-error *ngIf="userEmailControl.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </ng-container>
+    </form>
+
+    <button
+      *ngIf="!isRegistering"
+      (click)="logInWithEmail()"
+      [disabled]="userEmailControl.invalid || userPasswordControl.invalid"
+      mat-raised-button
+      color="primary"
+      class="m-2 w-75">
+      Log in with email
+    </button>
+
+    <button
+      *ngIf="!isRegistering"
+      (click)="loginWithGoogle()"
+      mat-raised-button
+      color="primary"
+      class="m-2 w-75">
+      Log in with Google
+    </button>
+
+    <button
+      (click)="onRegisterClicked()"
+      mat-raised-button
+      [color]="isRegistering ? 'warn' : 'accent'"
+      class="mt-4 m-2 w-75">
+      {{ isRegistering ? 'Back to Log In' : 'Register'}}
+    </button>
+
+    <button *ngIf="isRegistering"
+      (click)="signUpWithEmail()"
+      [disabled]="logInForm.invalid"
+      mat-raised-button
+      color="accent"
+      class="mt-4 m-2 w-75">
+      Create User
+    </button>
+
+  </ng-template>
+
+</section>
+

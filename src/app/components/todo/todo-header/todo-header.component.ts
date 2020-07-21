@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
-import {ButtonIcons, CoreLabels} from '../../../constants/constants';
-import {Todo} from '../../../helpers/classes/todo';
-import {IdService} from '../../../helpers/id.service';
-import {TodoService} from '../../../helpers/todo.service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ButtonIcons, CoreLabels} from 'shared/constants/constants';
+import {Todo} from 'shared/classes/todo';
+import {IdService} from 'helpers/id.service';
+import {TodoService} from 'helpers/todo.service';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 
 @Component({

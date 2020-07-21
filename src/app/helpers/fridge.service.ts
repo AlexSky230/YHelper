@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
-import {LocalStorageService} from '../services/local-storage.service';
+import {LocalStorageService} from 'shared/services/local-storage.service';
 import {IdService} from './id.service';
 
-import {ShoppingItem} from './classes/shopping-item';
-import {CoreLabels} from '../constants/constants';
-import {ColorItem} from './classes/color-item';
+import {ShoppingItem} from 'shared/classes/shopping-item';
+import {CoreLabels} from 'shared/constants/constants';
 
 @Injectable({
   providedIn: 'root'

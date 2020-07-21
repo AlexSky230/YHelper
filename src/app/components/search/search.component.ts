@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SearchShortcutService} from '../../helpers/search-shortcut.service';
+import {SearchShortcutService} from 'helpers/search-shortcut.service';
 
 @Component({
   selector: 'app-search',

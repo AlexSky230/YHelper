@@ -1,8 +1,8 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {SearchShortcutService} from '../../../helpers/search-shortcut.service';
-import {SearchShortcut} from '../../../helpers/classes/search-shortcut';
+import {SearchShortcutService} from 'helpers/search-shortcut.service';
+import {SearchShortcut} from 'shared/classes/search-shortcut';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {ButtonIcons, CoreLabels} from '../../../constants/constants';
+import {ButtonIcons, CoreLabels} from 'shared/constants/constants';
 
 @Component({
   selector: 'app-shortcut-form',
