@@ -24,18 +24,18 @@ section {
 }
 
 .hourly-table {
-  max-width: 15em;
+  max-width: 14.5em;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .hourly-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 45px;
-  width: 45px;
+  height: 67px;
+  //width: 62px;
   padding: 0 0.25em 0 0.25em;
   margin: 0.25em 0.1em 0.25em 0.1em;
   border: solid #4b4b4b 1px;
