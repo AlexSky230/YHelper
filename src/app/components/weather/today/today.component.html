@@ -39,7 +39,7 @@
             </div>
 
             <div class="titles">
-              <span class="primary-color"> Details: </span>
+              <span class="primary-color">Details:</span>
             </div>
             <mat-divider class="mb-2"></mat-divider>
 
@@ -47,13 +47,14 @@
               .toFixed(0) + weatherCard.percent}}</span>
             <br>
             <span>{{ weatherCard.chanceOfRain + (forecast.daily.data[0].precipProbability * 100)
-              .toFixed(2) + weatherCard.percent}}</span>
+              .toFixed(0) + weatherCard.percent}}</span>
             <br>
-            <span>{{ weatherCard.rainIntensity + forecast.daily.data[0].precipIntensity
-              .toFixed(3) }}</span>
+            <span>{{ weatherCard.rainIntensity + (forecast.daily.data[0].precipIntensity * 10)
+              .toFixed(1) + weatherCard.millimetersPerHour}}</span>
             <br>
             <span>
-              {{ weatherCard.windSpeed + forecast.daily.data[0].windSpeed + weatherCard.metersPerSec}}</span>
+              {{ weatherCard.windSpeed + (forecast.daily.data[0].windSpeed * weatherCard.msToKnots)
+              .toFixed(1) + weatherCard.knots}}</span>
             <br>
             <span>{{ weatherCard.uv + forecast.daily.data[0].uvIndex}}</span>
 
@@ -71,7 +72,7 @@
               <div>{{hourTemp.temperature.toFixed(0) + weatherCard.degree}}</div>
               <div class="small">
                 <i class="wi wi-umbrella d-inline-block cold-color"></i>
-                <span class="cold-color"> {{hourTemp.precipProbability * 100 + '%'}}</span>
+                <span class="cold-color"> {{(hourTemp.precipProbability * 100).toFixed(0)}}%</span>
               </div>
             </div>
           </div>
