@@ -66,10 +66,10 @@
 
         <div class="hourly-table">
           <div *ngFor="let hourTemp of forecast.hourly.data.slice(0, 16), even as even">
-            <div *ngIf="even" class="hourly-item">
-              <div class="small grey">{{hourTemp.time * 1000 | date: 'h a'}}</div>
-              <div class="pt-1">{{hourTemp.temperature.toFixed(0) + weatherCard.degree}}</div>
-              <div class="small pb-1">
+            <div *ngIf="even" class="hourly-item mb-1">
+              <div class="small grey text-lowercase pb-1">{{hourTemp.time * 1000 | date: 'h a'}}</div>
+              <div>{{hourTemp.temperature.toFixed(0) + weatherCard.degree}}</div>
+              <div class="small">
                 <i class="wi wi-umbrella d-inline-block cold-color"></i>
                 <span class="cold-color"> {{hourTemp.precipProbability * 100 + '%'}}</span>
               </div>
