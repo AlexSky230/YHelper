@@ -25,7 +25,7 @@ export enum RouterMainPath {
   empty = '',
   full = 'full',
   fridge = 'fridge',
-  home = 'todo',
+  home = 'weather',
   login = 'login',
   search = 'search',
   shopping = 'shopping',
