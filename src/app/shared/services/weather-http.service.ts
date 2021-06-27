@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 export class WeatherService {
 
   // back end done on PHP on my brothers server, it will be there for as long as needed
-  readonly ROOT_URL = 'https://mamaev.net/darkskyproxy.php?';
+  readonly ROOT_URL = 'https://mamaev.net/apiproxy/darkskyproxy.php?';
 
   constructor(private http: HttpClient) {
   }
