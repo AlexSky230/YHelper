@@ -29,13 +29,11 @@ export class ShoppingService {
    * save to local storage
    */
   public addShoppingItem(item: ShoppingItem): void {
-    if (item) {
-      if (this.shoppingItems.indexOf(item) === -1) {
-        item.id = this.getId();
-        item.selected = false;
-        item.isBought = false;
-        this.shoppingItems.unshift(item);
-      }
+    if (item && !this.shoppingItems.find(listItem => listItem.title.toUpperCase() === item.title.toUpperCase())) {
+      item.id = this.getId();
+      item.selected = false;
+      item.isBought = false;
+      this.shoppingItems.unshift(item);
       this.sortAndSave(item);
     }
   }
