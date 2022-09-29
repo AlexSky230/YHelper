@@ -10,7 +10,7 @@
   </div>
 
   <div class="content">
-    <div *ngIf="toBuyAmount < 1" class="info">
+    <div *ngIf="toBuyAmount < 1" class="info mt-2">
       <mat-icon class="grey">{{ buttonIcons.info }}</mat-icon>
       <span class="small grey ml-1">
       Tip: Click Plus button to add item to your shopping list.</span>
@@ -24,7 +24,7 @@
     </div>
     <mat-divider></mat-divider>
 
-    <div *ngIf="boughtAmount < 1" class="info">
+    <div *ngIf="boughtAmount < 1" class="info mt-2">
       <mat-icon class="grey">{{ buttonIcons.info }}</mat-icon>
       <span class="small grey ml-1">
         Tip: Click on item to put it back to shopping list, or tick the boxes to add items to Fridge Inventory.
