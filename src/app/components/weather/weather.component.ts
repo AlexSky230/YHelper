@@ -1,15 +1,15 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {map, switchMap, tap} from 'rxjs/operators';
-import {Observable, Subscription} from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 
-import {LocalStorageService} from 'shared/services/local-storage.service';
-import {WeatherService} from 'shared/services/weather-http.service';
+import { LocalStorageService } from 'shared/services/local-storage.service';
+import { WeatherService } from 'shared/services/weather-http.service';
 
-import {ForecastLocation} from 'shared/classes/forecast-location';
-import {SharedForecastService} from 'helpers/shared-forecast.service';
+import { ForecastLocation } from 'shared/classes/forecast-location';
+import { SharedForecastService } from 'helpers/shared-forecast.service';
 
-import {LOCATIONS, NamesForService} from 'shared/constants/constants';
-import {IsLoadingService} from 'helpers/is-loading.service';
+import { LOCATIONS, NamesForService } from 'shared/constants/constants';
+import { IsLoadingService } from 'helpers/is-loading.service';
 
 @Component({
   selector: 'app-weather',
@@ -74,10 +74,10 @@ export class WeatherComponent implements OnInit, OnDestroy {
   public updateForecast(): void {
     this.forecastSubscription = this.getForecast()
       .subscribe((forecastData: any) => {
-          if (forecastData) {
-            this.sharedForecastService.setSharedForecast(forecastData);
-          }
+        if (forecastData) {
+          this.sharedForecastService.setSharedForecast(forecastData);
         }
+      }
       );
   }
 

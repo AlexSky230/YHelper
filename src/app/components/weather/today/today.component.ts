@@ -1,9 +1,9 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {SharedForecastService} from 'helpers/shared-forecast.service';
-import {WeatherIcons, WeatherCard} from 'shared/constants/constants';
-import {Subscription} from 'rxjs';
-import {IsLoadingService} from 'helpers/is-loading.service';
-import {slideComponentLeft} from 'animations/animations';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { SharedForecastService } from 'helpers/shared-forecast.service';
+import { WeatherIcons, WeatherCard } from 'shared/constants/constants';
+import { Subscription } from 'rxjs';
+import { IsLoadingService } from 'helpers/is-loading.service';
+import { slideComponentLeft } from 'animations/animations';
 
 @Component({
   selector: 'app-today',
@@ -15,7 +15,9 @@ export class TodayComponent implements OnInit, OnDestroy {
 
   public weatherCard = WeatherCard;
   public forecast: any;
+  public date: "";
   public isLoading: boolean;
+  public forecastArray = [];
 
   private busySubscription: Subscription;
   private subscription: Subscription;
@@ -26,13 +28,15 @@ export class TodayComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  // TODO add rain chance/intensity to hourly forecast, convert it to graph
-
   ngOnInit(): void {
     this.subscription = this.sharedForecastService.sharedForecast
-      .subscribe(sharedForecast => {
+      .subscribe((sharedForecast: any) => {
+        this.date = sharedForecast?.location?.localtime?.split(" ")[0];
         this.forecast = sharedForecast;
-        }
+        this.forecastArray = Object.keys(sharedForecast.forecast).map(key => {
+          return sharedForecast.forecast[key];
+        })
+      }
       );
     this.busySubscription = this.isLoadingService.isLoading
       .subscribe(isBusy => this.isLoading = isBusy);

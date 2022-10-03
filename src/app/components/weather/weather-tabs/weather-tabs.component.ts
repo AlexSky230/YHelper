@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {WEATHER_TABS} from 'shared/constants/constants';
+import { Component } from '@angular/core';
+import { WEATHER_TABS } from 'shared/constants/constants';
 
 @Component({
   selector: 'app-weather-tabs',
@@ -13,10 +13,10 @@ export class WeatherTabsComponent {
       title: WEATHER_TABS.today.title,
       link: WEATHER_TABS.today.link,
     },
-    {
-      title: WEATHER_TABS.week.title,
-      link: WEATHER_TABS.week.link,
-    },
+    // {
+    //   title: WEATHER_TABS.week.title,
+    //   link: WEATHER_TABS.week.link,
+    // },
     // {
     //   title: WEATHER_TABS.radar.title,
     //   link: WEATHER_TABS.radar.link,
