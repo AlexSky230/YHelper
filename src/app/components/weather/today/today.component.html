@@ -1,109 +1,84 @@
 <section *ngIf="forecast" @slideComponentLeft>
 
-  <mat-card-header class="card-top bottom-border">
-    <div class="icon-container">
-      <img [src]="forecast.current.weather_icons[0]" alt="">
-    </div>
+    <mat-card-header class="card-top bottom-border">
+      <i mat-card-avatar
+         [class]="getWiIcon(forecast.daily.data[0].icon)"
+         id="ic">
+      </i>
+      <mat-card-subtitle>
+        {{ forecast.currently.time * 1000 | date: 'EEEE' }},
+        {{ forecast.currently.time * 1000 | date: 'd MMM' }}
+      </mat-card-subtitle>
+      <mat-card-title class="small">
+        <strong>
+          <span class="primary-color">{{ forecast.currently.temperature.toFixed(0) + '°' }}</span>
+        </strong>
+        <span class="small"> Real feel: </span>
+        <span>{{ forecast.currently.apparentTemperature.toFixed(0) + '°' }}</span>
 
-    <mat-card-subtitle>
-      {{ forecast.location.localtime | date: 'EEEE d MMM' }},
-    </mat-card-subtitle>
-
-    <mat-card-title class="small">
-      <strong>
-        <span class="primary-color">{{ forecast.current.temperature + '°' }}</span>
-      </strong>
-
-      <span class="small smoke"> Feels like: </span>
-      <span>{{ forecast.current.feelslike + '°' }}</span>
-    </mat-card-title>
-  </mat-card-header>
+      </mat-card-title>
+    </mat-card-header>
 
 
-  <mat-card-content>
     <div class="card-body">
-      <div class="forecast-container">
-        <div>{{ forecast.current.weather_descriptions }}</div>
 
-        <mat-divider class="my-2"></mat-divider>
+      <mat-card-content>
 
-        <div>
-          <span class="smoke">{{ "Hottest: " }}</span>
-          <strong><span class="hot-color">{{ forecastArray[0].maxtemp + weatherCard.degree}}</span></strong>
-        </div>
+        <div class="general-info">
+          <div>
+            <div>
+              <span>{{ forecast.daily.data[0].summary }}</span>
+              <br>
+              <span>{{ weatherCard.hottest }}</span>
+              <strong><span class="hot-color">{{ forecast.daily.data[0].temperatureMax
+                .toFixed(1) + weatherCard.degree}}</span></strong>
+              <br>
+              <span>{{ weatherCard.coldest }}</span>
+              <strong><span class="cold-color">{{ forecast.daily.data[1].temperatureMin
+                .toFixed(1) + weatherCard.degree}}</span></strong>
+            </div>
 
-        <div>
-          <span class="smoke">{{ "Coldest: " }}</span>
-          <strong><span class="cold-color">{{ forecastArray[0].mintemp + weatherCard.degree}}</span></strong>
-        </div>
+            <div class="titles">
+              <span class="primary-color">Details:</span>
+            </div>
+            <mat-divider class="mb-2"></mat-divider>
 
-        <div>
-          <span class="smoke">{{"Sunrise: "}}</span>
-          <span>{{forecastArray[0].astro.sunrise | lowercase}}</span>
-        </div>
+            <span>{{ weatherCard.humidity + (forecast.daily.data[0].humidity * 100)
+              .toFixed(0) + weatherCard.percent}}</span>
+            <br>
+            <span>{{ weatherCard.chanceOfRain + (forecast.daily.data[0].precipProbability * 100)
+              .toFixed(0) + weatherCard.percent}}</span>
+            <br>
+            <span>{{ weatherCard.rainIntensity + (forecast.daily.data[0].precipIntensity * 100)
+              .toFixed(1) + weatherCard.millimetersPerHour}}</span>
+            <br>
+            <span>
+              {{ weatherCard.windSpeed + (forecast.daily.data[0].windSpeed * weatherCard.msToKnots)
+              .toFixed(1) + weatherCard.knots}}</span>
+            <br>
+            <span>{{ weatherCard.uv + forecast.daily.data[0].uvIndex}}</span>
 
-        <div>
-          <span class="smoke">{{"Sunset: "}}</span>
-          <span>{{forecastArray[0].astro.sunset | lowercase}}</span>
-        </div>
-
-        <div class="titles">
-          <span class="primary-color"> Details: </span>
-        </div>
-
-        <mat-divider class="my-2"></mat-divider>
-
-        <div>
-          <span class="smoke">{{weatherCard.chanceOfRain}}</span>
-          <span> {{forecast.current.precip + weatherCard.percent}} </span>
-        </div>
-
-        <div>
-          <span class="smoke">{{"Cloud cover: "}}</span>
-          <span> {{forecast.current.cloudcover + weatherCard.percent}}</span>
-        </div>
-
-        <div>
-          <span class="smoke">{{weatherCard.windSpeed}}</span>
-          <span> {{(forecast.current.wind_speed * 1.944).toFixed(1) + " Knots - " + forecast.current.wind_dir}}</span>
-        </div>
-
-        <div>
-          <span class="smoke">{{weatherCard.humidity}}</span>
-          <span> {{forecast.current.humidity + weatherCard.percent}}</span>
-        </div>
-
-        <div>
-          <span class="smoke">{{weatherCard.uv}}</span>
-          <span> {{forecast.current.uv_index}}</span>
-        </div>
-
-        <div>
-          <span class="smoke">{{"Pressure: "}}</span>
-          <span> {{forecast.current.pressure + " MB"}}</span>
-        </div>
-
-        <mat-divider class="my-2"></mat-divider>
-
-        <div class="small smoke">{{"(Last update: " + forecast.current.observation_time + ")"}}</div>
-      </div>
-
-      <!-- <div class="titles">
-        <span class="primary-color"> Hourly: </span>
-      </div> -->
-
-      <!-- <div class="hourly-table">
-        <div *ngFor="let hourTemp of forecast.hourly.data.slice(0, 16), even as even">
-          <div *ngIf="even" class="hourly-item">
-            <div class="small grey">{{hourTemp.time * 1000 | date: 'h a'}}</div>
-            <div>{{hourTemp.temperature.toFixed(0) + weatherCard.degree}}</div>
-            <div class="small cold-color">{{(forecast.daily.data[0].precipProbability * 100).toFixed(2) + weatherCard.percent}}</div>
+            <div class="titles">
+              <span class="primary-color"> Hourly: </span>
+            </div>
+            <mat-divider class="mb-2"></mat-divider>
           </div>
         </div>
-      </div> -->
 
+        <div class="hourly-table">
+          <div *ngFor="let hourTemp of forecast.hourly.data.slice(0, 16), even as even">
+            <div *ngIf="even" class="hourly-item mb-1">
+              <div class="small grey text-lowercase pb-1">{{hourTemp.time * 1000 | date: 'h a'}}</div>
+              <div>{{hourTemp.temperature.toFixed(0) + weatherCard.degree}}</div>
+              <div class="small">
+                <i class="wi wi-umbrella d-inline-block cold-color"></i>
+                <span class="cold-color"> {{(hourTemp.precipProbability * 100).toFixed(0)}}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </mat-card-content>
     </div>
-  </mat-card-content>
-
 
 </section>

@@ -29,14 +29,14 @@ export class RightNavigationComponent {
       icon: MAIN_NAV.shoppingList.icon,
       link: MAIN_NAV.shoppingList.link
     },
-    // {
-    //   icon: MAIN_NAV.fridgeInventory.icon,
-    //   link: MAIN_NAV.fridgeInventory.link
-    // },
-    // {
-    //   icon: MAIN_NAV.search.icon,
-    //   link: MAIN_NAV.search.link
-    // },
+    {
+      icon: MAIN_NAV.fridgeInventory.icon,
+      link: MAIN_NAV.fridgeInventory.link
+    },
+    {
+      icon: MAIN_NAV.search.icon,
+      link: MAIN_NAV.search.link
+    },
   ];
 
   constructor(private auth: AuthService, private router: Router) {

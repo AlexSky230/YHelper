@@ -5,7 +5,6 @@ import {FridgeService} from './fridge.service';
 
 import {ShoppingItem} from 'shared/classes/shopping-item';
 import {CoreLabels} from 'shared/constants/constants';
-import { title } from 'process';
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +28,13 @@ export class ShoppingService {
    * save to local storage
    */
   public addShoppingItem(item: ShoppingItem): void {
-    if (item && !this.shoppingItems.find(listItem => listItem.title.toUpperCase() === item.title.toUpperCase())) {
-      item.id = this.getId();
-      item.selected = false;
-      item.isBought = false;
-      this.shoppingItems.unshift(item);
+    if (item) {
+      if (this.shoppingItems.indexOf(item) === -1) {
+        item.id = this.getId();
+        item.selected = false;
+        item.isBought = false;
+        this.shoppingItems.unshift(item);
+      }
       this.sortAndSave(item);
     }
   }
@@ -99,10 +100,8 @@ export class ShoppingService {
     item.isBought = true;
     item.selected = false;
     this.shoppingItems = this.shoppingItems.filter(it => it.id !== item.id);
-    if (!this.shoppingItemsOld.find(oldItem => item.title.toUpperCase() === oldItem.title.toUpperCase())) {
-      this.shoppingItemsOld.unshift(item);
-      this.sortAndSave(item);
-    }
+    this.shoppingItemsOld.unshift(item);
+    this.sortAndSave(item);
   }
 
   /**
@@ -156,17 +155,7 @@ export class ShoppingService {
     if (!item.isBought) {
       this.shoppingItems.sort((a, b) => a.order - b.order);
     } else if (item.isBought) {
-      this.shoppingItemsOld.sort((a, b) => {
-        const titleA = a.title.toUpperCase();
-        const titleB = b.title.toUpperCase();
-        if (titleA < titleB) {
-          return -1;
-        }
-        if (titleA > titleB) {
-          return 1;
-        }
-        return 0;
-      });
+      this.shoppingItemsOld.sort((a, b) => a.order - b.order);
     }
   }
 

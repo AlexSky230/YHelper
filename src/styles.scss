@@ -8,7 +8,6 @@ $coldColor: #3aa7f3;
 $greyColor: #8c8c8c;
 $darkGreyColor: #5f5f5f;
 $backgroundColor: #303030;
-$smokeColor: rgb(200, 200, 200);
 
 
 /** wrap label */
@@ -153,10 +152,6 @@ button {
 
 .grey {
   color: $greyColor;
-}
-
-.smoke {
-  color: $smokeColor;
 }
 
 .primary-color {

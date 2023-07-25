@@ -9,11 +9,11 @@
           <span [class.bought]="item.isBought" class="text">{{ item.title }}</span>
         </button>
 
-        <!-- <mat-checkbox
+        <mat-checkbox
           (change)="toggleItemSelected(item)"
           [checked]="item.selected"
           class="check-box">
-        </mat-checkbox> -->
+        </mat-checkbox>
 
         <button
           (click)="removeOldItem(item)"

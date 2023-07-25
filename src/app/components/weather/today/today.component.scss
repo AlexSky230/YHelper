@@ -14,30 +14,36 @@ section {
   display: flex;
   flex-flow: row;
   justify-content: center;
+}
+
+.general-info {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
   margin-bottom: 0.3em;
+}
 
-  .hourly-table {
-    max-width: 80vw;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
+.hourly-table {
+  max-width: 14.5em;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
 
-    .hourly-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 20%;
-      padding: 0 0.25em 0 0.25em;
-      margin: 0.25em 0.1em 0.25em 0.1em;
-      border: solid #4b4b4b 1px;
-      border-radius: 5px;
-      box-shadow:
-        0 2px 1px -1px rgba(0, 0, 0, 0.2),
-        0px 1px 1px 0px rgba(0, 0, 0, 0.14),
-        0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-    }
-  }
+.hourly-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 70px;
+  padding: 0 0.25em 0 0.25em;
+  margin: 0.25em 0.1em 0.25em 0.1em;
+  border: solid #4b4b4b 1px;
+  border-radius: 5px;
+  box-shadow:
+    0 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
 
 .titles {
@@ -48,14 +54,4 @@ section {
   margin-right: 0.5em;
   color: #b41059;
   font-size: 3.6em;
-}
-
-.icon-container {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  img {
-    height: 100%;
-    width: 100%;
-  }
 }
